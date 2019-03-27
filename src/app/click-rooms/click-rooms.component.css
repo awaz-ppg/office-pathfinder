@@ -1,0 +1,21 @@
+.pos {
+  position: absolute;
+  left: 220px;
+  top: 200px;
+}
+.st4 {
+  fill: #FFFFFF;
+  stroke: #000000;
+  stroke-miterlimit: 10;
+  cursor: pointer;
+}
+
+.shining {
+  fill: #FFC300;
+}
+
+
+
+div {
+  text-align: center
+}

@@ -1,0 +1,80 @@
+
+<html>
+<div >
+  <svg>
+
+    <g inkscape:label="Layer 1"
+       inkscape:groupmode="layer"
+       id="layer1">
+      <rect (click)="onClick($event)"
+            style="fill:#c87137;stroke-width:0.11383971"
+            id="0"
+            width="14.967092"
+            height="22.985178"
+            x="41.694046"
+            y="0.33082449" />
+      <animate xlink:href="#0"
+               attributeName="fill"
+               from="0"
+               to="#c87137"
+               dur="0.5s"
+               begin="click" />
+
+
+      <rect (click)="onClick($event)"
+            style="fill:#c87137;stroke-width:0.11383972"
+            id="1"
+            width="14.967092"
+            height="22.985178"
+            x="75.637276"
+            y="0.063555531" />
+      <animate xlink:href="#1"
+               attributeName="fill"
+               from="0"
+               to="#c87137"
+               dur="0.5s"
+               begin="click" />
+
+      <rect (click)="onClick($event)"
+            style="fill:#c87137;stroke-width:0.11383972"
+            id="2"
+            width="14.967092"
+            height="22.985178"
+            x="106.64054"
+            y="0.33082503" />
+      <animate xlink:href="#2"
+               attributeName="fill"
+               from="0"
+               to="#c87137"
+               dur="0.5s"
+               begin="click" />
+
+      <rect
+            (click)="onClick($event)"
+            (click)="onEnter()"
+            style="fill:#c87137;stroke-width:0.11383972"
+            id="3"
+            width="14.967092"
+            height="22.985178"
+            x="138.44562"
+            y="0.063555583" />
+      <animate
+               xlink:href="#3"
+               attributeName="fill"
+               from="0"
+               to="#c87137"
+               dur="0.5s"
+               begin="click" />
+    </g>
+
+
+
+  </svg>
+
+</div>
+<div class="pos">
+  <input #box (keyup.enter)="onEnter(box.value)">
+
+</div>
+</html>
+

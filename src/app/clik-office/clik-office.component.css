@@ -1,0 +1,10 @@
+.pos {
+  position: absolute;
+
+  left: 400px;
+  top: 200px;
+}
+
+div {
+  text-align: center
+}
