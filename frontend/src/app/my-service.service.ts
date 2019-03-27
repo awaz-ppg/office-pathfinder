@@ -24,8 +24,8 @@ export class GetIdAndTypeService {
     const elements = document.getElementsByClassName('hollymolly');
     console.log(elements);
     const carArray = Array.from(elements);
-    for (let i = 0; i < carArray.length; i++) {
-      carArray[i].setAttribute('class', 'st4');
-    }
+    carArray.map(element => {
+      element.setAttribute('class', 'st4');
+    });
   }
 }
