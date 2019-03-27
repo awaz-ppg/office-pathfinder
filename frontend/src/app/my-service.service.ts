@@ -21,11 +21,11 @@ export class GetIdAndTypeService {
     this.typeSource.next(placeType);
   }
   deleteHollyMolly() {
-      const elements =  document.getElementsByClassName('hollymolly');
-      console.log(elements);
-     for (let i = 0; i < elements.length; i++) {
-       const element = elements[i];
-       element.setAttribute('class', 'st4');
-     }
+    const elements = document.getElementsByClassName('hollymolly');
+    console.log(elements);
+    const carArray = Array.from(elements);
+    for (let i = 0; i < carArray.length; i++) {
+      carArray[i].setAttribute('class', 'st4');
+    }
   }
 }
