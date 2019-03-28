@@ -3,8 +3,10 @@
 ## How to run
 
 API:
-1. .\WebAPI\WebAPI in console "dotnet run"
+
+1. .\backend\WebAPI in console "dotnet run"
 
 Angular:
-1. .\Angular in console "npm install"
-2. .\Angular in console "ng serve"
+
+1. .\frontend in console "npm install"
+2. .\frontend in console "ng serve"
