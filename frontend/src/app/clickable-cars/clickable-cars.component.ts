@@ -8,8 +8,8 @@ import { GetIdAndTypeService} from '../my-service.service';
   styleUrls: ['./clickable-cars.component.css']
 })
 export class ClickableCarsComponent implements OnInit {
-  id = 'id';
-  type = 'type';
+  id = '';
+  type = '';
   subscription: Subscription;
 
   constructor(private getIdAndTypeService: GetIdAndTypeService) {

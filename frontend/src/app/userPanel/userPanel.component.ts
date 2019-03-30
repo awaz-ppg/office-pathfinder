@@ -9,8 +9,8 @@ import { GetIdAndTypeService} from '../my-service.service';
   styleUrls: ['./userPanel.component.css']
 })
 export class UserPanelComponent implements OnInit {
-  id = 'id';
-  type = 'type';
+  id = '';
+  type = '';
   subscription: Subscription;
 
   constructor(private getIdAndTypeService: GetIdAndTypeService) {

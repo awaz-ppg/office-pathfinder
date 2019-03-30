@@ -22,7 +22,6 @@ export class GetIdAndTypeService {
   }
   deleteHollyMolly() {
     const elements = document.getElementsByClassName('hollymolly');
-    console.log(elements);
     const carArray = Array.from(elements);
     carArray.map(element => {
       element.setAttribute('class', 'st4');
