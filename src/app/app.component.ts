@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -13,10 +13,9 @@ export class AppComponent {
 
 
 
-
-
-
-
+  click(event: Event) {
+    this.room = event.srcElement.id;
+  }
 
   view(event) {
     this.room = event;
