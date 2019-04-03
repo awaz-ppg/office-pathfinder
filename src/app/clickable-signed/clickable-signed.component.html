@@ -1,12 +1,13 @@
-<svg>
-  <g id="office">
-    <polyline id="office_001" class="st4" (click)="onClick($event)" points="266,208 369,208 369,262 266,262 266,208 " />
-    <polyline id="office_002" class="st4" (click)="onClick($event)" points="31,209 134,209 134,263 31,263 31,209 " />
-    <polyline id="office_003" class="st4" (click)="onClick($event)" points="265,21 368,21 368,75 265,75 265,21 " />
+<svg (click)="onClick($event)">
+  <g id="office" >
+    <polyline id="office_001" matTooltip="Lol"  class="st4" points="266,208 369,208 369,262 266,262 266,208 " />
+    <polyline id="office_002" matTooltip="Lol" class="st4" points="31,209 134,209 134,263 31,263 31,209 " />
+    <polyline id="office_003" matTooltip="Lol" class="st4" points="265,21 368,21 368,75 265,75 265,21 " />
   </g>
   <g id="room">
-    <rect id="room_001" (click)="onClick($event)" x="53.5" y="106.5" class="st4" width="263" height="68" />
-    <rect id="room_002" (click)="onClick($event)" x="402.5" y="5.5" class="st4" width="68" height="263" />
+    <rect id="room_001" [matTooltip]="displayTooltip($event)" [matTooltipClass]="'custom-tooltip'" x="53.5" y="106.5" class="st4" width="263" height="68" />
+    <rect id="room_002" matTooltip matTooltip="ID:&#13;  Name:" [matTooltipClass]="'custom-tooltip'" x="402.5" y="5.5" class="st4" width="68" height="263" />
   </g>
   <tspan></tspan>
 </svg>
+=true

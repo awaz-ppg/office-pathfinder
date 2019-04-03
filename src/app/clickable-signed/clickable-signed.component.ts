@@ -1,6 +1,8 @@
 import { Component, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { ClickableService } from '../clickable.service';
+import {MatTooltipModule} from '@angular/material/tooltip';
+
 
 @Component({
   selector: '.app-clickable-signed',
@@ -11,6 +13,8 @@ export class ClickableSignedComponent implements OnDestroy {
 
   objectID = '';
   objectType = '';
+  objectIDHover = '';
+  objectTypeHover = '';
   objectSub: Subscription;
 
   constructor(private clickableService: ClickableService) {
@@ -22,6 +26,11 @@ export class ClickableSignedComponent implements OnDestroy {
     this.objectSub.unsubscribe();
   }
 
+  onHover(event: Event){
+    this.objectIDHover = event.srcElement.id;
+    this.objectTypeHover = event.srcElement.parentElement.id;
+  }
+
   onClick(event: Event) {
 
     if (this.objectID) {    // remove selection
@@ -31,5 +40,9 @@ export class ClickableSignedComponent implements OnDestroy {
     this.clickableService.sendClickableType(event.srcElement.parentElement.id);
     document.getElementById(this.objectID).setAttribute('class', 'selected');
   }
+  displayTooltip(event: Event): string {
+    return 'ID:'+ this.objectIDHover + '\nName:' + this.objectTypeHover;
+  }
+
 
 }

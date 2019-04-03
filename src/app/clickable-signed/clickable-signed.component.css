@@ -7,3 +7,6 @@
 .selected {
     fill: rgb(229, 255, 0);
 }
+::ng-deep .custom-tooltip {
+  white-space: pre-line;
+}
