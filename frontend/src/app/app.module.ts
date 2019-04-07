@@ -7,9 +7,17 @@ import { DataService } from './data.service';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule, MatCheckboxModule } from '@angular/material';
+import { ClickableOfficesComponent } from './map/clickable-offices/clickable-offices.component';
+import { ClickableStationsComponent } from './map/clickable-stations/clickable-stations.component';
+import { ClickableRoomsComponent } from './map/clickable-rooms/clickable-rooms.component';
+import { InteractivePlacesComponent } from './map/interactive-places/interactive-places.component';
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ClickableOfficesComponent,
+    ClickableStationsComponent,
+    ClickableRoomsComponent,
+    InteractivePlacesComponent
   ],
   imports: [
     BrowserModule,
