@@ -14,12 +14,8 @@ export class BurgerMenuComponent implements OnInit {
   ngOnInit() {
   }
     onClick(event: Event){
-        let elementClass = event.srcElement.id.toString();
-        var elementList = document.querySelectorAll("rect[id^=" + CSS.escape(event.srcElement.id.toString()) + "] ",
-                                                    "polygon[id^=" + CSS.escape(event.srcElement.id.toString()) + "]",
-                                                    "polyline[id^=" + CSS.escape(event.srcElement.id.toString()) + "]",
-                                                    "path[id^=" + CSS.escape(event.srcElement.id.toString()) + "]",
-                                                    "g[id^=" + CSS.escape(event.srcElement.id.toString()) + "]");
+        let elementClass = event.srcElement.id.toString().replace(/button_/g,'');
+        var elementList = document.querySelectorAll("[id^=" + CSS.escape(elementClass) + "] ");
         elementList.forEach ((item, index) => {
             console.log(elementClass);
             document.getElementById(item.id).setAttribute('class', 'highlight_' + elementClass);
