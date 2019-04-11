@@ -26,10 +26,12 @@ namespace backend.Controllers
             {
                 roomName = roomForRegisterDto.roomName,
                 roomNumber = roomForRegisterDto.roomNumber,
-                employeeId = roomForRegisterDto.employeeId,
-                guestId = roomForRegisterDto.guestId
+                NumberOfPeople = roomForRegisterDto.NumberOfPeople,
+                Description = roomForRegisterDto.Description,
+                IsBlackboard = roomForRegisterDto.IsBlackboard,
+                IsPhone = roomForRegisterDto.IsPhone,
+                IsTV = roomForRegisterDto.IsTV
             };
-
             await _repo.Rooms.AddAsync(roomToCreate);
             await _repo.SaveChangesAsync();
         
@@ -40,28 +42,32 @@ namespace backend.Controllers
 
         // PUT api/Rooms/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> Put(int id, [FromBody] RoomForEdit roomDto)
+        public async Task<IActionResult> Put(int id, [FromBody] Room roomDto)
         {
-            var room = await _repo.Rooms.FirstOrDefaultAsync(x => x.Id == id); //returns a single item.
-            if(room != null)
-            {
-            if(room.roomName != roomDto.roomName && roomDto.roomName != null) room.roomName = roomDto.roomName;
-            if(room.roomNumber != roomDto.roomNumber && roomDto.roomNumber != null) room.roomNumber = roomDto.roomNumber;
-            if(room.employeeId != roomDto.employeeId && roomDto.employeeId != 0 ) room.employeeId = roomDto.employeeId;
-            if(room.guestId != roomDto.guestId && roomDto.guestId != 0 ) room.guestId = roomDto.guestId;
-            _repo.Rooms.Update(room);
-            await _repo.SaveChangesAsync();
+            var room = await _repo.Rooms.FirstOrDefaultAsync(x => x.Id == id);
+            if(room != null) {
+                 room.NumberOfPeople = roomDto.NumberOfPeople;
+                 room.roomName = roomDto.roomName;
+                 room.roomNumber = roomDto.roomNumber;
+                 room.IsBlackboard = roomDto.IsBlackboard;
+                 room.IsPhone = roomDto.IsPhone;
+                 room.IsTV = roomDto.IsTV;
+                 room.Description =roomDto.Description; 
+                 
+                _repo.Rooms.Update(room);
+                 await _repo.SaveChangesAsync();
             
-            return Ok();
+                 return Ok();
             }
             return BadRequest();
+           
         }
 
         // DELETE api/Rooms/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteRoom(int id)
         {
-            var roomToRemove = await _repo.Rooms.FirstOrDefaultAsync(x => x.Id == id); //returns a single item.
+            var roomToRemove = await _repo.Rooms.FirstOrDefaultAsync(x => x.Id == id);
         
             if(roomToRemove != null) {
                 _repo.Rooms.Remove(roomToRemove);

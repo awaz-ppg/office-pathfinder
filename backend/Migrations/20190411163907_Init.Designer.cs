@@ -9,8 +9,8 @@ using backend.Data;
 namespace backend.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20190331211139_InitialMigration")]
-    partial class InitialMigration
+    [Migration("20190411163907_Init")]
+    partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -34,28 +34,12 @@ namespace backend.Migrations
                     b.ToTable("Admin");
                 });
 
-            modelBuilder.Entity("backend.Models.Employee", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("employeeName");
-
-                    b.Property<string>("employeePosition");
-
-                    b.Property<string>("employeeSurname");
-
-                    b.Property<int>("placeId");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Employees");
-                });
-
             modelBuilder.Entity("backend.Models.Guest", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
+
+                    b.Property<string>("FromWhere");
 
                     b.Property<DateTime>("endDate");
 
@@ -90,14 +74,34 @@ namespace backend.Migrations
                     b.ToTable("Offices");
                 });
 
+            modelBuilder.Entity("backend.Models.Printer", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<bool>("IsColor");
+
+                    b.Property<int>("Number");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Printers");
+                });
+
             modelBuilder.Entity("backend.Models.Room", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("employeeId");
+                    b.Property<string>("Description");
 
-                    b.Property<int>("guestId");
+                    b.Property<bool>("IsBlackboard");
+
+                    b.Property<bool>("IsPhone");
+
+                    b.Property<bool>("IsTV");
+
+                    b.Property<int>("NumberOfPeople");
 
                     b.Property<string>("roomName");
 

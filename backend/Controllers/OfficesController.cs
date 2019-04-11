@@ -40,15 +40,15 @@ namespace backend.Controllers
 
         // PUT api/Offices/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> Put(int id, [FromBody] OfficeForEdit officeDto)
+        public async Task<IActionResult> Put(int id, [FromBody] Office officeDto)
         {
-            var office = await _repo.Offices.FirstOrDefaultAsync(x => x.Id == id); //returns a single item.
+            var office = await _repo.Offices.FirstOrDefaultAsync(x => x.Id == id);
             if(office != null)
             {
-            if(office.officeName != officeDto.officeName && officeDto.officeName != null) office.officeName = officeDto.officeName;
-            if(office.officeNumber != officeDto.officeNumber && officeDto.officeNumber != null) office.officeNumber = officeDto.officeNumber;
-            if(office.employeeId != officeDto.employeeId && officeDto.employeeId != 0 ) office.employeeId = officeDto.employeeId;
-            if(office.guestId != officeDto.guestId && officeDto.guestId != 0 ) office.guestId = officeDto.guestId;
+            office.officeName = officeDto.officeName;
+            office.officeNumber = officeDto.officeNumber;
+            office.employeeId = officeDto.employeeId;
+            office.guestId = officeDto.guestId;
             _repo.Offices.Update(office);
             await _repo.SaveChangesAsync();
             
@@ -61,7 +61,7 @@ namespace backend.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteOffice(int id)
         {
-            var officeToRemove = await _repo.Offices.FirstOrDefaultAsync(x => x.Id == id); //returns a single item.
+            var officeToRemove = await _repo.Offices.FirstOrDefaultAsync(x => x.Id == id);
         
             if(officeToRemove != null) {
                 _repo.Offices.Remove(officeToRemove);

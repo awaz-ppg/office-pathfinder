@@ -28,6 +28,7 @@ namespace backend.Controllers
                 guestSurname = guestForRegisterDto.guestSurname,
                 startDate = guestForRegisterDto.startDate,
                 endDate = guestForRegisterDto.endDate,
+                FromWhere = guestForRegisterDto.FromWhere,
                 placeId = guestForRegisterDto.placeId
             };
 
@@ -43,11 +44,12 @@ namespace backend.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> Put(int id, [FromBody] GuestForEdit guestDto)
         {
-            var guest = await _repo.Guests.FirstOrDefaultAsync(x => x.Id == id); //returns a single item.
+            var guest = await _repo.Guests.FirstOrDefaultAsync(x => x.Id == id);
             if(guest != null)
             {
             if(guest.guestName != guestDto.guestName && guestDto.guestName != null) guest.guestName = guestDto.guestName;
             if(guest.guestSurname != guestDto.guestSurname && guestDto.guestSurname != null) guest.guestSurname = guestDto.guestSurname;
+            if(guest.FromWhere != guestDto.FromWhere && guestDto.FromWhere != null) guest.FromWhere = guestDto.FromWhere;
             if(guest.startDate != guestDto.startDate && guestDto.startDate != DateTime.Parse("01.01.0001 00:00:00")) guest.startDate = guestDto.startDate;
             if(guest.endDate != guestDto.endDate && guestDto.endDate != DateTime.Parse("01.01.0001 00:00:00")) guest.endDate = guestDto.endDate;
             if(guest.placeId != guestDto.placeId && guestDto.placeId != 0 ) guest.placeId = guestDto.placeId;
@@ -63,7 +65,7 @@ namespace backend.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteGuest(int id)
         {
-            var guestToRemove = await _repo.Guests.FirstOrDefaultAsync(x => x.Id == id); //returns a single item.
+            var guestToRemove = await _repo.Guests.FirstOrDefaultAsync(x => x.Id == id);
         
             if(guestToRemove != null) {
                 _repo.Guests.Remove(guestToRemove);

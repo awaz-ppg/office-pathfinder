@@ -12418,11 +12418,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\micha\\Desktop\\PPG_GIT\\office-pathfinder\\backend\\backend.csproj",
+      "projectUniqueName": "c:\\Users\\micha\\Desktop\\PPG\\office-pathfinder\\backend\\backend.csproj",
       "projectName": "backend",
-      "projectPath": "C:\\Users\\micha\\Desktop\\PPG_GIT\\office-pathfinder\\backend\\backend.csproj",
+      "projectPath": "c:\\Users\\micha\\Desktop\\PPG\\office-pathfinder\\backend\\backend.csproj",
       "packagesPath": "C:\\Users\\micha\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\micha\\Desktop\\PPG_GIT\\office-pathfinder\\backend\\obj\\",
+      "outputPath": "c:\\Users\\micha\\Desktop\\PPG\\office-pathfinder\\backend\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
