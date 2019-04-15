@@ -24,10 +24,13 @@ namespace backend.Controllers
 
             var officeToCreate = new Office
             {
-                officeName = officeForRegisterDto.officeName,
-                officeNumber = officeForRegisterDto.officeNumber,
-                employeeId = officeForRegisterDto.employeeId,
-                guestId = officeForRegisterDto.guestId
+                FirstName = officeForRegisterDto.FirstName,
+                LastName = officeForRegisterDto.LastName,
+                NumberDesk = officeForRegisterDto.NumberDesk,
+                Position = officeForRegisterDto.Position,
+                IsCoordinator = officeForRegisterDto.IsCoordinator,
+                Team = officeForRegisterDto.Team,
+                IsVolunteer = officeForRegisterDto.IsVolunteer
             };
 
             await _repo.Offices.AddAsync(officeToCreate);
@@ -45,10 +48,13 @@ namespace backend.Controllers
             var office = await _repo.Offices.FirstOrDefaultAsync(x => x.Id == id);
             if(office != null)
             {
-            office.officeName = officeDto.officeName;
-            office.officeNumber = officeDto.officeNumber;
-            office.employeeId = officeDto.employeeId;
-            office.guestId = officeDto.guestId;
+            office.FirstName = officeDto.FirstName;
+            office.LastName = officeDto.LastName;
+            office.Position = officeDto.Position;
+            office.NumberDesk = officeDto.NumberDesk;
+            office.IsCoordinator = officeDto.IsCoordinator;
+            office.IsVolunteer = officeDto.IsVolunteer;
+            office.Team = officeDto.Team;
             _repo.Offices.Update(office);
             await _repo.SaveChangesAsync();
             

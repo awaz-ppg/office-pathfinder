@@ -16,5 +16,7 @@ namespace backend.Data
        public DbSet<Guest> Guests {get; set;}
        public DbSet<Office> Offices {get; set;}
        public DbSet<Room> Rooms {get; set;}
+
+       public DbSet<Desk> Desks {get; set;}
     }
 }

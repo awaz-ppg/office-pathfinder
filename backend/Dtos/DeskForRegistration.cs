@@ -1,8 +1,7 @@
-namespace backend.Models
+namespace backend.Dtos
 {
-    public class Desk
+    public class DeskForRegistration
     {
-        public int Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string NumberDesk { get; set; }

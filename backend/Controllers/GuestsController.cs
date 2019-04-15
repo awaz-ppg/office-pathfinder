@@ -52,7 +52,7 @@ namespace backend.Controllers
             if(guest.FromWhere != guestDto.FromWhere && guestDto.FromWhere != null) guest.FromWhere = guestDto.FromWhere;
             if(guest.startDate != guestDto.startDate && guestDto.startDate != DateTime.Parse("01.01.0001 00:00:00")) guest.startDate = guestDto.startDate;
             if(guest.endDate != guestDto.endDate && guestDto.endDate != DateTime.Parse("01.01.0001 00:00:00")) guest.endDate = guestDto.endDate;
-            if(guest.placeId != guestDto.placeId && guestDto.placeId != 0 ) guest.placeId = guestDto.placeId;
+            if(guest.placeId != guestDto.placeId && guestDto.placeId != null ) guest.placeId = guestDto.placeId;
             _repo.Guests.Update(guest);
             await _repo.SaveChangesAsync();
             
