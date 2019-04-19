@@ -13,6 +13,7 @@ import { ClickableOfficesComponent } from './map/clickable-offices/clickable-off
 import { ClickableStationsComponent } from './map/clickable-stations/clickable-stations.component';
 import { ClickableRoomsComponent } from './map/clickable-rooms/clickable-rooms.component';
 import { InteractivePlacesComponent } from './map/interactive-places/interactive-places.component';
+import { ClickableOthersComponent } from './map/clickable-others/clickable-others.component';
 @NgModule({
   declarations: [
     MapComponent,
@@ -21,7 +22,8 @@ import { InteractivePlacesComponent } from './map/interactive-places/interactive
     ClickableOfficesComponent,
     ClickableStationsComponent,
     ClickableRoomsComponent,
-    InteractivePlacesComponent
+    InteractivePlacesComponent,
+    ClickableOthersComponent
   ],
   imports: [
     BrowserModule,

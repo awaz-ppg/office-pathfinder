@@ -1,0 +1,17 @@
+.clickableRoomClass {
+  opacity: 0;
+  fill: #00FF00;
+}
+
+.clickableRoomClass:hover {
+  opacity: 0.6;
+}
+
+.quietRoomClass {
+  opacity: 0;
+  fill: #1C243A;
+}
+
+.quietRoomClass:hover {
+  opacity: 0.6;
+}
