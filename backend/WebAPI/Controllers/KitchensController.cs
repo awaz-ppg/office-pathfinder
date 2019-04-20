@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using backend.Data;
 using backend.Dtos;
@@ -6,6 +7,7 @@ using backend.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using WebAPI.Data;
 
 namespace backend.Controllers
 {
@@ -13,25 +15,16 @@ namespace backend.Controllers
     
     public class KitchensController : ControllerBase
     {
-       private readonly DataContext _repo;
-        public KitchensController(DataContext context)
+       private const string CollectionName = "KitchensCollection";
+       private readonly ICosmosDbRepository<Kitchen> _repository;      
+         public KitchensController(ICosmosDbRepository<Kitchen> repository)
         {
-            _repo = context;
+            _repository = repository;
         }
         [HttpPost("register")]
-         public async Task<IActionResult> RegisterKitchen([FromBody] KitchenForRegistration kitchenForRegistration)
+         public async Task<IActionResult> RegisterKitchen([FromBody] Kitchen kitchenForRegistration)
         {
-
-            var kitchenToCreate = new Kitchen
-            {
-                Number = kitchenForRegistration.Number,
-                Name = kitchenForRegistration.Name,
-                IsCoffee = kitchenForRegistration.IsCoffee,
-                IsWater = kitchenForRegistration.IsWater
-            };
-
-            await _repo.Kitchens.AddAsync(kitchenToCreate);
-            await _repo.SaveChangesAsync();
+            await _repository.InsertEntityAsync(CollectionName, kitchenForRegistration);
         
             return StatusCode(201);
         }
@@ -40,50 +33,47 @@ namespace backend.Controllers
 
         // PUT api/Kitchens/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> Put(int id, [FromBody] Kitchen kitchenDto)
+        public async Task<IActionResult> Put(string id, [FromBody] Kitchen kitchenDto)
         {
-            var kitchen = await _repo.Kitchens.FirstOrDefaultAsync(x => x.Id == id);
-            if( kitchen != null ) {
-                _repo.Kitchens.Update(kitchenDto);
-                await _repo.SaveChangesAsync();
-            
-                 return Ok();
-            }
-            return BadRequest();
+            kitchenDto.Id = Guid.Parse(id).ToString();
+            await _repository.UpdateEntityAsync(CollectionName, id, kitchenDto);
+            return Ok();
            
         }
 
         // DELETE api/Kitchens/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteKitchen(int id)
+        public async Task<IActionResult> DeleteKitchen(string id)
         {
-            var kitchenToRemove = await _repo.Kitchens.FirstOrDefaultAsync(x => x.Id == id);
-        
-            if(kitchenToRemove != null) {
-                _repo.Kitchens.Remove(kitchenToRemove);
-                _repo.SaveChanges();
+             await _repository.DeleteEntityAsync(CollectionName, id);
                 return Ok();
-            }
-            return BadRequest();
         
         }
 
         // GET api/Kitchens
         [HttpGet]
-        public async Task<IActionResult> GetKitchens()
+        public List<Kitchen> GetKitchens()
         {
-            var kitchens = await _repo.Kitchens.ToListAsync();
+            var kitchens =
+                 _repository.GetAllEntities(CollectionName);
 
-            return Ok(kitchens);
+            return kitchens;
         }
 
         // GET api/Printer/5
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetKitchen(int id)
+        public async Task<Kitchen> GetKitchen(string id)
         {
-            var kitchen = await _repo.Kitchens.FirstOrDefaultAsync(x => x.Id == id);
-
-            return Ok(kitchen);
+            if (id == null)
+            {
+                return null;
+            }
+            var item = await _repository.GetEntity(CollectionName,id);
+            if(item == null)
+            {
+                return null;
+            }
+            return item;
         }
     }
 }

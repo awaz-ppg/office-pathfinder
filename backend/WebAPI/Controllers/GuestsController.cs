@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using backend.Data;
 using backend.Dtos;
@@ -6,6 +7,7 @@ using backend.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using WebAPI.Data;
 
 namespace backend.Controllers
 {
@@ -13,27 +15,17 @@ namespace backend.Controllers
     
     public class GuestsController : ControllerBase
     {
-       private readonly DataContext _repo;
-        public GuestsController(DataContext context)
+       private const string CollectionName = "GuestsCollection";
+       private readonly ICosmosDbRepository<Guest> _repository;
+        public GuestsController(ICosmosDbRepository<Guest> repository)
         {
-            _repo = context;
+            _repository = repository;
         }
         [HttpPost("register")]
-         public async Task<IActionResult> RegisterGuest([FromBody] GuestsForRegistration guestForRegisterDto)
+         public async Task<IActionResult> RegisterGuest([FromBody] Guest guestForRegister)
         {
 
-            var guestToCreate = new Guest
-            {
-                guestName = guestForRegisterDto.GuestName,
-                guestSurname = guestForRegisterDto.GuestSurname,
-                startDate = guestForRegisterDto.StartDate,
-                endDate = guestForRegisterDto.EndDate,
-                FromWhere = guestForRegisterDto.FromWhere,
-                placeId = guestForRegisterDto.PlaceId
-            };
-
-            await _repo.Guests.AddAsync(guestToCreate);
-            await _repo.SaveChangesAsync();
+            await _repository.InsertEntityAsync(CollectionName, guestForRegister);
         
             return StatusCode(201);
         }
@@ -42,50 +34,45 @@ namespace backend.Controllers
 
         // PUT api/Guests/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> Put(int id, [FromBody] Guest guestDto)
+        public async Task<IActionResult> Put(string id, [FromBody] Guest guestDto)
         {
-            var guest = await _repo.Guests.FirstOrDefaultAsync(x => x.Id == id);
-            if(guest != null)
-            {
-            _repo.Guests.Update(guestDto);
-            await _repo.SaveChangesAsync();
-            
+            guestDto.Id = Guid.Parse(id).ToString();
+            await _repository.UpdateEntityAsync(CollectionName, id, guestDto);
             return Ok();
-            }
-            return BadRequest();
         }
 
         // DELETE api/Guests/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteGuest(int id)
+        public async Task<IActionResult> DeleteGuest(string id)
         {
-            var guestToRemove = await _repo.Guests.FirstOrDefaultAsync(x => x.Id == id);
-        
-            if(guestToRemove != null) {
-                _repo.Guests.Remove(guestToRemove);
-                _repo.SaveChanges();
+             await _repository.DeleteEntityAsync(CollectionName, id);
                 return Ok();
-            }
-            return BadRequest();
-        
         }
 
         // GET api/Guests
         [HttpGet]
-        public async Task<IActionResult> GetGuests()
+         public List<Guest> GetGuests()
         {
-            var guests = await _repo.Guests.ToListAsync();
+            var guests =
+                 _repository.GetAllEntities(CollectionName);
 
-            return Ok(guests);
+            return guests;
         }
 
         // GET api/Guests/5
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetGuest(int id)
+        public async Task<Guest> GetGuest(string id)
         {
-            var guest = await _repo.Guests.FirstOrDefaultAsync(x => x.Id == id);
-
-            return Ok(guest);
+           if (id == null)
+            {
+                return null;
+            }
+            var item = await _repository.GetEntity(CollectionName,id);
+            if(item == null)
+            {
+                return null;
+            }
+            return item;
         }
     }
 }

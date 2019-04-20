@@ -1,8 +1,9 @@
+using WebAPI.Models;
+
 namespace backend.Models
 {
-    public class Office
+    public class Office : BaseEntity
     {
-        public int Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string NumberDesk { get; set; }

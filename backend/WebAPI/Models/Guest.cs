@@ -1,9 +1,10 @@
 using System;
+using WebAPI.Models;
+
 namespace backend.Models
 {
-    public class Guest
+    public class Guest : BaseEntity
     {
-        public int Id { get; set; }
         public string guestName { get; set; }
         public string guestSurname { get; set; }
         public string FromWhere { get; set; }

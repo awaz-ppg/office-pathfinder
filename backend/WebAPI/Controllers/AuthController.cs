@@ -1,82 +1,68 @@
-using System;
-using System.IdentityModel.Tokens.Jwt;
+using System.Linq;
 using System.Security.Claims;
-using System.Text;
 using System.Threading.Tasks;
-using backend.Data;
 using backend.Dtos;
 using backend.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Configuration;
-using Microsoft.IdentityModel.Tokens;
+using WebAPI.Interfaces;
 
-namespace backend.Controllers
+namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
-    
-    public class AuthController : ControllerBase
+    public class AuthorizeController : Controller
     {
-        private readonly IAuthRepository _repo;
-        private readonly IConfiguration _config;
-       public AuthController(IAuthRepository repo, IConfiguration config)
-       {
-           _repo = repo;
-           _config = config;
-       }
-       
-        //[Authorize(Policy = "RequireAdministratorRole")]
-        [HttpPost("register")]
-        public async Task<IActionResult> Register([FromBody] AdminForAuth admin)
+        private readonly IAuthorizeService _authorizeService;
+
+        public AuthorizeController(IAuthorizeService authorizeService)
         {
-
-            admin.Login = admin.Login.ToLower();
-
-            if(await _repo.WorkerExists(admin.Login))
-            return BadRequest("Login already exists");
-
-            var adminToCreate = new Admin
-            {
-                Login = admin.Login
-            };
-            var createdWorker = await _repo.Register(adminToCreate,admin.Password);
-
-            return StatusCode(201);
+            _authorizeService = authorizeService;
         }
 
-        [HttpPost("login")]
-        public async Task<IActionResult> Login([FromBody] AdminForAuth admin)
+        [AllowAnonymous]
+        [HttpPost]
+        public IActionResult CreateToken([FromBody] AdminForAuth model)
         {
-            var adminFromRepo = await _repo.Login(admin.Login.ToLower(), admin.Password);
+            IActionResult response = Unauthorized();
 
-            if(adminFromRepo == null)
-            return Unauthorized();
-
-            var claims = new[]
+            var admin = new Admin
             {
-                new Claim(ClaimTypes.NameIdentifier, adminFromRepo.Login.ToString()),
-                new Claim(ClaimTypes.Role,"administrator"),
+                Login = model.Login,
+                Password = model.Password,
             };
 
-            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config.GetSection("AppSettings:Token").Value));
+            var tokenString = _authorizeService.Authenticate(admin);
+            if (tokenString != null)
+                return Ok(new { token = tokenString });
 
-            var creds = new SigningCredentials(key,SecurityAlgorithms.HmacSha512Signature);
-
-            var tokenDescriptor = new SecurityTokenDescriptor
-            {
-                Subject = new ClaimsIdentity(claims),
-                Expires = DateTime.Now.AddDays(1),
-                SigningCredentials = creds
-            };
-
-            var tokenHandler = new JwtSecurityTokenHandler();
-
-            var token = tokenHandler.CreateToken(tokenDescriptor);
-
-            return Ok(new {
-                token = tokenHandler.WriteToken(token)
-            });
+            return response;
         }
 
+        [HttpPost("Register")]
+        public async Task<IActionResult> Register([FromBody] AdminForAuth model)
+        {
+            var admin = new Admin
+            {
+                Login = model.Login,
+                Password = model.Password,
+            };
+
+            var operationSucceeded =
+                await _authorizeService.CreateAdminAccount(admin);
+
+            if (operationSucceeded)
+                return Ok();
+
+            return BadRequest();
+        }
+
+        [HttpGet, Authorize]
+        public IActionResult GetLoginOfLoggedUser()
+        {
+            var currentUser = HttpContext.User;
+            var login = currentUser.Claims.First(c => c.Type == ClaimTypes.Name).Value;
+            return Ok(login);
+        }
     }
 }

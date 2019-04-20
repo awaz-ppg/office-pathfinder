@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using backend.Data;
 using backend.Dtos;
@@ -6,33 +7,23 @@ using backend.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using WebAPI.Data;
 
 namespace backend.Controllers
 {
     [Route("api/[controller]")]
     public class RoomsController : ControllerBase
     {
-       private readonly DataContext _repo;
-        public RoomsController(DataContext context)
+       private const string CollectionName = "RoomsCollection";
+       private readonly ICosmosDbRepository<Room> _repository;
+        public RoomsController(ICosmosDbRepository<Room> repository)
         {
-            _repo = context;
+            _repository = repository;
         }
         [HttpPost("register")]
-         public async Task<IActionResult> RegisterRoom([FromBody] RoomForRegister roomForRegisterDto)
+         public async Task<IActionResult> RegisterRoom([FromBody] Room roomForRegister)
         {
-
-            var roomToCreate = new Room
-            {
-                roomName = roomForRegisterDto.RoomName,
-                roomNumber = roomForRegisterDto.RoomNumber,
-                NumberOfPeople = roomForRegisterDto.NumberOfPeople,
-                Description = roomForRegisterDto.Description,
-                IsBlackboard = roomForRegisterDto.IsBlackboard,
-                IsPhone = roomForRegisterDto.IsPhone,
-                IsTV = roomForRegisterDto.IsTV
-            };
-            await _repo.Rooms.AddAsync(roomToCreate);
-            await _repo.SaveChangesAsync();
+            await _repository.InsertEntityAsync(CollectionName, roomForRegister);
         
             return StatusCode(201);
         }
@@ -41,58 +32,45 @@ namespace backend.Controllers
 
         // PUT api/Rooms/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> Put(int id, [FromBody] Room roomDto)
+        public async Task<IActionResult> Put(string id, [FromBody] Room roomDto)
         {
-            var room = await _repo.Rooms.FirstOrDefaultAsync(x => x.Id == id);
-            if(room != null) {
-                 room.NumberOfPeople = roomDto.NumberOfPeople;
-                 room.roomName = roomDto.roomName;
-                 room.roomNumber = roomDto.roomNumber;
-                 room.IsBlackboard = roomDto.IsBlackboard;
-                 room.IsPhone = roomDto.IsPhone;
-                 room.IsTV = roomDto.IsTV;
-                 room.Description =roomDto.Description; 
-                 
-                _repo.Rooms.Update(room);
-                 await _repo.SaveChangesAsync();
-            
-                 return Ok();
-            }
-            return BadRequest();
-           
+            roomDto.Id = Guid.Parse(id).ToString();
+            await _repository.UpdateEntityAsync(CollectionName, id, roomDto);
+            return Ok();
         }
 
         // DELETE api/Rooms/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteRoom(int id)
+        public async Task<IActionResult> DeleteRoom(string id)
         {
-            var roomToRemove = await _repo.Rooms.FirstOrDefaultAsync(x => x.Id == id);
-        
-            if(roomToRemove != null) {
-                _repo.Rooms.Remove(roomToRemove);
-                _repo.SaveChanges();
+             await _repository.DeleteEntityAsync(CollectionName, id);
                 return Ok();
-            }
-            return BadRequest();
-        
         }
 
         // GET api/Rooms
         [HttpGet]
-        public async Task<IActionResult> GetRooms()
+        public List<Room> GetRooms()
         {
-            var rooms = await _repo.Rooms.ToListAsync();
+            var rooms =
+                 _repository.GetAllEntities(CollectionName);
 
-            return Ok(rooms);
+            return rooms;
         }
 
         // GET api/Rooms/5
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetRoom(int id)
+        public async Task<Room> GetRoom(string id)
         {
-            var room = await _repo.Rooms.FirstOrDefaultAsync(x => x.Id == id);
-
-            return Ok(room);
+            if (id == null)
+            {
+                return null;
+            }
+            var item = await _repository.GetEntity(CollectionName,id);
+            if(item == null)
+            {
+                return null;
+            }
+            return item;
         }
     }
 }

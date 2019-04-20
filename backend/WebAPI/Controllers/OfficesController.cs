@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using backend.Data;
 using backend.Dtos;
@@ -6,86 +7,68 @@ using backend.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using WebAPI.Data;
 
 namespace backend.Controllers
 {
     [Route("api/[controller]")]
     public class OfficesController : ControllerBase
     {
-       private readonly DataContext _repo;
-        public OfficesController(DataContext context)
+      private const string CollectionName = "OfficesCollection";
+       private readonly ICosmosDbRepository<Office> _repository;    
+        public OfficesController(ICosmosDbRepository<Office> repository)
         {
-            _repo = context;
+            _repository = repository;
         }
         [HttpPost("register")]
-         public async Task<IActionResult> RegisterOffice([FromBody] OfficeForRegister officeForRegisterDto)
+         public async Task<IActionResult> RegisterOffice([FromBody] Office officeForRegister)
         {
-
-            var officeToCreate = new Office
-            {
-                FirstName = officeForRegisterDto.FirstName,
-                LastName = officeForRegisterDto.LastName,
-                NumberDesk = officeForRegisterDto.NumberDesk,
-                Position = officeForRegisterDto.Position,
-                IsCoordinator = officeForRegisterDto.IsCoordinator,
-                Team = officeForRegisterDto.Team,
-                IsVolunteer = officeForRegisterDto.IsVolunteer
-            };
-
-            await _repo.Offices.AddAsync(officeToCreate);
-            await _repo.SaveChangesAsync();
+            await _repository.InsertEntityAsync(CollectionName, officeForRegister);
         
             return StatusCode(201);
         }
 
-
-
         // PUT api/Offices/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> Put(int id, [FromBody] Office officeDto)
+        public async Task<IActionResult> Put(string id, [FromBody] Office officeDto)
         {
-            var office = await _repo.Offices.FirstOrDefaultAsync(x => x.Id == id);
-            if(office != null)
-            {
-            _repo.Offices.Update(officeDto);
-            await _repo.SaveChangesAsync();
-            
+            officeDto.Id = Guid.Parse(id).ToString();
+            await _repository.UpdateEntityAsync(CollectionName, id, officeDto);
             return Ok();
-            }
-            return BadRequest();
         }
 
         // DELETE api/Offices/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteOffice(int id)
+        public async Task<IActionResult> DeleteOffice(string id)
         {
-            var officeToRemove = await _repo.Offices.FirstOrDefaultAsync(x => x.Id == id);
-        
-            if(officeToRemove != null) {
-                _repo.Offices.Remove(officeToRemove);
-                _repo.SaveChanges();
+            await _repository.DeleteEntityAsync(CollectionName, id);
                 return Ok();
-            }
-            return BadRequest();
-        
         }
 
         // GET api/Offices
         [HttpGet]
-        public async Task<IActionResult> GetOffices()
+        public List<Office> GetOffices()
         {
-            var offices = await _repo.Offices.ToListAsync();
+            var offices =
+                 _repository.GetAllEntities(CollectionName);
 
-            return Ok(offices);
+            return offices;
         }
 
         // GET api/Offices/5
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetOffice(int id)
+        public async Task<Office> GetOffice(string id)
         {
-            var office = await _repo.Offices.FirstOrDefaultAsync(x => x.Id == id);
-
-            return Ok(office);
+             if (id == null)
+            {
+                return null;
+            }
+            var item = await _repository.GetEntity(CollectionName,id);
+            if(item == null)
+            {
+                return null;
+            }
+            return item;
         }
     }
 }

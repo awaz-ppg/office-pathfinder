@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Net;
 using System.Threading.Tasks;
 using backend.Data;
 using backend.Dtos;
@@ -6,6 +8,7 @@ using backend.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using WebAPI.Data;
 
 namespace backend.Controllers
 {
@@ -13,27 +16,17 @@ namespace backend.Controllers
     
     public class DesksController : ControllerBase
     {
-       private readonly DataContext _repo;
-        public DesksController(DataContext context)
+        private const string CollectionName = "DesksCollection";
+       private readonly ICosmosDbRepository<Desk> _repository;
+        public DesksController(ICosmosDbRepository<Desk> repository)
         {
-            _repo = context;
+            _repository = repository;
         }
         [HttpPost("register")]
-         public async Task<IActionResult> RegisterDesk([FromBody] DeskForRegistration deskForRegisterDto)
+         public async Task<IActionResult> RegisterDesk([FromBody] Desk deskForRegister)
         {
 
-            var deskToCreate = new Desk
-            {
-                FirstName = deskForRegisterDto.FirstName,
-                LastName = deskForRegisterDto.LastName,
-                NumberDesk = deskForRegisterDto.NumberDesk,
-                IsCoordinator = deskForRegisterDto.IsCoordinator,
-                Team = deskForRegisterDto.Team,
-                IsVolunteer = deskForRegisterDto.IsVolunteer
-            };
-
-            await _repo.Desks.AddAsync(deskToCreate);
-            await _repo.SaveChangesAsync();
+            await _repository.InsertEntityAsync(CollectionName, deskForRegister);
         
             return StatusCode(201);
         }
@@ -42,50 +35,46 @@ namespace backend.Controllers
 
         // PUT api/Desks/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> Put(int id, [FromBody] Desk deskDto)
+        public async Task<IActionResult> Put(string id, [FromBody] Desk deskDto)
         {
-            var desk = await _repo.Desks.FirstOrDefaultAsync(x => x.Id == id);
-            if(desk != null)
-            {
-            _repo.Desks.Update(deskDto);
-            await _repo.SaveChangesAsync();
-            
+            deskDto.Id = Guid.Parse(id).ToString();
+            await _repository.UpdateEntityAsync(CollectionName, id, deskDto);
             return Ok();
-            }
-            return BadRequest();
+            
         }
 
         // DELETE api/Desks/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteDesk(int id)
+        public async Task<IActionResult> DeleteDesk(string id)
         {
-            var deskToRemove = await _repo.Desks.FirstOrDefaultAsync(x => x.Id == id);
-        
-            if(deskToRemove != null) {
-                _repo.Desks.Remove(deskToRemove);
-                _repo.SaveChanges();
+            await _repository.DeleteEntityAsync(CollectionName, id);
                 return Ok();
-            }
-            return BadRequest();
-        
         }
 
         // GET api/Desks
         [HttpGet]
-        public async Task<IActionResult> GetDesks()
+        public List<Desk> GetDesks()
         {
-            var desks = await _repo.Desks.ToListAsync();
+            var desks =
+                 _repository.GetAllEntities(CollectionName);
 
-            return Ok(desks);
+            return desks;
         }
 
         // GET api/Desks/5
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetDesk(int id)
+        public async Task<Desk> GetDesk(string id)
         {
-            var desk = await _repo.Desks.FirstOrDefaultAsync(x => x.Id == id);
-
-            return Ok(desk);
+           if (id == null)
+            {
+                return null;
+            }
+            var item = await _repository.GetEntity(CollectionName,id);
+            if(item == null)
+            {
+                return null;
+            }
+            return item;
         }
     }
 }

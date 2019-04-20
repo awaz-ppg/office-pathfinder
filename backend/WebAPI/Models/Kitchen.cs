@@ -1,8 +1,9 @@
+using WebAPI.Models;
+
 namespace backend.Models
 {
-    public class Kitchen
+    public class Kitchen : BaseEntity
     {
-        public int Id { get; set; }
         public string Number { get; set; }
         public string Name { get; set; }
         public bool IsCoffee { get; set; }
