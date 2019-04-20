@@ -25,7 +25,6 @@ namespace backend.Controllers
         [HttpPost("register")]
          public async Task<IActionResult> RegisterDesk([FromBody] Desk deskForRegister)
         {
-
             await _repository.InsertEntityAsync(CollectionName, deskForRegister);
         
             return StatusCode(201);
