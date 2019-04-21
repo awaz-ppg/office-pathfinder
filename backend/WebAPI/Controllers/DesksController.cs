@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Net;
 using System.Threading.Tasks;
 using backend.Data;
 using backend.Dtos;
@@ -12,54 +13,58 @@ using WebAPI.Data;
 namespace backend.Controllers
 {
     [Route("api/[controller]")]
-    public class OfficesController : ControllerBase
+    
+    public class DesksController : ControllerBase
     {
-      private const string CollectionName = "OfficesCollection";
-       private readonly ICosmosDbRepository<Office> _repository;    
-        public OfficesController(ICosmosDbRepository<Office> repository)
+        private const string CollectionName = "DesksCollection";
+       private readonly ICosmosDbRepository<Desk> _repository;
+        public DesksController(ICosmosDbRepository<Desk> repository)
         {
             _repository = repository;
         }
         [HttpPost("register")]
-         public async Task<IActionResult> RegisterOffice([FromBody] Office officeForRegister)
+         public async Task<IActionResult> RegisterDesk([FromBody] Desk deskForRegister)
         {
-            await _repository.InsertEntityAsync(CollectionName, officeForRegister);
+            await _repository.InsertEntityAsync(CollectionName, deskForRegister);
         
             return StatusCode(201);
         }
 
-        // PUT api/Offices/5
+
+
+        // PUT api/Desks/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> Put(string id, [FromBody] Office officeDto)
+        public async Task<IActionResult> Put(string id, [FromBody] Desk deskDto)
         {
-            officeDto.Id = Guid.Parse(id).ToString();
-            await _repository.UpdateEntityAsync(CollectionName, id, officeDto);
+            deskDto.Id = Guid.Parse(id).ToString();
+            await _repository.UpdateEntityAsync(CollectionName, id, deskDto);
             return Ok();
+            
         }
 
-        // DELETE api/Offices/5
+        // DELETE api/Desks/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteOffice(string id)
+        public async Task<IActionResult> DeleteDesk(string id)
         {
             await _repository.DeleteEntityAsync(CollectionName, id);
                 return Ok();
         }
 
-        // GET api/Offices
+        // GET api/Desks
         [HttpGet]
-        public List<Office> GetOffices()
+        public List<Desk> GetDesks()
         {
-            var offices =
+            var desks =
                  _repository.GetAllEntities(CollectionName);
 
-            return offices;
+            return desks;
         }
 
-        // GET api/Offices/5
+        // GET api/Desks/5
         [HttpGet("{id}")]
-        public async Task<Office> GetOffice(string id)
+        public async Task<Desk> GetDesk(string id)
         {
-             if (id == null)
+           if (id == null)
             {
                 return null;
             }

@@ -1,12 +1,12 @@
-﻿using System.Linq;
+using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using backend.Dtos;
+using backend.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using WebAPI.Interfaces;
-using WebAPI.Models;
-using WebAPI.ViewModel;
 
 namespace WebAPI.Controllers
 {
@@ -22,14 +22,14 @@ namespace WebAPI.Controllers
 
         [AllowAnonymous]
         [HttpPost]
-        public IActionResult CreateToken([FromBody] LoginRegisterViewModel model)
+        public IActionResult CreateToken([FromBody] AdminForAuth model)
         {
             IActionResult response = Unauthorized();
 
             var admin = new Admin
             {
-                login = model.login,
-                password = model.password,
+                Login = model.Login,
+                Password = model.Password,
             };
 
             var tokenString = _authorizeService.Authenticate(admin);
@@ -39,13 +39,13 @@ namespace WebAPI.Controllers
             return response;
         }
 
-        [HttpPost("Register"), Authorize]
-        public async Task<IActionResult> Register([FromBody] LoginRegisterViewModel model)
+        [HttpPost("Register")]
+        public async Task<IActionResult> Register([FromBody] AdminForAuth model)
         {
             var admin = new Admin
             {
-                login = model.login,
-                password = model.password,
+                Login = model.Login,
+                Password = model.Password,
             };
 
             var operationSucceeded =

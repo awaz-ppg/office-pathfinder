@@ -1,10 +1,12 @@
-﻿using Microsoft.Extensions.Configuration;
+using backend.Models;
+using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using WebAPI.Data;
 using WebAPI.Interfaces;
 using WebAPI.Models;
 
@@ -14,9 +16,9 @@ namespace WebAPI.Services
     {
         private const string CollectionName = "AdministratorsCollection";
         private readonly IConfiguration _config;
-        private readonly ICosmosDBRepository<Admin> _repository;
+        private readonly ICosmosDbRepository<Admin> _repository;
 
-        public AuthorizeService(IConfiguration config, ICosmosDBRepository<Admin> repository)
+        public AuthorizeService(IConfiguration config, ICosmosDbRepository<Admin> repository)
         {
             _config = config;
             _repository = repository;
@@ -34,8 +36,8 @@ namespace WebAPI.Services
         {
             var entities = _repository.GetAllEntities(CollectionName);
 
-            if (entities.Exists(p => p.login == admin.login
-            && p.password == Eramake.eCryptography.Encrypt(admin.password)))
+            if (entities.Exists(p => p.Login == admin.Login
+            && p.Password == Eramake.eCryptography.Encrypt(admin.Password)))
             {
                 return true;
             }
@@ -46,7 +48,7 @@ namespace WebAPI.Services
         private string BuildToken(Admin admin)
         {
             var claims = new[] {
-                new Claim(JwtRegisteredClaimNames.UniqueName, admin.login),
+                new Claim(JwtRegisteredClaimNames.UniqueName, admin.Login),
             };
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:Key"]));
@@ -66,7 +68,7 @@ namespace WebAPI.Services
             if (LoginExist(admin))
                 return false;
 
-            admin.password = Eramake.eCryptography.Encrypt(admin.password);
+            admin.Password = Eramake.eCryptography.Encrypt(admin.Password);
 
             await _repository.InsertEntityAsync(CollectionName, admin);
             return true;
@@ -75,7 +77,7 @@ namespace WebAPI.Services
         private bool LoginExist(Admin admin)
         {
             var entities = _repository.GetAllEntities(CollectionName);
-            if (entities.Exists(p => p.login == admin.login))
+            if (entities.Exists(p => p.Login == admin.Login))
                 return true;
 
             return false;

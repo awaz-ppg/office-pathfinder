@@ -12,54 +12,57 @@ using WebAPI.Data;
 namespace backend.Controllers
 {
     [Route("api/[controller]")]
-    public class OfficesController : ControllerBase
+    public class PrintersController : ControllerBase
     {
-      private const string CollectionName = "OfficesCollection";
-       private readonly ICosmosDbRepository<Office> _repository;    
-        public OfficesController(ICosmosDbRepository<Office> repository)
+       private const string CollectionName = "PrintersCollection";
+       private readonly ICosmosDbRepository<Printer> _repository;
+        public PrintersController(ICosmosDbRepository<Printer> repository)
         {
             _repository = repository;
         }
         [HttpPost("register")]
-         public async Task<IActionResult> RegisterOffice([FromBody] Office officeForRegister)
+         public async Task<IActionResult> RegisterPrinter([FromBody] Printer printerForRegistration)
         {
-            await _repository.InsertEntityAsync(CollectionName, officeForRegister);
+            await _repository.InsertEntityAsync(CollectionName, printerForRegistration);
         
             return StatusCode(201);
         }
 
-        // PUT api/Offices/5
+
+
+        // PUT api/Printers/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> Put(string id, [FromBody] Office officeDto)
+        public async Task<IActionResult> Put(string id, [FromBody] Printer printerDto)
         {
-            officeDto.Id = Guid.Parse(id).ToString();
-            await _repository.UpdateEntityAsync(CollectionName, id, officeDto);
-            return Ok();
+            printerDto.Id = Guid.Parse(id).ToString();
+            await _repository.UpdateEntityAsync(CollectionName, id, printerDto);
+            return Ok(); 
         }
 
-        // DELETE api/Offices/5
+        // DELETE api/Printers/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteOffice(string id)
+        public async Task<IActionResult> DeletePrinter(string id)
         {
             await _repository.DeleteEntityAsync(CollectionName, id);
                 return Ok();
+        
         }
 
-        // GET api/Offices
+        // GET api/Printers
         [HttpGet]
-        public List<Office> GetOffices()
+        public List<Printer> GetPrinters()
         {
-            var offices =
+            var desks =
                  _repository.GetAllEntities(CollectionName);
 
-            return offices;
+            return desks;
         }
 
-        // GET api/Offices/5
+        // GET api/Printer/5
         [HttpGet("{id}")]
-        public async Task<Office> GetOffice(string id)
+        public async Task<Printer> GetPrinter(string id)
         {
-             if (id == null)
+            if (id == null)
             {
                 return null;
             }

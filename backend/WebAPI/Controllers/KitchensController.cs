@@ -12,54 +12,57 @@ using WebAPI.Data;
 namespace backend.Controllers
 {
     [Route("api/[controller]")]
-    public class RoomsController : ControllerBase
+    
+    public class KitchensController : ControllerBase
     {
-       private const string CollectionName = "RoomsCollection";
-       private readonly ICosmosDbRepository<Room> _repository;
-        public RoomsController(ICosmosDbRepository<Room> repository)
+       private const string CollectionName = "KitchensCollection";
+       private readonly ICosmosDbRepository<Kitchen> _repository;      
+         public KitchensController(ICosmosDbRepository<Kitchen> repository)
         {
             _repository = repository;
         }
         [HttpPost("register")]
-         public async Task<IActionResult> RegisterRoom([FromBody] Room roomForRegister)
+         public async Task<IActionResult> RegisterKitchen([FromBody] Kitchen kitchenForRegistration)
         {
-            await _repository.InsertEntityAsync(CollectionName, roomForRegister);
+            await _repository.InsertEntityAsync(CollectionName, kitchenForRegistration);
         
             return StatusCode(201);
         }
 
 
 
-        // PUT api/Rooms/5
+        // PUT api/Kitchens/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> Put(string id, [FromBody] Room roomDto)
+        public async Task<IActionResult> Put(string id, [FromBody] Kitchen kitchenDto)
         {
-            roomDto.Id = Guid.Parse(id).ToString();
-            await _repository.UpdateEntityAsync(CollectionName, id, roomDto);
+            kitchenDto.Id = Guid.Parse(id).ToString();
+            await _repository.UpdateEntityAsync(CollectionName, id, kitchenDto);
             return Ok();
+           
         }
 
-        // DELETE api/Rooms/5
+        // DELETE api/Kitchens/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteRoom(string id)
+        public async Task<IActionResult> DeleteKitchen(string id)
         {
              await _repository.DeleteEntityAsync(CollectionName, id);
                 return Ok();
+        
         }
 
-        // GET api/Rooms
+        // GET api/Kitchens
         [HttpGet]
-        public List<Room> GetRooms()
+        public List<Kitchen> GetKitchens()
         {
-            var rooms =
+            var kitchens =
                  _repository.GetAllEntities(CollectionName);
 
-            return rooms;
+            return kitchens;
         }
 
-        // GET api/Rooms/5
+        // GET api/Printer/5
         [HttpGet("{id}")]
-        public async Task<Room> GetRoom(string id)
+        public async Task<Kitchen> GetKitchen(string id)
         {
             if (id == null)
             {

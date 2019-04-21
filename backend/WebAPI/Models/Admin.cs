@@ -1,8 +1,10 @@
-﻿namespace WebAPI.Models
+using WebAPI.Models;
+
+namespace backend.Models
 {
     public class Admin : BaseEntity
     {
-        public string login { get; set; }
-        public string password { get; set; }
+        public string Login { get; set; }
+        public string Password { get; set; }
     }
 }
