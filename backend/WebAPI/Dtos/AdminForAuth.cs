@@ -1,5 +1,5 @@
 using System.ComponentModel.DataAnnotations;
-namespace backend.Dtos
+namespace WebAPI.Dtos
 {
     public class AdminForAuth
     {

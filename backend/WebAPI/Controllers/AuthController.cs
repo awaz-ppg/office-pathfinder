@@ -1,12 +1,12 @@
-using System.Linq;
-using System.Security.Claims;
-using System.Threading.Tasks;
-using backend.Dtos;
-using backend.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using WebAPI.Interfaces;
+using System.Linq;
+using System.Security.Claims;
+using System.Threading.Tasks;
+using WebAPI.Data;
+using WebAPI.Dtos;
+using WebAPI.Models;
 
 namespace WebAPI.Controllers
 {

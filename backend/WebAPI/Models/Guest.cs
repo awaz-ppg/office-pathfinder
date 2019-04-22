@@ -1,7 +1,6 @@
 using System;
-using WebAPI.Models;
 
-namespace backend.Models
+namespace WebAPI.Models
 {
     public class Guest : BaseEntity
     {

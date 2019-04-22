@@ -29,7 +29,7 @@ namespace WebAPI.Data
 
         public async Task InsertEntityAsync(string collectionName, TEntity entity)
         {
-            entity.Id = Guid.NewGuid().ToString();
+            entity.id = Guid.NewGuid().ToString();
             var documentUri = UriFactory.CreateDocumentCollectionUri(_databaseName, collectionName);
             await _client.CreateDocumentAsync(documentUri, entity);
         }

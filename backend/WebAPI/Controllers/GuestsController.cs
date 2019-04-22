@@ -1,15 +1,11 @@
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using backend.Data;
-using backend.Dtos;
-using backend.Models;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using WebAPI.Data;
+using WebAPI.Models;
 
-namespace backend.Controllers
+namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
     
@@ -36,7 +32,7 @@ namespace backend.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> Put(string id, [FromBody] Guest guestDto)
         {
-            guestDto.Id = Guid.Parse(id).ToString();
+            guestDto.id = Guid.Parse(id).ToString();
             await _repository.UpdateEntityAsync(CollectionName, id, guestDto);
             return Ok();
         }
@@ -63,10 +59,6 @@ namespace backend.Controllers
         [HttpGet("{id}")]
         public async Task<Guest> GetGuest(string id)
         {
-           if (id == null)
-            {
-                return null;
-            }
             var item = await _repository.GetEntity(CollectionName,id);
             if(item == null)
             {

@@ -1,4 +1,3 @@
-using backend.Models;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System;
@@ -7,7 +6,6 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 using WebAPI.Data;
-using WebAPI.Interfaces;
 using WebAPI.Models;
 
 namespace WebAPI.Services
