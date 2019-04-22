@@ -1,6 +1,4 @@
-using WebAPI.Models;
-
-namespace backend.Models
+namespace WebAPI.Models
 {
     public class Admin : BaseEntity
     {

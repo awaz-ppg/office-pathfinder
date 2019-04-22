@@ -1,16 +1,14 @@
-﻿using System.Collections.Generic;
-using System.Text;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
+﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using Swashbuckle.AspNetCore.Swagger;
 using Swashbuckle.AspNetCore.SwaggerUI;
+using System.Collections.Generic;
+using System.Text;
 using WebAPI.Data;
-using WebAPI.Interfaces;
 using WebAPI.Services;
 
 namespace WebAPI
@@ -39,16 +37,6 @@ namespace WebAPI
             services.AddMvc();
             services.AddScoped(typeof(ICosmosDbRepository<>), typeof(CosmosDBRepository<>));
             services.AddScoped<IAuthorizeService, AuthorizeService>();
-
-/*
-services.AddDbContext<ExpanseContext>(options=>
-             options.UseCosmos(
-             "https://officepathfinder.documents.azure.com:443",
-             "WPNnm5XPIEcw5INS2Pxb3iNJqJIpNGJ0jqlb0jH7Nn1fgyEcvLTwEI0NCp2MjuPke2MACQKi0FonFnlvoeSCyg==",
-             "ExpanseCosmosDemo"
-));
- */
-            
 
             services.AddAuthentication(
                options =>
