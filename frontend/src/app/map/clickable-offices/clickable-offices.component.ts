@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: '.app-clickable-offices',
+  selector: '[app-clickable-offices]',
   templateUrl: './clickable-offices.component.html',
-  styleUrls: ['./clickable-offices.component.scss']
+  styleUrls: ['../clickable.component.scss']
 })
 export class ClickableOfficesComponent implements OnInit {
 

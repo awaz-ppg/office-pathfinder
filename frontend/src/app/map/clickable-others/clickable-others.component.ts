@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: '.app-clickable-others',
+  selector: '[app-clickable-others]',
   templateUrl: './clickable-others.component.html',
-  styleUrls: ['./clickable-others.component.scss']
+  styleUrls: ['../clickable.component.scss']
 })
 export class ClickableOthersComponent implements OnInit {
 

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: '.app-interactive-places',
+  selector: '[app-interactive-places]',
   templateUrl: './interactive-places.component.html',
   styleUrls: ['./interactive-places.component.scss']
 })

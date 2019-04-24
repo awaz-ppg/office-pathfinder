@@ -1,20 +1,19 @@
-.clickableElevatorClass {
+.elevator {
   opacity: 0;
   fill: #00BBBB;
 
+  &:hover {
+    opacity: 0.6;
+  }
 }
 
-.clickableElevatorClass:hover {
-  opacity: 0.6;
-}
-
-.clickableWcClass {
+.wc {
   opacity: 0;
   fill: #FCEE21;
-}
 
-.clickableWcClass:hover {
-  opacity: 0.6;
+  &:hover {
+    opacity: 0.6;
+  }
 }
 
 .firsAidKit {

@@ -1,14 +1,11 @@
-.layoutClass {
+.layout {
   display: none;
 }
 
-.streetClass {
+.street {
   font-family: 'Quicksand';
   font-size: 13px;
   font-weight: bold;
-}
-
-.streetClass2 {
   cursor: default;
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -16,31 +13,32 @@
   user-select: none
 }
 
-.chairClass {
+
+.chair {
   fill: #FFFFFF;
   stroke: #000000;
   stroke-width: 0.5;
   stroke-miterlimit: 10;
 }
 
-.roomClass {
+.room {
   fill: none;
   stroke: #000000;
   stroke-width: 0.35;
   stroke-miterlimit: 10;
 }
 
-.stairClass {
+.stair {
   fill: none;
   stroke: #000000;
   stroke-miterlimit: 10;
 }
 
-.clickableClass {
+.clickable {
   opacity: 1;
 }
 
-.blueGlassWallsClass {
+.glassWalls {
   fill: none;
   stroke: #000;
   stroke-width: 3;
@@ -48,7 +46,7 @@
   stroke-miterlimit: 10;
 }
 
-.whiteGlassWallsClass {
+.whiteGlassWalls {
   fill: none;
   stroke: #FFFFFF;
   stroke-width: 2;
@@ -56,7 +54,7 @@
   stroke-miterlimit: 10;
 }
 
-.blackInnerWallsClass {
+.blackInnerWalls {
   fill: none;
   stroke: #000000;
   stroke-width: 3;
@@ -64,15 +62,8 @@
   stroke-miterlimit: 10;
 }
 
-.blackInnerWallsClass2 {
-  fill: #FFFFFF;
-  stroke: #000000;
-  stroke-width: 3;
-  stroke-linecap: square;
-  stroke-miterlimit: 10;
-}
 
-.blackThickerInnerWallsClass {
+.blackThickerInnerWalls {
   fill: none;
   stroke: #000000;
   stroke-width: 5;
@@ -80,14 +71,14 @@
   stroke-miterlimit: 10;
 }
 
-.blackOuterWallsClass {
+.blackOuterWalls {
   fill: none;
   stroke: #000000;
   stroke-width: 8;
   stroke-miterlimit: 10;
 }
 
-.whiteInnerWallsClass {
+.whiteInnerWalls {
   fill: none;
   stroke: #E6E6E6;
   stroke-width: 2;
@@ -95,15 +86,8 @@
   stroke-miterlimit: 10;
 }
 
-.whiteInnerWallsClass2 {
-  fill: #FFFFFF;
-  stroke: #E6E6E6;
-  stroke-width: 2;
-  stroke-linecap: square;
-  stroke-miterlimit: 10;
-}
 
-.whiteThickerInnerWallsClass {
+.whiteThickerInnerWalls {
   fill: none;
   stroke: #CCCCCC;
   stroke-width: 4;
@@ -111,7 +95,7 @@
   stroke-miterlimit: 10;
 }
 
-.whiteOuterWallsClass {
+.whiteOuterWalls {
   fill: none;
   stroke: #CCCCCC;
   stroke-width: 6;
@@ -125,13 +109,13 @@
 .shadow {
   opacity: 0.3;
   fill: #232e38;
+
+  &:hover {
+    opacity: 0.6;
+  }
 }
 
-.shadow:hover {
-  opacity: 0.6;
-}
-
-.columnClass {
+.column {
   fill: #CCCCCC;
   stroke: #000000;
   stroke-miterlimit: 10;
