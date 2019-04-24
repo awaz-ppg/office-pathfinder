@@ -1,7 +1,10 @@
 <mat-toolbar class = "position"  color="primary">
 
-  <mat-toolbar-row *ngFor="let t of elementClick(); let i = index">
-   <span class="textColor">{{t}}: {{atributes(i)}}</span>
+  <mat-toolbar-row *ngFor="let t of elementClick()">
+   <span class="textColor">{{t}}</span>
+   
   </mat-toolbar-row>
-
+ 
 </mat-toolbar>
+<p>{{ getservice() }}</p>
+

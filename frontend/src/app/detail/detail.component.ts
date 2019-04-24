@@ -1,8 +1,8 @@
-import { element } from 'protractor';
 import { Component, OnInit, Input } from '@angular/core';
 import { ClickService } from './../services/click.service';
-import {MatGridListModule} from '@angular/material/grid-list';
-import { identifierModuleUrl } from '@angular/compiler';
+import { DeskService } from './../services/http.services';
+import { Desk } from "../model/desk.model";
+
 
 @Component({
   selector: 'app-detail',
@@ -12,7 +12,7 @@ import { identifierModuleUrl } from '@angular/compiler';
 })
 export class DetailComponent implements OnInit {
 
-  constructor(private ClickService: ClickService) { }
+  constructor(private ClickService: ClickService, private DeskService: DeskService) { }
   id: string;
   element: string;
   kitchen = ['Number' , 'Name', 'Water', 'Coffe'];
@@ -30,100 +30,116 @@ export class DetailComponent implements OnInit {
   npwc = ['Number', 'Asexual', 'Yes'];
   npreception = ['Name'];
   npelevator = ['Number'];
+   
+  
+
 
 
   tmp: string[];
   ngOnInit() {
   }
+  
+ 
 
-  atributes(id: number){
-    this.tmp = this.elementClick();
-    switch(this.whatElement()) {
-      case 'kitchen': {
-         this.npkitchen[0] = this.getID();
-         this.npkitchen[1] = this.ClickService.id;
-         return this.npkitchen[id];
-         break;
-      }
-      case 'room': {
-        this.nproom[0] = this.getID();
-        this.nproom[1] = this.ClickService.id;
-        return this.nproom[id];
-        break;
-      }
-      case 'office': {
-        this.npoffice[2] = this.getID();
-        return this.npoffice[id];
-        break;
-      }
-      case 'printer': {
-        this.npprinter[0] = this.getID();
-        return this.npprinter[id];
-        break;
-      }
-      case 'wc': {
-        this.npwc[0] = this.getID();
-        return this.npwc[id];
-        break;
-      }
-      case 'reception': {
-        this.npreception[0]='Jagoda is the best';
-        return this.npreception[id];
-        break;
-      }
-      case 'elevator': {
-        this.npelevator[0] = this.getID();
-        return this.npelevator[id];
-        break;
-      }
-    }
-
-
+  click(event:Event){
+    this.DeskService.getDesk()
+    .subscribe(desk => {console.log(desk)});
+    console.log('cokolwiek');
   }
 
+  // atributes(id: number){
+  //   this.tmp = this.elementClick();
+  //   switch(this.whatElement()) {
+  //     case 'kitchen': {
+  //        this.npkitchen[0] = this.getID();
+  //        this.npkitchen[1] = this.ClickService.id;
+  //        return this.npkitchen[id];
+  //        break;
+  //     }
+  //     case 'room': {
+  //       this.nproom[0] = this.getID();
+  //       this.nproom[1] = this.ClickService.id;
+  //       return this.nproom[id];
+  //       break;
+  //     }
+  //     case 'office': {
+  //       this.npoffice[2] = this.getID();
+  //       return this.npoffice[id];
+  //       break;
+  //     }
+  //     case 'printer': {
+  //       this.npprinter[0] = this.getID();
+  //       return this.npprinter[id];
+  //       break;
+  //     }
+  //     case 'wc': {
+  //       this.npwc[0] = this.getID();
+  //       return this.npwc[id];
+  //       break;
+  //     }
+  //     case 'reception': {
+  //       this.npreception[0]='Jagoda is the best';
+  //       return this.npreception[id];
+  //       break;
+  //     }
+  //     case 'elevator': {
+  //       this.npelevator[0] = this.getID();
+  //       return this.npelevator[id];
+  //       break;
+  //     }
+  //   }
+
+
+  // }
 
 
 
 
+    getservice(){
+      return this.DeskService.desk;
+    }
 
 
     elementClick(){
-    this.id = this.ClickService.id;
+    
+    return this.DeskService.desk;
 
-    switch(this.whatElement()) {
-      case 'kitchen': {
-
-         return this.kitchen;
-         break;
-      }
-      case 'room': {
-
-        return this.room;
-        break;
-      }
-      case 'office': {
-        return this.office;
-        break;
-      }
-      case 'printer': {
-        return this.printer;
-        break;
-      }
-      case 'wc': {
-        return this.wc;
-        break;
-      }
-      case 'reception': {
-        return this.reception;
-        break;
-      }
-      case 'elevator': {
-        return this.elevator;
-        break;
-      }
     }
 
-  }
+    // switch(this.whatElement()) {
+    //   case 'kitchen': {
+
+    //      return this.kitchen;
+    //      break;
+    //   }
+    //   case 'room': {
+
+    //     return this.room;
+    //     break;
+    //   }
+    //   case 'office': {
+    //     return this.office;
+    //     break;
+    //   }
+    //   case 'printer': {
+    //     return this.printer;
+    //     break;
+    //   }
+    //   case 'wc': {
+    //     return this.wc;
+    //     break;
+    //   }
+    //   case 'reception': {
+    //     return this.reception;
+    //     break;
+    //   }
+    //   case 'elevator': {
+    //     return this.elevator;
+    //     break;
+    //   }
+    // }
+
+  
   getID(){
     if(this.id.slice(0, 7) === 'station'){
       return this.id.slice(7, 10);
