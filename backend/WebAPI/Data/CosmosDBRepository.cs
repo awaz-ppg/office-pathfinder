@@ -1,15 +1,16 @@
-﻿using System;
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using Microsoft.Azure.Documents.Client;
 using Microsoft.Extensions.Configuration;
-using WebAPI.Interfaces;
 using WebAPI.Models;
+using Microsoft.Azure.Documents;
+using System.Net;
 
 namespace WebAPI.Data
 {
-    public class CosmosDBRepository<TEntity> : ICosmosDBRepository<TEntity>
+    public class CosmosDBRepository<TEntity> : ICosmosDbRepository<TEntity>
         where TEntity : BaseEntity
     {
         private readonly string _endpointUri;
@@ -48,6 +49,28 @@ namespace WebAPI.Data
             var entities = new List<TEntity>(query);
             return entities;
         }
+
+        public  async Task<TEntity> GetEntity(string collectionName,string documentId)
+        {
+            try
+            {
+                var item =  await _client.ReadDocumentAsync(UriFactory.CreateDocumentUri(_databaseName,collectionName,documentId));
+            return (TEntity)(dynamic) item;
+            }
+            catch(DocumentClientException e)
+            {
+                if (e.StatusCode == HttpStatusCode.NotFound)
+                 {
+                  return null;
+                 }
+                 else
+                 {
+                  throw;
+                 }
+            }
+        }
+
+        
 
         public async Task UpdateEntityAsync(string collectionName, string documentId, TEntity entity)
         {

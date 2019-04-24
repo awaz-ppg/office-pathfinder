@@ -1,7 +1,7 @@
-﻿using System.Threading.Tasks;
+using System.Threading.Tasks;
 using WebAPI.Models;
 
-namespace WebAPI.Interfaces
+namespace WebAPI.Data
 {
     public interface IAuthorizeService
     {
