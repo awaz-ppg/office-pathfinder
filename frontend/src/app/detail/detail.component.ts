@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ClickService } from './../services/click.service';
-import { DeskService } from './../services/http.services';
+import { DeskService } from '../services/desk.service';
 import { Desk } from "../model/desk.model";
 
 
@@ -30,22 +30,21 @@ export class DetailComponent implements OnInit {
   npwc = ['Number', 'Asexual', 'Yes'];
   npreception = ['Name'];
   npelevator = ['Number'];
-   
-  
 
 
 
-  tmp: string[];
+
+
+
   ngOnInit() {
   }
-  
- 
 
-  click(event:Event){
-    this.DeskService.getDesk()
-    .subscribe(desk => {console.log(desk)});
-    console.log('cokolwiek');
+  elementClick() {
+      return this.DeskService.getDeskArray();
   }
+
+
+
 
   // atributes(id: number){
   //   this.tmp = this.elementClick();
@@ -95,16 +94,6 @@ export class DetailComponent implements OnInit {
 
 
 
-    getservice(){
-      return this.DeskService.desk;
-    }
-
-
-    elementClick(){
-    
-    return this.DeskService.desk;
-
-    }
 
     // switch(this.whatElement()) {
     //   case 'kitchen': {
@@ -139,7 +128,7 @@ export class DetailComponent implements OnInit {
     //   }
     // }
 
-  
+
   getID(){
     if(this.id.slice(0, 7) === 'station'){
       return this.id.slice(7, 10);
