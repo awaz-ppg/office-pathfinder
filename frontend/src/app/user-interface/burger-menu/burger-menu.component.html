@@ -1,0 +1,31 @@
+<button mat-raised-button [matMenuTriggerFor]="menu" id="burger-menu">Menu</button>
+<mat-menu #menu="matMenu">
+  <button (click)="onClick($event)" id="button_wc" mat-menu-item>
+    <mat-icon class="material-icons">wc</mat-icon>
+    <span>WC</span>
+  </button>
+  <button (click)="onClick($event)" id="button_office" mat-menu-item>
+    <mat-icon class="material-icons">business_center</mat-icon>
+    <span>BIURA</span>
+  </button>
+ <button (click)="onClick($event)" id="button_room" mat-menu-item>
+    <mat-icon class="material-icons">meeting_room</mat-icon>
+    <span>SALE</span>
+  </button>
+  <button (click)="onClick($event)" id="button_printer" mat-menu-item>
+    <mat-icon class="material-icons">print</mat-icon>
+    <span>DRUKARKA</span>
+  </button>
+  <button (click)="onClick($event)" id="button_elevator" mat-menu-item>
+    <mat-icon class="material-icons">arrow_upward</mat-icon>
+    <span>WINDA</span>
+  </button>
+  <button (click)="onClick($event)" id="button_kitchen" mat-menu-item>
+    <mat-icon class="material-icons">restaurant</mat-icon>
+    <span>KUCHNIA</span>
+  </button>
+  <button (click)="onClick($event)" id="button_reception" mat-menu-item>
+    <mat-icon class="material-icons">room</mat-icon>
+    <span>RECEPCJA</span>
+  </button>
+</mat-menu>
