@@ -54,21 +54,5 @@ namespace WebAPI.Controllers
 
             return desks;
         }
-
-        // GET api/Desks/5
-        [HttpGet("{id}")]
-        public async Task<Desk> GetDesk(string id)
-        {
-           if (id == null)
-            {
-                return null;
-            }
-            var item = await _repository.GetEntity(CollectionName,id);
-            if(item == null)
-            {
-                return null;
-            }
-            return item;
-        }
     }
 }

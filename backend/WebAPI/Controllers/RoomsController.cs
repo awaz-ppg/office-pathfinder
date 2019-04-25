@@ -52,21 +52,5 @@ namespace WebAPI.Controllers
 
             return rooms;
         }
-
-        // GET api/Rooms/5
-        [HttpGet("{id}")]
-        public async Task<Room> GetRoom(string id)
-        {
-            if (id == null)
-            {
-                return null;
-            }
-            var item = await _repository.GetEntity(CollectionName,id);
-            if(item == null)
-            {
-                return null;
-            }
-            return item;
-        }
     }
 }
