@@ -49,5 +49,13 @@ export class DetailComponent implements OnInit {
 
   }
 
+  closeWindow(){
+    return this.ClickService.closeWindow;
+  }
+
+  windowButton(){
+    this.ClickService.closeWindow = false;
+  }
+
 }
 

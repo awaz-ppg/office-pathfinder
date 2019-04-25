@@ -30,6 +30,7 @@ export class MapComponent implements OnInit {
   }
 
   onClickDesk(event: Event) {
+    this.ClickService.closeWindow = true;
     this.DeskService.isCliked = true;
     this.RoomService.isCliked = false;
     this.KitchenService.isCliked = false;
@@ -42,6 +43,7 @@ export class MapComponent implements OnInit {
   }
 
   onClickRoom(event: Event) {
+    this.ClickService.closeWindow = true;
     this.DeskService.isCliked = false;
     this.RoomService.isCliked = true;
     this.KitchenService.isCliked = false;
@@ -54,6 +56,7 @@ export class MapComponent implements OnInit {
   }
 
   onClickKitchen(event: Event) {
+    this.ClickService.closeWindow = true;
     this.DeskService.isCliked = false;
     this.RoomService.isCliked = false;
     this.KitchenService.isCliked = true;
@@ -66,6 +69,7 @@ export class MapComponent implements OnInit {
   }
 
   onClickOffice(event: Event) {
+    this.ClickService.closeWindow = true;
     this.DeskService.isCliked = false;
     this.RoomService.isCliked = false;
     this.KitchenService.isCliked = false;
@@ -77,6 +81,7 @@ export class MapComponent implements OnInit {
       });
   }
   onClickPrinter(event: Event) {
+    this.ClickService.closeWindow = true;
     this.DeskService.isCliked = false;
     this.RoomService.isCliked = false;
     this.KitchenService.isCliked = false;
@@ -86,13 +91,6 @@ export class MapComponent implements OnInit {
     this.PrinterSercive.getPrinter().subscribe(data => {
     this.PrinterSercive.printer = data;
       });
-  }
-
-
-
-  onClick(event: Event) {
-    this.ClickService.id = event.srcElement.id;
-
   }
 
 

@@ -14,6 +14,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { BurgerMenuComponent } from './burger-menu/burger-menu.component';
 import { DetailComponent } from './detail/detail.component';
 import { HttpClientModule} from '@angular/common/http';
+import {MatButtonModule} from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { HttpClientModule} from '@angular/common/http';
     MatIconModule,
     MatToolbarModule,
     BrowserAnimationsModule,
-    HttpClientModule
+    HttpClientModule,
+    MatButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]
