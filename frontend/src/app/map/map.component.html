@@ -3392,7 +3392,7 @@ svg{background-color:#f0f0f0}
 		</g>
 	</g>
 
-	<g (click)="onClick($event)" id="clickable-kitchens_1" class="st10">
+	<g (click)="onClickKitchen($event)" id="clickable-kitchens_1" class="st10">
 		<path id="clickable-kitchen_2" class="kitchen" d="M575,333h41v76h-41C575,409,575,331.3,575,333z" />
 		<polyline id="clickable-kitchen_3" class="kitchen" points="261,409 353,409 353,511 261,516 261,409 	" />
 		<polygon id="clickable-kitchen_4" class="kitchen" points="284,1039 354,1039 354,1194 295,1194 	" />
@@ -3402,7 +3402,7 @@ svg{background-color:#f0f0f0}
 		<rect id="clickable-kitchen_8" x="1561" y="1005" class="kitchen" width="132" height="190" />
 	</g>
 
-	<g (click)="onClick($event)" id="clickable-printers" class="st10">
+	<g (click)="onClickPrinter($event)" id="clickable-printers" class="st10">
 		<polyline class="printer" points="489,185 516,185 516,212 489,212 	" />
 		<rect id="clickable-printer_1"x="272" y="587" class="printer" width="27.5" height="27" />
 		<rect id="clickable-printer_2"x="528" y="1116" class="printer" width="27" height="27" />
@@ -3430,7 +3430,7 @@ svg{background-color:#f0f0f0}
 		<rect id="clickable-elevator_2" name="elevator" x="1763" y="718" class="elevator" width="64" height="168" />
 	</g>
 
-	<g (click)="onClick($event)" id="clickable-rooms" class="st10">
+	<g (click)="onClickRoom($event)" id="clickable-rooms" class="st10">
 		<rect id="clickable-room_1" x="261" y="177" class="conference_room" width="56" height="50" />
 		<rect id="clickable-room_2" x="318" y="177" class="conference_room" width="35" height="50" />
 		<rect id="clickable-room_3" x="416" y="177" class="conference_room" width="48" height="105" />
@@ -3479,7 +3479,7 @@ svg{background-color:#f0f0f0}
 		<polygon id="clickable-room_46" class="conference_room" points="499,1113 426,1113 426,1178 469,1178 469,1194 499,1194 	" />
 	</g>
 
-	<g id="clickable-offices" class="st10">
+	<g (click)="onClickOffice()" id="clickable-offices" class="st10">
 		<polyline id="clickable-office_1" class="menagers_office" points="222,22 286,22 286,127 222,127 	" />
 		<polyline id="clickable-office_2" class="menagers_office" points="39,211 43,274 222,274 222,243 205,243 205,211 	" />
 		<polygon id="clickable-office_3" class="menagers_office" points="56,458 205,458 205,525 62,536 	" />

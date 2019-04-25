@@ -12,6 +12,7 @@ export class DeskService {
   url = 'http://localhost:64513/api/desks';
   desk: Desk[];
   tmp = [];
+  isCliked = false;
   constructor(private http: HttpClient) { }
 
   getDesk() {
