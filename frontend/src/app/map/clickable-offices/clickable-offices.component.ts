@@ -12,4 +12,8 @@ export class ClickableOfficesComponent implements OnInit {
   ngOnInit() {
   }
 
+  showID(e: Event) {
+    document.getElementById('station-to-show').textContent = e.srcElement.id;
+  }
+
 }
