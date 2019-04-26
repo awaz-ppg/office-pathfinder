@@ -23,10 +23,12 @@ export class DetailComponent implements OnInit {
               private PrinterSercive: PrinterSercive
               ) { }
 
+
   ngOnInit() {
   }
 
   elementClick() {
+
       if (this.DeskService.isCliked) {
       return this.DeskService.getDeskArray();
       }

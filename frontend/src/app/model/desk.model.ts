@@ -2,8 +2,8 @@ export interface Desk {
     firstName: string;
     lastName: string;
     numberDesk: string;
-    isCoordinator: true;
+    isCoordinator: boolean;
     team: string;
-    isVolunteer: true;
+    isVolunteer: boolean;
     id: string;
 }

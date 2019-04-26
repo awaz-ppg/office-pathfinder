@@ -1,12 +1,6 @@
-@import '~@angular/material/theming';
-@include mat-core();
-$my-app-primary: mat-palette($mat-blue, 900);
-$my-app-accent:  mat-palette($mat-pink, 500, 900, A100);
-$my-app-warn:    mat-palette($mat-blue, 300);
-$my-app-theme: mat-light-theme($my-app-primary, $my-app-accent, $my-app-warn);
-@include angular-material-theme($my-app-theme);
-
-
+.mat-background {
+  background-color: blue;
+}
 
 .example-icon {
   padding: 0 14px;
@@ -19,13 +13,10 @@ $my-app-theme: mat-light-theme($my-app-primary, $my-app-accent, $my-app-warn);
   width: 2250px;
   flex: 1 1 auto;
 }
-.position{
+.detailWindow{
   color: black;
   height: 500px;
   width: 2250px;
   flex: 1 1 auto;
 }
-.example-spacer {
 
-  flex: 1 1 auto;
-}

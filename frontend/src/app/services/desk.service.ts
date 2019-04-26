@@ -1,6 +1,7 @@
 import { Desk } from './../model/desk.model';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { environment } from './../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,8 @@ import { HttpClient } from '@angular/common/http';
 @Injectable()
 export class DeskService {
 
-  url = 'http://localhost:64513/api/desks';
+
+  url = environment.apiUrl + 'desks';
   desk: Desk[];
   tmp = [];
   isCliked = false;

@@ -9,10 +9,10 @@ import { AppComponent } from './app.component';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
-import { BurgerMenuComponent } from './burger-menu/burger-menu.component';
 import { DetailComponent } from './detail/detail.component';
 import { HttpClientModule} from '@angular/common/http';
 import { DataService } from './data.service';
+
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule, MatCheckboxModule } from '@angular/material';
@@ -23,11 +23,11 @@ import { ClickableStationsComponent } from './map/clickable-stations/clickable-s
 import { ClickableRoomsComponent } from './map/clickable-rooms/clickable-rooms.component';
 import { InteractivePlacesComponent } from './map/interactive-places/interactive-places.component';
 import { ClickableOthersComponent } from './map/clickable-others/clickable-others.component';
+import {MatListModule} from '@angular/material/list';
 @NgModule({
   declarations: [
     AppComponent,
     MapComponent,
-    BurgerMenuComponent,
     DetailComponent,
     UserInterfaceComponent,
     AppComponent,
@@ -47,7 +47,8 @@ import { ClickableOthersComponent } from './map/clickable-others/clickable-other
     MatToolbarModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    MatButtonModule
+    MatButtonModule,
+    MatListModule
   ],
   providers: [DataService],
   bootstrap: [AppComponent]

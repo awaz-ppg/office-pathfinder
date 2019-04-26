@@ -10,9 +10,6 @@ export class MapComponent implements OnInit {
 
   constructor() { }
 
-  room: EventTarget;
-
-
   ngOnInit() {
   }
 

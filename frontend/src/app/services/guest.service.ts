@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Guest } from './../model/guest.model';
 import { HttpClient } from '@angular/common/http';
-
+import { environment } from './../../environments/environment';
 @Injectable({
   providedIn: 'root'
 })
 export class RoomService {
 
-  url = 'http://localhost:64513/api/Guests';
+  url = environment.apiUrl + 'Guests';
   room: Guest[];
   constructor(private http: HttpClient) { }
 

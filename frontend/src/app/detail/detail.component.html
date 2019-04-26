@@ -1,12 +1,12 @@
 <div *ngIf="closeWindow()">
-  <button (click)="windowButton()" mat-flat-button color="warn" class="buttonPosition">Close</button>
-  <mat-toolbar class="position" color="primary">
+  <button (click)="windowButton()" mat-flat-button color="primary" class="buttonPosition">Close</button>
+  <mat-list  class="detailWindow">
 
 
-    <mat-toolbar-row *ngFor="let t of elementClick()">
+    <mat-list-item class = "mat-background" *ngFor="let t of elementClick()">
       <span class="textColor">{{t}}</span>
 
-    </mat-toolbar-row>
+    </mat-list-item>
 
-  </mat-toolbar>
+  </mat-list>
 </div>
