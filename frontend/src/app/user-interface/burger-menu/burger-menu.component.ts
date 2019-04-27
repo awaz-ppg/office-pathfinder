@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {MatMenuModule, MatButtonModule, MatIconModule} from '@angular/material';
+import { MatMenuModule, MatButtonModule, MatIconModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MenuItem } from './MenuItem';
 
 @Component({
   selector: 'app-burger-menu',
@@ -9,29 +10,32 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 })
 export class BurgerMenuComponent implements OnInit {
   lastSelected:string = "";
+  menuOptions:Array<MenuItem> = [
+        {elementSelector: 'wc', text: 'WC', icon: 'wc'},
+        {elementSelector: 'office', text: 'BIURA', icon: 'business_center'},
+        {elementSelector: 'room', text: 'SALE', icon: 'meeting_room'},
+        {elementSelector: 'printer', text: 'DRUKARKI', icon: 'print'},
+        {elementSelector: 'elevator', text: 'WINDY', icon: 'arrow_upward'},
+        {elementSelector: 'kitchen', text: 'KUCHNIE', icon: 'restaurant'},
+        {elementSelector: 'reception', text: 'RECEPCJA', icon: 'room'},
+  ];
   constructor() { }
 
   ngOnInit() {
   }
-    onClick(event: Event){
-        let elementClass;
-        if(event.srcElement.children.length != 0)
-            elementClass = event.srcElement.id.toString().replace(/button_/g,'');
-        else
-            elementClass = ( <HTMLElement>event.target ).parentElement.id.toString().replace(/button_/g,'');
-        console.log(this.lastSelected);
+    onClick(elementSelector:string){
         if(this.lastSelected)
         {
-            var prevElementList = document.querySelectorAll("[id^=" + CSS.escape(this.lastSelected) + "] ");
-            prevElementList.forEach ((item, index) => {
-                (document.getElementById(item.id) as HTMLElement).style.opacity="0";
+            var prevElementList = document.querySelectorAll(`[id^=${CSS.escape(this.lastSelected)}]`);
+            prevElementList.forEach (item => {
+                (item as HTMLElement).style.opacity="0";
             });
         }
-        var elementList = document.querySelectorAll("[id^=" + CSS.escape(elementClass) + "] ");
-        elementList.forEach ((item, index) => {
-            (document.getElementById(item.id) as HTMLElement).style.opacity="0.6";
+        var elementList = document.querySelectorAll(`[id^=${CSS.escape(elementSelector)}]`);
+        elementList.forEach (item => {
+            (item as HTMLElement).style.opacity="0.6";
        });
-       this.lastSelected = elementClass;
+       this.lastSelected = elementSelector;
     }
 
 
