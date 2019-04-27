@@ -1,3 +1,4 @@
+import { element } from 'protractor';
 import { PrinterSercive } from './../services/printer.service';
 import { OfficeService } from './../services/office.service';
 import { RoomService } from './../services/room.service';
@@ -14,6 +15,18 @@ export class ViewDesk {
     ) {
     }
     tab = [];
+    last = '';
+
+    view(svgNamber: string){
+      if(this.last){
+        var prevElementList = document.querySelectorAll(`[id^=${CSS.escape(this.last)}]`);
+        (prevElementList[0] as HTMLElement).style.opacity = '0.0';
+
+        }
+      var elementList = document.querySelectorAll(`[id^=${CSS.escape(svgNamber)}]`);
+      (elementList[0] as HTMLElement).style.opacity = '0.6';
+      this.last = svgNamber;
+    }
 
     getArray() {
       if (this.DeskService.isCliked) {
@@ -23,12 +36,12 @@ export class ViewDesk {
             this.tab[0] = element.numberDesk;
             this.tab[1] = element.numberDeskSVG;
             this.tab[2] = element.id;
-
+            this.view(element.numberDeskSVG);
           }
         });
 
-
       }
+
       if (this.RoomService.isCliked) {
         this.tab.length = 0;
         this.RoomService.room.forEach(element => {
@@ -42,6 +55,9 @@ export class ViewDesk {
             this.tab[6] = element.isBlackboard;
             this.tab[7] = element.isPhone;
             this.tab[8] = element.id;
+            this.view(element.roomNumberSVG);
+
+
           }
         });
 
@@ -57,6 +73,7 @@ export class ViewDesk {
               this.tab[3] = element.isCoffee;
               this.tab[4] = element.isWater;
               this.tab[5] = element.id;
+              this.view(element.numberSVG);
             }
           });
       }
@@ -71,6 +88,7 @@ export class ViewDesk {
             this.tab[1] = element.numberSVG;
             this.tab[2] = element.isColor;
             this.tab[3] = element.id;
+            this.view(element.numberSVG);
           }
         });
     }
@@ -88,6 +106,7 @@ export class ViewDesk {
               this.tab[6] = element.team;
               this.tab[7] = element.isVolunteer;
               this.tab[8] = element.id;
+              this.view(element.numberSVG);
 
             }
           });
