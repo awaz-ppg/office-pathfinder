@@ -11,20 +11,11 @@ export class PrinterSercive {
   printer: Printer[];
   tmp = [];
   isCliked = false;
+  whatPrinter: string;
   constructor(private http: HttpClient) { }
 
   getPrinter() {
     return this.http.get<Printer[]>(this.url);
   }
 
-  getPrinterArray() {
-    if (this.printer != null) {
-    this.tmp[0] = this.printer[0].number;
-    this.tmp[1] = this.printer[0].isColor.toString();
-    this.tmp[2] = this.printer[0].id;
-
-    return this.tmp;
-    }
-
-  }
 }

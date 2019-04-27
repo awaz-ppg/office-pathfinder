@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://localhost:64513/api/'
+  apiUrl: 'http://office-pathfinder-api.azurewebsites.net/api/'
 };
 
 /*

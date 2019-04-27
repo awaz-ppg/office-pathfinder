@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: 'http://localhost:64513/api/'
+  apiUrl: 'http://office-pathfinder-api.azurewebsites.net/api/'
 };

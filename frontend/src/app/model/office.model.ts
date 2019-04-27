@@ -2,7 +2,8 @@ export interface Office {
 
   firstName: string;
   lastName: string;
-  numberDesk: string;
+  number: string;
+  numberSVG: string;
   position: string;
   isCoordinator: boolean;
   team: string;

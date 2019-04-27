@@ -2,21 +2,17 @@
   background-color: blue;
 }
 
-.example-icon {
-  padding: 0 14px;
-}
 .textColor{
   color: white;
 }
-.buttonPosition{
-  height: 30px;
-  width: 2250px;
+.button-position{
+  height: auto;
+  width: 100%;
   flex: 1 1 auto;
 }
-.detailWindow{
-  color: black;
-  height: 500px;
-  width: 2250px;
+.detail-window{
+  height: auto;
+  width: 100%;
   flex: 1 1 auto;
 }
 

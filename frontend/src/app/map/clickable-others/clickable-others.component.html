@@ -1,5 +1,5 @@
 <svg>
-  <g (click)="onClickKitchen()" id="clickable-kitchens">
+  <g (click)="onClickKitchen($event)" id="clickable-kitchens">
     <path id="kitchen1" class="clickable clickable--kitchen" d="M575,333h41v76h-41C575,409,575,331.3,575,333z" />
     <polyline id="kitchen2" class="clickable clickable--kitchen" points="261,409 353,409 353,511 261,516 261,409 	" />
     <polygon id="kitchen3" class="clickable clickable--kitchen" points="284,1039 354,1039 354,1194 295,1194 	" />
@@ -8,7 +8,7 @@
     <rect id="kitchen6" x="1561" y="1005" class="clickable clickable--kitchen" width="132" height="190" />
   </g>
 
-  <g (click)="onClickPrinter()" id="clickable-printers">
+  <g (click)="onClickPrinter($event)" id="clickable-printers">
     <polyline id="printer-1" class="clickable clickable--printer" points="483,178 519,178 519,217 483,217 	" />
     <rect id="printer-2" x="267" y="580" class="clickable clickable--printer" width="35" height="36" />
     <rect id="printer-3" x="519.5" y="1149" class="clickable clickable--printer" width="35" height="36" />

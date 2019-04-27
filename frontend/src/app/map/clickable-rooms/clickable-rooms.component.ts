@@ -1,7 +1,6 @@
 import { PrinterSercive } from './../../services/printer.service';
 import { KitchenService } from './../../services/kitchen.service';
 import { RoomService } from './../../services/room.service';
-import { ClickService } from './../../services/click.service';
 import { DeskService } from './../../services/desk.service';
 import { Component, OnInit } from '@angular/core';
 import { OfficeService } from './../../services/office.service';
@@ -13,8 +12,7 @@ import { OfficeService } from './../../services/office.service';
 })
 export class ClickableRoomsComponent implements OnInit {
 
-  constructor(private ClickService: ClickService,
-    private DeskService: DeskService,
+  constructor(private DeskService: DeskService,
     private RoomService: RoomService,
     private KitchenService: KitchenService,
     private OfficeService: OfficeService,
@@ -25,7 +23,6 @@ export class ClickableRoomsComponent implements OnInit {
   }
 
   onClickRoom(event: Event) {
-    this.ClickService.closeWindow = true;
     this.DeskService.isCliked = false;
     this.RoomService.isCliked = true;
     this.KitchenService.isCliked = false;
@@ -34,6 +31,7 @@ export class ClickableRoomsComponent implements OnInit {
 
     this.RoomService.getRoom().subscribe(data => {
     this.RoomService.room = data;
+    this.RoomService.whatRoom = event.srcElement.id
     });
   }
 

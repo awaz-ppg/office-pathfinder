@@ -24,6 +24,7 @@ import { ClickableRoomsComponent } from './map/clickable-rooms/clickable-rooms.c
 import { InteractivePlacesComponent } from './map/interactive-places/interactive-places.component';
 import { ClickableOthersComponent } from './map/clickable-others/clickable-others.component';
 import {MatListModule} from '@angular/material/list';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,7 +36,8 @@ import {MatListModule} from '@angular/material/list';
     ClickableStationsComponent,
     ClickableRoomsComponent,
     InteractivePlacesComponent,
-    ClickableOthersComponent
+    ClickableOthersComponent,
+
   ],
   imports: [
     BrowserModule,

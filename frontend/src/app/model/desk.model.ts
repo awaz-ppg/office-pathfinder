@@ -1,9 +1,6 @@
 export interface Desk {
-    firstName: string;
-    lastName: string;
     numberDesk: string;
-    isCoordinator: boolean;
-    team: string;
-    isVolunteer: boolean;
+    numberDeskSVG: string;
     id: string;
+
 }
