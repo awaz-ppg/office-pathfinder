@@ -23,6 +23,7 @@ export class ViewDesk {
             this.tab[0] = element.numberDesk;
             this.tab[1] = element.numberDeskSVG;
             this.tab[2] = element.id;
+
           }
         });
 

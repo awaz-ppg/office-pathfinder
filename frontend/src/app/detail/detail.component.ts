@@ -30,30 +30,6 @@ export class DetailComponent implements OnInit {
 
   }
 
-  // elementClick() {
-
-  //     if (this.DeskService.isCliked) {
-  //     return this.DeskService.getDeskArray();
-  //     }
-
-  //     if (this.RoomService.isCliked) {
-  //       return this.RoomService.getRoomArray();
-  //     }
-
-  //     if (this.KitchenService.isCliked) {
-  //       return this.KitchenService.getKitchenkArray();
-  //     }
-
-  //     if (this.OfficeService.isCliked) {
-  //       return this.OfficeService.getOfficeArray();
-  //     }
-
-  //     if (this.PrinterSercive.isCliked) {
-  //       return this.PrinterSercive.getPrinterArray();
-  //     }
-
-  // }
-
   setObj()
   {
     this.obj.getArray();
