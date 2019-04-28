@@ -53,21 +53,5 @@ namespace WebAPI.Controllers
 
             return desks;
         }
-
-        // GET api/Printer/5
-        [HttpGet("{id}")]
-        public async Task<Printer> GetPrinter(string id)
-        {
-            if (id == null)
-            {
-                return null;
-            }
-            var item = await _repository.GetEntity(CollectionName,id);
-            if(item == null)
-            {
-                return null;
-            }
-            return item;
-        }
     }
 }

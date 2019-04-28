@@ -1,5 +1,4 @@
 import { BrowserModule } from '@angular/platform-browser';
-import {MatMenuModule} from '@angular/material';
 import { NgModule } from '@angular/core';
 
 
@@ -8,14 +7,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatIconModule } from '@angular/material/icon';
 import { DetailComponent } from './detail/detail.component';
-import { HttpClientModule} from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { DataService } from './data.service';
 
 
+import { BurgerMenuComponent } from './user-interface/burger-menu/burger-menu.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatButtonModule, MatCheckboxModule } from '@angular/material';
+import { MatButtonModule, MatCheckboxModule, MatMenuModule, MatIconModule } from '@angular/material';
 import { MapComponent } from './map/map.component';
 import { UserInterfaceComponent } from './user-interface/user-interface.component';
 import { ClickableOfficesComponent } from './map/clickable-offices/clickable-offices.component';
@@ -23,7 +22,7 @@ import { ClickableStationsComponent } from './map/clickable-stations/clickable-s
 import { ClickableRoomsComponent } from './map/clickable-rooms/clickable-rooms.component';
 import { InteractivePlacesComponent } from './map/interactive-places/interactive-places.component';
 import { ClickableOthersComponent } from './map/clickable-others/clickable-others.component';
-import {MatListModule} from '@angular/material/list';
+import { MatListModule } from '@angular/material/list';
 
 @NgModule({
   declarations: [
@@ -37,7 +36,7 @@ import {MatListModule} from '@angular/material/list';
     ClickableRoomsComponent,
     InteractivePlacesComponent,
     ClickableOthersComponent,
-
+    BurgerMenuComponent,
   ],
   imports: [
     BrowserModule,
@@ -51,6 +50,8 @@ import {MatListModule} from '@angular/material/list';
     HttpClientModule,
     MatButtonModule,
     MatListModule
+    MatMenuModule,
+    MatIconModule
   ],
   providers: [DataService],
   bootstrap: [AppComponent]
