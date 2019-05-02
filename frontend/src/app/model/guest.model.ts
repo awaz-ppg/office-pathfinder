@@ -1,4 +1,6 @@
-export interface Guest {
+import { DetailList } from './detail-list.model';
+
+export class Guest {
   guestName: string;
   guestSurname: string;
   fromWhere: string;
@@ -6,4 +8,5 @@ export interface Guest {
   endDate: string;
   placeId: true;
   id: string;
+
 }

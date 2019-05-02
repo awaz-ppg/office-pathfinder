@@ -10,7 +10,6 @@ export class PrinterSercive {
   url = environment.apiUrl + 'Printers';
   printer: Printer[];
   tmp = [];
-  isCliked = false;
   whatPrinter: string;
   constructor(private http: HttpClient) { }
 

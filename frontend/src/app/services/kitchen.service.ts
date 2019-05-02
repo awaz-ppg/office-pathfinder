@@ -10,7 +10,6 @@ export class KitchenService {
   url = environment.apiUrl + 'Kitchens';
   kitchen: Kitchen[];
   tmp = [];
-  isCliked = false;
   whatKitchen: string;
   constructor(private http: HttpClient) { }
 

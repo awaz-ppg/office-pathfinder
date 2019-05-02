@@ -10,7 +10,6 @@ export class OfficeService {
   url = environment.apiUrl + 'offices';
   office: Office[];
   tmp = [];
-  isCliked = false;
   whatOffice: string;
   constructor(private http: HttpClient) { }
 

@@ -1,4 +1,3 @@
-import { ViewDesk } from '../model/viewModel.model';
 import { Desk } from './../model/desk.model';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
@@ -15,7 +14,6 @@ export class DeskService {
   url = environment.apiUrl + 'desks';
   desk: Desk[];
   tmp = [];
-  isCliked = false;
   whatDesk: string;
   constructor(private http: HttpClient) { }
 

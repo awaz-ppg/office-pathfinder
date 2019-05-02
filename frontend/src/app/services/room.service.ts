@@ -10,7 +10,6 @@ export class RoomService {
   url = environment.apiUrl + 'Rooms';
   room: Room[];
   tmp = [];
-  isCliked = false;
   constructor(private http: HttpClient) { }
   whatRoom: string;
 

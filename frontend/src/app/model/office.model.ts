@@ -1,5 +1,6 @@
-export interface Office {
+import { DetailList } from './detail-list.model';
 
+export class Office {
   firstName: string;
   lastName: string;
   number: string;
@@ -9,4 +10,5 @@ export interface Office {
   team: string;
   isVolunteer: boolean;
   id: string;
+
 }

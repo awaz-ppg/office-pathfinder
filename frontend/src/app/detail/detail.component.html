@@ -3,9 +3,8 @@
   <mat-list class="detail-window">
 
 
-    <mat-list-item class="mat-background" *ngFor="let t of obj.tab">
-      <span class="textColor">{{t}}</span>
-
+    <mat-list-item class="mat-background" *ngFor="let t of tab ">
+      <p class="textColor">{{t.label}}: {{t.data}}</p>
     </mat-list-item>
 
   </mat-list>

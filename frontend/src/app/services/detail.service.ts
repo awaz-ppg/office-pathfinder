@@ -5,21 +5,16 @@ import { Subject } from 'rxjs';
   providedIn: 'root'
 })
 export class DetailService {
-  private open = new Subject<boolean>();
-  private change = new Subject<boolean>();
+
+  private status = new Subject<boolean>();
   object = ``;
 
   constructor() { }
 
-  open$ = this.open.asObservable();
-  change$ = this.change.asObservable();
+  status$ = this.status.asObservable();
 
-  changeOpenStatus(Status: boolean) {
-    this.open.next(Status);
-  }
-
-  changeChangeStatus(Status: boolean) {
-    this.change.next(Status);
+  changeStatus(Status: boolean) {
+    this.status.next(Status);
   }
 
   changeObject(Object: string) {

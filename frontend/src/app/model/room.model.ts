@@ -1,5 +1,6 @@
-export interface Room {
+import { DetailList } from './detail-list.model';
 
+export class Room {
   numberOfPeople: number;
   description: string;
   roomName: string;
@@ -9,4 +10,5 @@ export interface Room {
   isBlackboard: boolean;
   isPhone: boolean;
   id: string;
+
 }
