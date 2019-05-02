@@ -1,11 +1,10 @@
 <div [ngClass]="setObj()"></div>
-<div [ngClass] = "windowButton()"></div>
-<div *ngIf="close">
+<div *ngIf="open">
   <button (click)="closeWindow()" mat-flat-button color="primary" class="button-position">Close</button>
-  <mat-list  class="detail-window">
+  <mat-list class="detail-window">
 
 
-    <mat-list-item class = "mat-background" *ngFor="let t of obj.tab">
+    <mat-list-item class="mat-background" *ngFor="let t of obj.tab">
       <span class="textColor">{{t}}</span>
 
     </mat-list-item>

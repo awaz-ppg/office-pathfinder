@@ -4,6 +4,7 @@ import { RoomService } from './../../services/room.service';
 import { DeskService } from './../../services/desk.service';
 import { Component, OnInit } from '@angular/core';
 import { OfficeService } from './../../services/office.service';
+import { DetailService } from './../../services/detail.service';
 
 @Component({
   selector: '[app-clickable-others]',
@@ -16,10 +17,18 @@ export class ClickableOthersComponent implements OnInit {
     private RoomService: RoomService,
     private KitchenService: KitchenService,
     private OfficeService: OfficeService,
-    private PrinterSercive: PrinterSercive
-) { }
+    private PrinterSercive: PrinterSercive,
+    private DetailService: DetailService,
+  ) { }
 
   ngOnInit() {
+    this.PrinterSercive.getPrinter().subscribe(data => {
+      this.PrinterSercive.printer = data;
+    });
+
+    this.KitchenService.getKitchen().subscribe(data => {
+      this.KitchenService.kitchen = data;
+    });
   }
   onClickKitchen(event: Event) {
     this.DeskService.isCliked = false;
@@ -27,11 +36,7 @@ export class ClickableOthersComponent implements OnInit {
     this.KitchenService.isCliked = true;
     this.OfficeService.isCliked = false;
     this.PrinterSercive.isCliked = false;
-
-    this.KitchenService.getKitchen().subscribe(data => {
-    this.KitchenService.kitchen = data;
     this.KitchenService.whatKitchen = event.srcElement.id;
-    });
   }
 
 
@@ -41,10 +46,7 @@ export class ClickableOthersComponent implements OnInit {
     this.KitchenService.isCliked = false;
     this.OfficeService.isCliked = false;
     this.PrinterSercive.isCliked = true;
-
-    this.PrinterSercive.getPrinter().subscribe(data => {
-    this.PrinterSercive.printer = data;
     this.PrinterSercive.whatPrinter = event.srcElement.id;
-      });
+    this.DetailService.changeOpenStatus(true);
   }
 }

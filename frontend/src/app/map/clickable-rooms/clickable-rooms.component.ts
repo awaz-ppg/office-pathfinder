@@ -4,6 +4,7 @@ import { RoomService } from './../../services/room.service';
 import { DeskService } from './../../services/desk.service';
 import { Component, OnInit } from '@angular/core';
 import { OfficeService } from './../../services/office.service';
+import { DetailService } from './../../services/detail.service';
 
 @Component({
   selector: '[app-clickable-rooms]',
@@ -16,10 +17,14 @@ export class ClickableRoomsComponent implements OnInit {
     private RoomService: RoomService,
     private KitchenService: KitchenService,
     private OfficeService: OfficeService,
-    private PrinterSercive: PrinterSercive
-) { }
+    private PrinterSercive: PrinterSercive,
+    private DetailService: DetailService,
+  ) { }
 
   ngOnInit() {
+    this.RoomService.getRoom().subscribe(data => {
+      this.RoomService.room = data;
+    });
   }
 
   onClickRoom(event: Event) {
@@ -29,10 +34,10 @@ export class ClickableRoomsComponent implements OnInit {
     this.OfficeService.isCliked = false;
     this.PrinterSercive.isCliked = false;
 
-    this.RoomService.getRoom().subscribe(data => {
-    this.RoomService.room = data;
-    this.RoomService.whatRoom = event.srcElement.id
-    });
+
+
+    this.RoomService.whatRoom = event.srcElement.id;
+    this.DetailService.changeOpenStatus(true);
   }
 
 }
