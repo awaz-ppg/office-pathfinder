@@ -37,7 +37,10 @@ export class ClickableRoomsComponent implements OnInit {
 
 
     this.RoomService.whatRoom = event.srcElement.id;
+    document.querySelectorAll(".shining").forEach(element => element.classList.remove("shining"));
+    event.srcElement.classList.add("shining");
     this.DetailService.changeOpenStatus(true);
+    this.DetailService.changeChangeStatus(true);
   }
 
 }

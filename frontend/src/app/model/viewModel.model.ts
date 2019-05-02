@@ -16,13 +16,6 @@ export class ViewDesk {
   }
   tab = [];
 
-  view(svgNamber: string) {
-    document.querySelectorAll(".shining").forEach(element => element.classList.remove("shining"));
-    let elementList = document.querySelectorAll(`[id^=${CSS.escape(svgNamber)}]`);
-    (elementList[0] as HTMLElement).classList.add("shining");
-
-  }
-
   getArray() {
     if (this.DeskService.isCliked) {
       this.tab.length = 0;
@@ -31,7 +24,7 @@ export class ViewDesk {
           this.tab[0] = element.numberDesk;
           this.tab[1] = element.numberDeskSVG;
           this.tab[2] = element.id;
-          this.view(element.numberDeskSVG);
+
         }
       });
 
@@ -50,7 +43,7 @@ export class ViewDesk {
           this.tab[6] = element.isBlackboard;
           this.tab[7] = element.isPhone;
           this.tab[8] = element.id;
-          this.view(element.roomNumberSVG);
+
 
 
         }
@@ -68,7 +61,7 @@ export class ViewDesk {
           this.tab[3] = element.isCoffee;
           this.tab[4] = element.isWater;
           this.tab[5] = element.id;
-          this.view(element.numberSVG);
+
         }
       });
     }
@@ -83,7 +76,7 @@ export class ViewDesk {
           this.tab[1] = element.numberSVG;
           this.tab[2] = element.isColor;
           this.tab[3] = element.id;
-          this.view(element.numberSVG);
+
         }
       });
     }
@@ -101,7 +94,6 @@ export class ViewDesk {
           this.tab[6] = element.team;
           this.tab[7] = element.isVolunteer;
           this.tab[8] = element.id;
-          this.view(element.numberSVG);
 
         }
       });

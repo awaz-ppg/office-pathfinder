@@ -37,6 +37,10 @@ export class ClickableOthersComponent implements OnInit {
     this.OfficeService.isCliked = false;
     this.PrinterSercive.isCliked = false;
     this.KitchenService.whatKitchen = event.srcElement.id;
+    document.querySelectorAll(".shining").forEach(element => element.classList.remove("shining"));
+    event.srcElement.classList.add("shining");
+    this.DetailService.changeOpenStatus(true);
+    this.DetailService.changeChangeStatus(true);
   }
 
 
@@ -47,6 +51,9 @@ export class ClickableOthersComponent implements OnInit {
     this.OfficeService.isCliked = false;
     this.PrinterSercive.isCliked = true;
     this.PrinterSercive.whatPrinter = event.srcElement.id;
+    document.querySelectorAll(".shining").forEach(element => element.classList.remove("shining"));
+    event.srcElement.classList.add("shining");
     this.DetailService.changeOpenStatus(true);
+    this.DetailService.changeChangeStatus(true);
   }
 }

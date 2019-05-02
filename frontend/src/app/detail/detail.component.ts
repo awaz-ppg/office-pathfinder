@@ -26,6 +26,12 @@ export class DetailComponent implements OnInit {
     private DetailService: DetailService,
   ) {
     this.subscription = this.DetailService.open$.subscribe(status => this.open = status);
+    this.subscription = this.DetailService.change$.subscribe(status => {
+      if (status == true) {
+        this.setObj();
+        this.DetailService.changeChangeStatus(false);
+      }
+    });
   }
 
   open: boolean;
@@ -38,7 +44,10 @@ export class DetailComponent implements OnInit {
 
   setObj() {
     this.obj.getArray();
+    console.log("elo");
   }
+
+
 
   closeWindow() {
     this.DeskService.isCliked = false;

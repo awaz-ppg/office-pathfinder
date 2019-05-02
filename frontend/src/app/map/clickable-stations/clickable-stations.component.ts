@@ -36,6 +36,9 @@ export class ClickableStationsComponent implements OnInit {
     this.PrinterSercive.isCliked = false;
 
     this.DeskService.whatDesk = event.srcElement.id;
+    document.querySelectorAll(".shining").forEach(element => element.classList.remove("shining"));
+    event.srcElement.classList.add("shining");
     this.DetailService.changeOpenStatus(true);
+    this.DetailService.changeChangeStatus(true);
   }
 }

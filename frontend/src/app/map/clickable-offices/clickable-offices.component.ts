@@ -38,6 +38,9 @@ export class ClickableOfficesComponent implements OnInit {
     this.PrinterSercive.isCliked = false;
 
     this.OfficeService.whatOffice = event.srcElement.id;
+    document.querySelectorAll(".shining").forEach(element => element.classList.remove("shining"));
+    event.srcElement.classList.add("shining");
     this.DetailService.changeOpenStatus(true);
+    this.DetailService.changeChangeStatus(true);
   }
 }
