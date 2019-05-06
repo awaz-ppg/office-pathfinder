@@ -1,0 +1,7 @@
+<button mat-raised-button [matMenuTriggerFor]="menu" id="burger-menu">Menu</button>
+<mat-menu #menu="matMenu">
+  <button (click)="onClick(menuItem.elementSelector)" *ngFor="let menuItem of menuOptions"  mat-menu-item>
+    <mat-icon class="material-icons">{{ menuItem.icon }}</mat-icon>
+    <span> {{ menuItem.text }} </span>
+  </button>
+</mat-menu>
