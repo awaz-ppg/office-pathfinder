@@ -14,8 +14,9 @@ import { HttpClientModule} from '@angular/common/http';
 import { DataService } from './data.service';
 
 
+import { BurgerMenuComponent } from './user-interface/burger-menu/burger-menu.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatButtonModule, MatCheckboxModule } from '@angular/material';
+import { MatButtonModule, MatCheckboxModule, MatMenuModule, MatIconModule } from '@angular/material';
 import { MapComponent } from './map/map.component';
 import { UserInterfaceComponent } from './user-interface/user-interface.component';
 import { ClickableOfficesComponent } from './map/clickable-offices/clickable-offices.component';
@@ -38,6 +39,7 @@ import {MatListModule} from '@angular/material/list';
     InteractivePlacesComponent,
     ClickableOthersComponent,
 
+    BurgerMenuComponent
   ],
   imports: [
     BrowserModule,
@@ -51,6 +53,7 @@ import {MatListModule} from '@angular/material/list';
     HttpClientModule,
     MatButtonModule,
     MatListModule
+
   ],
   providers: [DataService],
   bootstrap: [AppComponent]
