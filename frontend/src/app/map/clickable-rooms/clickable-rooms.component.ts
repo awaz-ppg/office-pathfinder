@@ -23,8 +23,8 @@ export class ClickableRoomsComponent implements OnInit {
   }
 
   onClickRoom(event: Event) {
-    this.DeskService.isCliked = false;
-    this.RoomService.isCliked = true;
+    this.DeskService.isCliked = true;
+    this.RoomService.isCliked = false;
     this.KitchenService.isCliked = false;
     this.OfficeService.isCliked = false;
     this.PrinterSercive.isCliked = false;

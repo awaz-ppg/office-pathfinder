@@ -25,7 +25,7 @@ export class ClickableStationsComponent implements OnInit {
   onClickDesk(event: Event) {
     this.DeskService.isCliked = true;
     this.RoomService.isCliked = false;
-    this.KitchenService.isCliked = false;
+    this.KitchenService.isCliked =false;
     this.OfficeService.isCliked = false;
     this.PrinterSercive.isCliked = false;
     this.DeskService.getDesk().subscribe(data => {
