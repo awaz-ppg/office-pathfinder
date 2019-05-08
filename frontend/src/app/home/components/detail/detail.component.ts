@@ -1,12 +1,12 @@
-import { PrinterSercive } from './../services/printer.service';
-import { OfficeService } from './../services/office.service';
-import { RoomService } from './../services/room.service';
+import { PrinterSercive } from './../../services/printer.service';
+import { OfficeService } from './../../services/office.service';
+import { RoomService } from './../../services/room.service';
 import { Component, OnInit, Input } from '@angular/core';
-import { DeskService } from '../services/desk.service';
-import { KitchenService } from '../services/kitchen.service';
-import { DetailService } from '../services/detail.service';
+import { DeskService } from '../../services/desk.service';
+import { KitchenService } from '../../services/kitchen.service';
+import { MainService } from '../../services/main.service';
 import { Subscription } from 'rxjs';
-import { DetailList } from '../model/detail-list.model';
+import { DetailList } from '../../model/detail-list.model';
 
 @Component({
   selector: 'app-detail',
@@ -25,7 +25,7 @@ export class DetailComponent implements OnInit {
     private KitchenService: KitchenService,
     private OfficeService: OfficeService,
     private PrinterSercive: PrinterSercive,
-    private DetailService: DetailService,
+    private DetailService: MainService,
   ) {
     this.subscription = this.DetailService.status$.subscribe(status => {
       if (status === true) {

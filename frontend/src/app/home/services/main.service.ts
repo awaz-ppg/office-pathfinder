@@ -4,7 +4,7 @@ import { Subject } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class DetailService {
+export class MainService {
 
   private status = new Subject<boolean>();
   object = ``;

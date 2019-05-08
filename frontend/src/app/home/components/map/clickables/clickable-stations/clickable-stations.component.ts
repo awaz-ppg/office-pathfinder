@@ -1,6 +1,6 @@
-import { DeskService } from './../../services/desk.service';
+import { DeskService } from './../../../../services/desk.service';
 import { Component, OnInit } from '@angular/core';
-import { DetailService } from './../../services/detail.service';
+import { MainService } from './../../../../services/main.service';
 
 @Component({
   selector: '[app-clickable-stations]',
@@ -10,7 +10,7 @@ import { DetailService } from './../../services/detail.service';
 export class ClickableStationsComponent implements OnInit {
 
   constructor(private DeskService: DeskService,
-    private DetailService: DetailService,
+    private DetailService: MainService,
   ) { }
 
 

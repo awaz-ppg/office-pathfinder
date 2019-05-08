@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { OfficeService } from './../../services/office.service';
-import { DetailService } from './../../services/detail.service';
+import { OfficeService } from './../../../../services/office.service';
+import { MainService } from './../../../../services/main.service';
 
 @Component({
   selector: '[app-clickable-offices]',
@@ -11,7 +11,7 @@ export class ClickableOfficesComponent implements OnInit {
 
   constructor(
     private OfficeService: OfficeService,
-    private DetailService: DetailService,
+    private DetailService: MainService,
   ) { }
 
   ngOnInit() {

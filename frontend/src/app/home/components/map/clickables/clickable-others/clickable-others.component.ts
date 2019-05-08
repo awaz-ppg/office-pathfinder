@@ -1,7 +1,7 @@
-import { PrinterSercive } from './../../services/printer.service';
-import { KitchenService } from './../../services/kitchen.service';
+import { PrinterSercive } from './../../../../services/printer.service';
+import { KitchenService } from './../../../../services/kitchen.service';
 import { Component, OnInit } from '@angular/core';
-import { DetailService } from './../../services/detail.service';
+import { MainService } from './../../../../services/main.service';
 
 @Component({
   selector: '[app-clickable-others]',
@@ -13,7 +13,7 @@ export class ClickableOthersComponent implements OnInit {
   constructor(
     private KitchenService: KitchenService,
     private PrinterSercive: PrinterSercive,
-    private DetailService: DetailService,
+    private DetailService: MainService,
   ) { }
 
   ngOnInit() {
