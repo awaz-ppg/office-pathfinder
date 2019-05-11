@@ -11,25 +11,19 @@ export class ClickableOfficesComponent implements OnInit {
 
   constructor(
     private OfficeService: OfficeService,
-    private DetailService: MainService,
+    private MainService: MainService,
   ) { }
 
   ngOnInit() {
-    this.OfficeService.getOffice().subscribe(data => {
-      this.OfficeService.office = data;
-    });
-
-
-
   }
 
   onClickOffice(event: Event) {
 
 
     this.OfficeService.whatOffice = event.srcElement.id;
-    this.DetailService.changeObject(`office`);
+    this.MainService.changeObject(`office`);
     document.querySelectorAll(".shining").forEach(element => element.classList.remove("shining"));
     event.srcElement.classList.add("shining");
-    this.DetailService.changeStatus(true);
+    this.MainService.changeStatus(true);
   }
 }

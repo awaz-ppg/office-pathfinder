@@ -13,8 +13,6 @@ export class KitchenService {
   whatKitchen: string;
   constructor(private http: HttpClient) { }
 
-  getKitchen() {
-    return this.http.get<Kitchen[]>(this.url);
-  }
+
 
 }

@@ -9,12 +9,11 @@ export class OfficeService {
 
   url = environment.apiUrl + 'offices';
   office: Office[];
+  store: [];
   tmp = [];
   whatOffice: string;
   constructor(private http: HttpClient) { }
 
-  getOffice() {
-    return this.http.get<Office[]>(this.url);
-  }
+
 
 }

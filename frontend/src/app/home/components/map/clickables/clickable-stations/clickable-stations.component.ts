@@ -10,21 +10,19 @@ import { MainService } from './../../../../services/main.service';
 export class ClickableStationsComponent implements OnInit {
 
   constructor(private DeskService: DeskService,
-    private DetailService: MainService,
+    private MainService: MainService,
   ) { }
 
 
   ngOnInit() {
-    this.DeskService.getDesk().subscribe(data => {
-      this.DeskService.desk = data;
-    });
+
   }
 
   onClickDesk(event: Event) {
     this.DeskService.whatDesk = event.srcElement.id;
-    this.DetailService.changeObject(`station`);
+    this.MainService.changeObject(`station`);
     document.querySelectorAll(".shining").forEach(element => element.classList.remove("shining"));
     event.srcElement.classList.add("shining");
-    this.DetailService.changeStatus(true);
+    this.MainService.changeStatus(true);
   }
 }

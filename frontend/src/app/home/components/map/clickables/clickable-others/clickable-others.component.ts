@@ -16,15 +16,8 @@ export class ClickableOthersComponent implements OnInit {
     private DetailService: MainService,
   ) { }
 
-  ngOnInit() {
-    this.PrinterSercive.getPrinter().subscribe(data => {
-      this.PrinterSercive.printer = data;
-    });
+  ngOnInit() { }
 
-    this.KitchenService.getKitchen().subscribe(data => {
-      this.KitchenService.kitchen = data;
-    });
-  }
   onClickKitchen(event: Event) {
     this.KitchenService.whatKitchen = event.srcElement.id;
     this.DetailService.changeObject(`kitchen`);

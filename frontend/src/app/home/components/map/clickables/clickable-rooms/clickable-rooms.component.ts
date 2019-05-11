@@ -15,9 +15,6 @@ export class ClickableRoomsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.RoomService.getRoom().subscribe(data => {
-      this.RoomService.room = data;
-    });
   }
 
   onClickRoom(event: Event) {

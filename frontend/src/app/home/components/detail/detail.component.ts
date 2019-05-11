@@ -25,12 +25,12 @@ export class DetailComponent implements OnInit {
     private KitchenService: KitchenService,
     private OfficeService: OfficeService,
     private PrinterSercive: PrinterSercive,
-    private DetailService: MainService,
+    private MainService: MainService,
   ) {
-    this.subscription = this.DetailService.status$.subscribe(status => {
+    this.subscription = this.MainService.status$.subscribe(status => {
       if (status === true) {
         this.open = true;
-        this.DetailService.changeStatus(false);
+        this.MainService.changeStatus(false);
         this.setObj();
       }
     });
@@ -43,18 +43,18 @@ export class DetailComponent implements OnInit {
   }
 
   setObj() {
-    if (this.DetailService.object === 'station') {
+    if (this.MainService.object === 'station') {
       this.tab.length = 0;
-      this.DeskService.desk.forEach(element => {
+      this.MainService.desk.forEach(element => {
         if (element.numberDeskSVG === this.DeskService.whatDesk) {
           this.tab[0] = new DetailList(`Desk Number`, element.numberDesk);
           this.tab[1] = new DetailList(`Worker`, element.id);
         }
       });
     }
-    if (this.DetailService.object === 'room') {
+    if (this.MainService.object === 'room') {
       this.tab.length = 0;
-      this.RoomService.room.forEach(element => {
+      this.MainService.room.forEach(element => {
         if (element.roomNumberSVG === this.RoomService.whatRoom) {
           this.tab[0] = new DetailList(`Number of people`, element.numberOfPeople.toString());
           this.tab[1] = new DetailList(`Description`, element.description);
@@ -67,9 +67,9 @@ export class DetailComponent implements OnInit {
         }
       });
     }
-    if (this.DetailService.object === `kitchen`) {
+    if (this.MainService.object === `kitchen`) {
       this.tab.length = 0;
-      this.KitchenService.kitchen.forEach(element => {
+      this.MainService.kitchen.forEach(element => {
         if (element.numberSVG === this.KitchenService.whatKitchen) {
           this.tab[0] = new DetailList(`Number`, element.number.toString());
           this.tab[1] = new DetailList(`Name`, element.name);
@@ -79,9 +79,9 @@ export class DetailComponent implements OnInit {
         }
       });
     }
-    if (this.DetailService.object === `printer`) {
+    if (this.MainService.object === `printer`) {
       this.tab.length = 0;
-      this.PrinterSercive.printer.forEach(element => {
+      this.MainService.printer.forEach(element => {
         if (element.numberSVG === this.PrinterSercive.whatPrinter) {
           this.tab[0] = new DetailList(`Number`, element.number);
           this.tab[1] = new DetailList(`Color`, element.isColor.toString());
@@ -90,9 +90,9 @@ export class DetailComponent implements OnInit {
         }
       });
     }
-    if (this.DetailService.object === `office`) {
+    if (this.MainService.object === `office`) {
       this.tab.length = 0;
-      this.OfficeService.office.forEach(element => {
+      this.MainService.office.forEach(element => {
         if (element.numberSVG === this.OfficeService.whatOffice) {
           this.tab[0] = new DetailList(`First name`, element.firstName);
           this.tab[1] = new DetailList(`Last Name`, element.lastName);

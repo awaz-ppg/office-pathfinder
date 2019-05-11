@@ -11,7 +11,5 @@ export class RoomService {
   room: Guest[];
   constructor(private http: HttpClient) { }
 
-  getDesk() {
-    return this.http.get<Guest[]>(this.url);
-  }
+
 }

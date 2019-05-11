@@ -13,9 +13,7 @@ export class RoomService {
   constructor(private http: HttpClient) { }
   whatRoom: string;
 
-  getRoom() {
-    return this.http.get<Room[]>(this.url);
-  }
+
 
 }
 

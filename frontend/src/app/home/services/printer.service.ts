@@ -13,8 +13,6 @@ export class PrinterSercive {
   whatPrinter: string;
   constructor(private http: HttpClient) { }
 
-  getPrinter() {
-    return this.http.get<Printer[]>(this.url);
-  }
+
 
 }

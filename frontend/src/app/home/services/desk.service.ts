@@ -12,13 +12,11 @@ export class DeskService {
 
 
   url = environment.apiUrl + 'desks';
-  desk: Desk[];
+
   tmp = [];
   whatDesk: string;
   constructor(private http: HttpClient) { }
 
-  getDesk() {
-    return this.http.get<Desk[]>(this.url);
-  }
+
 
 }
