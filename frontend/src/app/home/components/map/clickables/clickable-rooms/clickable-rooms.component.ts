@@ -1,5 +1,4 @@
-import { RoomService } from './../../../../services/room.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnChanges } from '@angular/core';
 import { MainService } from './../../../../services/main.service';
 
 @Component({
@@ -7,22 +6,23 @@ import { MainService } from './../../../../services/main.service';
   templateUrl: './clickable-rooms.component.html',
   styleUrls: ['../clickable.scss', './clickable-rooms.component.scss']
 })
-export class ClickableRoomsComponent implements OnInit {
+export class ClickableRoomsComponent implements OnChanges {
+  @Input() shiningRoomId = [''];
+  @Output() roomId = new EventEmitter<string>();
 
   constructor(
-    private RoomService: RoomService,
-    private DetailService: MainService,
+    private MainService: MainService,
   ) { }
 
-  ngOnInit() {
+  ngOnChanges() {
+    document.querySelectorAll(".shining").forEach(element => element.classList.remove("shining"));
+    if (this.shiningRoomId[0] != '' && this.shiningRoomId.length != 0) {
+      this.shiningRoomId.forEach(x => document.querySelector(`#${x}`).classList.add("shining"));
+    }
   }
 
   onClickRoom(event: Event) {
-    this.RoomService.whatRoom = event.srcElement.id;
-    this.DetailService.changeObject(`room`);
-    document.querySelectorAll(".shining").forEach(element => element.classList.remove("shining"));
-    event.srcElement.classList.add("shining");
-    this.DetailService.changeStatus(true);
+    this.roomId.emit(event.srcElement.id);
   }
 
 }

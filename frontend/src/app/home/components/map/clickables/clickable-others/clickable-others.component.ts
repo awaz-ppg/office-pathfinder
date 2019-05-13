@@ -1,6 +1,4 @@
-import { PrinterSercive } from './../../../../services/printer.service';
-import { KitchenService } from './../../../../services/kitchen.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnChanges, SimpleChange } from '@angular/core';
 import { MainService } from './../../../../services/main.service';
 
 @Component({
@@ -8,30 +6,27 @@ import { MainService } from './../../../../services/main.service';
   templateUrl: './clickable-others.component.html',
   styleUrls: ['../clickable.scss', './clickable-others.component.scss']
 })
-export class ClickableOthersComponent implements OnInit {
+export class ClickableOthersComponent implements OnChanges {
+  @Input() shiningOtherId = [''];
+  @Output() otherId = new EventEmitter<string>();
 
   constructor(
-    private KitchenService: KitchenService,
-    private PrinterSercive: PrinterSercive,
-    private DetailService: MainService,
+    private MainService: MainService,
   ) { }
 
-  ngOnInit() { }
+  ngOnChanges() {
+    document.querySelectorAll(".shining").forEach(element => element.classList.remove("shining"));
+    if (this.shiningOtherId[0] != '' && this.shiningOtherId.length != 0) {
+      this.shiningOtherId.forEach(x => document.getElementById(`${x}`).classList.add("shining"));
+    }
+  }
 
   onClickKitchen(event: Event) {
-    this.KitchenService.whatKitchen = event.srcElement.id;
-    this.DetailService.changeObject(`kitchen`);
-    document.querySelectorAll(".shining").forEach(element => element.classList.remove("shining"));
-    event.srcElement.classList.add("shining");
-    this.DetailService.changeStatus(true);
+    this.otherId.emit(event.srcElement.id);
   }
 
 
   onClickPrinter(event: Event) {
-    this.PrinterSercive.whatPrinter = event.srcElement.id;
-    this.DetailService.changeObject(`printer`);
-    document.querySelectorAll(".shining").forEach(element => element.classList.remove("shining"));
-    event.srcElement.classList.add("shining");
-    this.DetailService.changeStatus(true);
+    this.otherId.emit(event.srcElement.id);
   }
 }

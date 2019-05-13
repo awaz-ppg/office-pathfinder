@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { OfficeService } from './../../../../services/office.service';
+import { Component, OnChanges, Input, Output, EventEmitter } from '@angular/core';
 import { MainService } from './../../../../services/main.service';
 
 @Component({
@@ -7,23 +6,23 @@ import { MainService } from './../../../../services/main.service';
   templateUrl: './clickable-offices.component.html',
   styleUrls: ['../clickable.scss', './clickable-offices.component.scss']
 })
-export class ClickableOfficesComponent implements OnInit {
+export class ClickableOfficesComponent implements OnChanges {
+  @Input() shiningOfficeId = [''];
+  @Output() officeId = new EventEmitter<string>();
 
   constructor(
-    private OfficeService: OfficeService,
     private MainService: MainService,
   ) { }
 
-  ngOnInit() {
+  ngOnChanges() {
+
+    document.querySelectorAll(".shining").forEach(element => element.classList.remove("shining"));
+    if (this.shiningOfficeId[0] != '' && this.shiningOfficeId.length != 0) {
+      this.shiningOfficeId.forEach(x => document.getElementById(`${x}`).classList.add("shining"));
+    }
   }
 
   onClickOffice(event: Event) {
-
-
-    this.OfficeService.whatOffice = event.srcElement.id;
-    this.MainService.changeObject(`office`);
-    document.querySelectorAll(".shining").forEach(element => element.classList.remove("shining"));
-    event.srcElement.classList.add("shining");
-    this.MainService.changeStatus(true);
+    this.officeId.emit(event.srcElement.id);
   }
 }

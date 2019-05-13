@@ -9,3 +9,12 @@ export class Kitchen {
   id: string;
 
 }
+
+export function mapKitchen(kitchen: Kitchen) {
+  return [
+    new DetailList(`Number`, kitchen.number.toString()),
+    new DetailList(`Name`, kitchen.name),
+    new DetailList(`Coffee`, kitchen.isCoffee.toString()),
+    new DetailList(`Water`, kitchen.isWater.toString()),
+    new DetailList(`Id`, kitchen.id),];
+}

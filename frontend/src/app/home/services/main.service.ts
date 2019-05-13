@@ -15,16 +15,14 @@ import { Guest } from '../model/guest.model';
 })
 export class MainService {
 
-  private status = new Subject<boolean>();
-  object = ``;
+  private select = new Subject<string[]>();
+
   desk: Desk[];
   office: Office[];
   printer: Printer[];
   room: Room[];
   kitchen: Kitchen[];
   guest: Guest[];
-
-  store: [];
 
 
   constructor(private http: HttpClient) {
@@ -74,16 +72,10 @@ export class MainService {
     return this.http.get<Room[]>(`${environment.apiUrl}Rooms`);
   }
 
+  select$ = this.select.asObservable();
 
-
-  status$ = this.status.asObservable();
-
-  changeStatus(Status: boolean) {
-    this.status.next(Status);
-  }
-
-  changeObject(Object: string) {
-    this.object = Object;
+  changeSelect(Select: string[]) {
+    this.select.next(Select);
   }
 
 }

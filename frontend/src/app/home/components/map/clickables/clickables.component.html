@@ -1,3 +1,6 @@
-<p>
-  clickables works!
-</p>
+<svg>
+  <svg:g app-clickable-offices [shiningOfficeId]="newOfficeId" (officeId)="idChanged($event)" />
+  <svg:g app-clickable-stations [shiningStationId]="newStationId" (stationId)="idChanged($event)" />
+  <svg:g app-clickable-rooms [shiningRoomId]="newRoomId" (roomId)="idChanged($event)" />
+  <svg:g app-clickable-others [shiningOtherId]="newOtherId" (otherId)="idChanged($event)" />
+</svg>

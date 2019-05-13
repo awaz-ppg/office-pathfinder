@@ -1,5 +1,4 @@
-import { DeskService } from './../../../../services/desk.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, OnChanges } from '@angular/core';
 import { MainService } from './../../../../services/main.service';
 
 @Component({
@@ -7,22 +6,24 @@ import { MainService } from './../../../../services/main.service';
   templateUrl: './clickable-stations.component.html',
   styleUrls: ['../clickable.scss', './clickable-stations.component.scss']
 })
-export class ClickableStationsComponent implements OnInit {
+export class ClickableStationsComponent implements OnChanges {
+  @Input() shiningStationId = [''];
+  @Output() stationId = new EventEmitter<string>();
 
-  constructor(private DeskService: DeskService,
+  constructor(
     private MainService: MainService,
   ) { }
 
 
-  ngOnInit() {
+  ngOnChanges() {
+    document.querySelectorAll(".shining").forEach(element => element.classList.remove("shining"));
 
+    if (this.shiningStationId[0] != '' && this.shiningStationId.length != 0) {
+      this.shiningStationId.forEach(x => document.getElementById(`${x}`).classList.add("shining"));
+    }
   }
 
   onClickDesk(event: Event) {
-    this.DeskService.whatDesk = event.srcElement.id;
-    this.MainService.changeObject(`station`);
-    document.querySelectorAll(".shining").forEach(element => element.classList.remove("shining"));
-    event.srcElement.classList.add("shining");
-    this.MainService.changeStatus(true);
+    this.stationId.emit(event.srcElement.id);
   }
 }
