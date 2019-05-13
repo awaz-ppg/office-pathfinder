@@ -22,6 +22,11 @@ export class BurgerMenuComponent implements OnInit {
     { elementSelector: 'elevator', text: 'WINDY', icon: 'arrow_upward' },
     { elementSelector: 'kitchen', text: 'KUCHNIE', icon: 'restaurant' },
     { elementSelector: 'reception', text: 'RECEPCJA', icon: 'room' },
+    { elementSelector: 'water-point', text: 'WODA', icon: 'local_drink' },
+    { elementSelector: 'coffee-point', text: 'KAWA', icon: 'local_cafe' },
+    { elementSelector: 'fire-extinguisher', text: 'GAŚNICE', icon: 'whatshot' },
+    { elementSelector: 'first-aid-kit', text: 'APTECZKI', icon: 'local_hospital' },
+    { elementSelector: 'wardrobe', text: 'SZAFY', icon: 'change_history' },
   ];
 
   ngOnInit() {

@@ -13,7 +13,11 @@ export class InteractivePlacesComponent implements OnInit {
 
   constructor(private MainService: MainService) {
     this.subscription = this.MainService.select$.subscribe(select => {
-      if (select[0].includes(`wc`) || select[0].includes(`elevator`) || select[0].includes(`reception`)) {
+      if (select[0].includes(`wc`) || select[0].includes(`elevator`) || select[0].includes(`reception`)
+        || select[0].includes(`water-point`) || select[0].includes(`coffee-point`)
+        || select[0].includes(`fire-extinguisher`) || select[0].includes(`first-aid-kit`)
+        || select[0].includes(`wardrobe`)
+      ) {
         document.querySelectorAll(".shining").forEach(element => element.classList.remove("shining"));
         select.forEach(x => document.getElementById(`${x}`).classList.add("shining"))
       }
