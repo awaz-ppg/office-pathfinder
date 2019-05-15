@@ -9,65 +9,105 @@ import { mapRoom } from '../../model/room.model';
 import { mapKitchen } from '../../model/kitchen.model';
 
 
+
 @Component({
   selector: 'app-detail',
   templateUrl: './detail.component.html',
   styleUrls: ['./detail.component.scss'],
 
 })
+
+
 export class DetailComponent implements OnInit {
 
-  tab = [];
+  datailArray = [];
   subscription: Subscription;
   open: boolean;
+  array = [];
 
   constructor(
     private MainService: MainService,
   ) {
-
+ 
     this.subscription = this.MainService.select$.subscribe(select => {
       if (select.length === 1) {
+
         this.open = true;
-        if (select[0].includes('station')) {
-          this.tab.length = 0;
-          this.MainService.desk.forEach(element => {
-            if (element.numberDeskSVG === select[0]) {
-              this.tab = mapDesk(element);
-            }
-          });
-        }
-        if (select[0].includes('room')) {
-          this.tab.length = 0;
-          this.MainService.room.forEach(element => {
-            if (element.roomNumberSVG === select[0]) {
-              this.tab = mapRoom(element);
-            }
-          });
-        }
-        if (select[0].includes('kitchen')) {
-          this.tab.length = 0;
-          this.MainService.kitchen.forEach(element => {
+        // console.log(MainService.desk)
+        this.MainService.desk.forEach(element => {
+          if (element.numberDeskSVG === select[0]) {
+            this.array[select[0].split("-")[0]] = mapDesk(element);
+          }
+        });
+        //console.log(MainService.room)
+        this.MainService.room.forEach(element => {
+          if (element.roomNumberSVG === select[0]) {
+            this.array[select[0].split("-")[0]] = mapRoom(element);
+          }
+        });
+        //console.log(MainService.kitchen)
+        this.MainService.kitchen.forEach(element => {
+          if (element.numberSVG === select[0]) {
+            this.array[select[0].split("-")[0]] = mapKitchen(element);
+          }
+        });
+        //console.log(MainService.printer)
+        this.MainService.printer.forEach(element => {
+          if (element.numberSVG === select[0]) {
+            this.array[select[0].split("-")[0]] = mapPrinter(element);
+          }
+        });
+        //console.log(MainService.office)
+        this.MainService.office.forEach(element => {
             if (element.numberSVG === select[0]) {
-              this.tab = mapKitchen(element);
+              this.array[select[0].split("-")[0]] = mapOffice(element);
             }
           });
-        }
-        if (select[0].includes('printer')) {
-          this.tab.length = 0;
-          this.MainService.printer.forEach(element => {
-            if (element.numberSVG === select[0]) {
-              this.tab = mapPrinter(element);
-            }
-          });
-        }
-        if (select[0].includes('office')) {
-          this.tab.length = 0;
-          this.MainService.office.forEach(element => {
-            if (element.numberSVG === select[0]) {
-              this.tab = mapOffice(element);
-            }
-          });
-        }
+         //console.log(this.array[select[0].split("-")[0]])
+         this.datailArray = this.array[select[0].split("-")[0]]
+        
+
+        // if (select[0].includes('station')) {
+        //   this.datailArray.length = 0;
+        //   this.MainService.desk.forEach(element => {
+        //     if (element.numberDeskSVG === select[0]) {
+        //       this.datailArray = mapDesk(element);
+        //     }
+        //   });
+        // }
+        // if (select[0].includes('room')) {
+        //   this.datailArray.length = 0;
+        //   this.MainService.room.forEach(element => {
+        //     if (element.roomNumberSVG === select[0]) {
+        //       this.datailArray = mapRoom(element);
+        //     }
+        //   });
+        // }
+        // if (select[0].includes('kitchen')) {
+        //   this.datailArray.length = 0;
+        //   this.MainService.kitchen.forEach(element => {
+        //     if (element.numberSVG === select[0]) {
+        //       this.datailArray = mapKitchen(element);
+        //     }
+        //   });
+        // }
+        // if (select[0].includes('printer')) {
+        //   this.datailArray.length = 0;
+        //   this.MainService.printer.forEach(element => {
+        //     if (element.numberSVG === select[0]) {
+        //       this.datailArray = mapPrinter(element);
+        //     }
+        //   });
+        // }
+        // if (select[0].includes('office')) {
+        //   this.datailArray.length = 0;
+        //   this.MainService.office.forEach(element => {
+        //     if (element.numberSVG === select[0]) {
+        //       this.datailArray = mapOffice(element);
+        //     }
+        //   });
+        // }
+
       }
     }
     );

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
+import { DetailList } from '../model/detail-list.model';
 import { HttpClient } from '@angular/common/http';
 import { environment } from './../../../environments/environment';
 import { Desk } from './../model/desk.model';
@@ -23,7 +24,7 @@ export class MainService {
   room: Room[];
   kitchen: Kitchen[];
   guest: Guest[];
-
+  select$ = this.select.asObservable();
 
   constructor(private http: HttpClient) {
     this.getDesk().subscribe(data => {
@@ -72,7 +73,7 @@ export class MainService {
     return this.http.get<Room[]>(`${environment.apiUrl}Rooms`);
   }
 
-  select$ = this.select.asObservable();
+  
 
   changeSelect(Select: string[]) {
     this.select.next(Select);
