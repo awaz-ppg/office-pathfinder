@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
-import { DetailList } from '../model/detail-list.model';
 import { HttpClient } from '@angular/common/http';
 import { environment } from './../../../environments/environment';
 import { Desk } from './../model/desk.model';
@@ -9,6 +8,7 @@ import { Printer } from '../model/printer.model';
 import { Room } from '../model/room.model';
 import { Kitchen } from '../model/kitchen.model';
 import { Guest } from '../model/guest.model';
+import { GetService } from './get.service'
 
 
 @Injectable({
@@ -24,55 +24,32 @@ export class MainService {
   room: Room[];
   kitchen: Kitchen[];
   guest: Guest[];
+
   select$ = this.select.asObservable();
 
-  constructor(private http: HttpClient) {
-    this.getDesk().subscribe(data => {
+  constructor(private http: HttpClient, getService: GetService) {
+    
+    getService.getDesk().subscribe(data => {
       this.desk = data;
     });
-    this.getOffice().subscribe(data => {
+    getService.getOffice().subscribe(data => {
       this.office = data;
     });
-    this.getGuest().subscribe(data => {
+    getService.getGuest().subscribe(data => {
       this.guest = data;
     });
-    this.getKitchen().subscribe(data => {
+    getService.getKitchen().subscribe(data => {
       this.kitchen = data;
     });
-    this.getPrinter().subscribe(data => {
+    getService.getPrinter().subscribe(data => {
       this.printer = data;
     });
-    this.getRoom().subscribe(data => {
+    getService.getRoom().subscribe(data => {
       this.room = data;
     });
 
 
   }
-
-  getDesk() {
-    return this.http.get<Desk[]>(`${environment.apiUrl}desks`);
-  }
-
-  getOffice() {
-    return this.http.get<Office[]>(`${environment.apiUrl}offices`);
-  }
-
-  getGuest() {
-    return this.http.get<Guest[]>(`${environment.apiUrl}Guests`);
-  }
-
-  getKitchen() {
-    return this.http.get<Kitchen[]>(`${environment.apiUrl}Kitchens`);
-  }
-
-  getPrinter() {
-    return this.http.get<Printer[]>(`${environment.apiUrl}Printers`);
-  }
-
-  getRoom() {
-    return this.http.get<Room[]>(`${environment.apiUrl}Rooms`);
-  }
-
   
 
   changeSelect(Select: string[]) {
