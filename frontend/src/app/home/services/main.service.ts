@@ -1,19 +1,24 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { environment } from './../../../environments/environment';
 import { Desk } from './../model/desk.model';
 import { Office } from './../model/office.model';
 import { Printer } from '../model/printer.model';
 import { Room } from '../model/room.model';
 import { Kitchen } from '../model/kitchen.model';
 import { Guest } from '../model/guest.model';
-import { GetService } from './get.service'
+import { DeskService } from './desk.service';
+import { PrinterService } from './printer.service';
+import { GuestService } from './guest.service';
+import { KitchenService } from './kitchen.service';
+import { OfficeService } from './office.service';
+import { RoomService } from './room.service';
 
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class MainService {
 
   private select = new Subject<string[]>();
@@ -27,30 +32,35 @@ export class MainService {
 
   select$ = this.select.asObservable();
 
-  constructor(private http: HttpClient, getService: GetService) {
-    
-    getService.getDesk().subscribe(data => {
+  constructor(private http: HttpClient, deskService: DeskService,
+              officeService: OfficeService, guestService: GuestService,
+              kitchenService: KitchenService, printerService: PrinterService,
+              roomService: RoomService ) {
+
+
+
+    deskService.getDesk().subscribe(data => {
       this.desk = data;
     });
-    getService.getOffice().subscribe(data => {
+    officeService.getOffice().subscribe(data => {
       this.office = data;
     });
-    getService.getGuest().subscribe(data => {
+    guestService.getGuest().subscribe(data => {
       this.guest = data;
     });
-    getService.getKitchen().subscribe(data => {
+    kitchenService.getKitchen().subscribe(data => {
       this.kitchen = data;
     });
-    getService.getPrinter().subscribe(data => {
+    printerService.getPrinter().subscribe(data => {
       this.printer = data;
     });
-    getService.getRoom().subscribe(data => {
+    roomService.getRoom().subscribe(data => {
       this.room = data;
     });
 
 
   }
-  
+
 
   changeSelect(Select: string[]) {
     this.select.next(Select);

@@ -17,7 +17,6 @@ import { mapKitchen } from '../../model/kitchen.model';
 
 })
 
-
 export class DetailComponent implements OnInit {
 
   datailArray = [];
@@ -28,7 +27,7 @@ export class DetailComponent implements OnInit {
   constructor(
     private MainService: MainService,
   ) {
- 
+
     this.subscription = this.MainService.select$.subscribe(select => {
       if (select.length === 1) {
 
@@ -64,7 +63,7 @@ export class DetailComponent implements OnInit {
             }
           });
          this.datailArray = this.array[select[0].split("-")[0]]
-        
+
       }
     }
     );
