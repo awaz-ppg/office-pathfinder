@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, OnChanges } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
 import { MainService } from './../../../../services/main.service';
 
 @Component({
@@ -14,10 +14,12 @@ export class ClickableRoomsComponent implements OnChanges {
     private MainService: MainService,
   ) { }
 
-  ngOnChanges() {
-    document.querySelectorAll(".shining").forEach(element => element.classList.remove("shining"));
-    if (this.shiningRoomId[0] != '' && this.shiningRoomId.length != 0) {
-      this.shiningRoomId.forEach(x => document.querySelector(`#${x}`).classList.add("shining"));
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes.shiningRoomId !== undefined) {
+      document.querySelectorAll(".shining").forEach(element => element.classList.remove("shining"));
+      if (this.shiningRoomId[0] != '' && this.shiningRoomId.length != 0) {
+        this.shiningRoomId.forEach(x => document.querySelector(`#${x}`).classList.add("shining"));
+      }
     }
   }
 

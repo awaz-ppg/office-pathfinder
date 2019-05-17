@@ -1,16 +1,21 @@
 import { DetailList } from './detail-list.model';
+import { MapObject } from './map-object.model';
 
-export class Desk {
+export class Desk extends MapObject {
     numberDesk: string;
     numberDeskSVG: string;
-    id: string;
 
+    constructor(desk: Desk) {
+        super(desk);
+        this.numberDesk = desk.numberDesk;
+        this.numberDeskSVG = desk.numberDeskSVG;
+    }
 
+    map() {
+        return [
+            new DetailList(`Desk Number`, this.numberDesk),
+            new DetailList(`Worker`, this.id)];
+    }
 
 }
 
-export function mapDesk(desk: Desk) {
-    return [
-        new DetailList(`Desk Number`, desk.numberDesk),
-        new DetailList(`Worker`, desk.id)];
-}

@@ -1,20 +1,27 @@
 import { DetailList } from './detail-list.model';
+import { MapObject } from './map-object.model';
 
-export class Kitchen {
+export class Kitchen extends MapObject {
   number: number;
-  numberSVG: string;
   name: string;
   isCoffee: boolean;
   isWater: boolean;
-  id: string;
 
+  constructor(kitchen: Kitchen) {
+    super(kitchen);
+    this.number = kitchen.number;
+    this.name = kitchen.name;
+    this.isCoffee = kitchen.isCoffee;
+    this.isWater = kitchen.isWater;
+  }
+
+  map() {
+    return [
+      new DetailList(`Number`, this.number.toString()),
+      new DetailList(`Name`, this.name),
+      new DetailList(`Coffee`, this.isCoffee.toString()),
+      new DetailList(`Water`, this.isWater.toString()),
+      new DetailList(`Id`, this.id)];
+  }
 }
 
-export function mapKitchen(kitchen: Kitchen) {
-  return [
-    new DetailList(`Number`, kitchen.number.toString()),
-    new DetailList(`Name`, kitchen.name),
-    new DetailList(`Coffee`, kitchen.isCoffee.toString()),
-    new DetailList(`Water`, kitchen.isWater.toString()),
-    new DetailList(`Id`, kitchen.id),];
-}

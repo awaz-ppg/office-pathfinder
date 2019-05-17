@@ -1,15 +1,20 @@
 import { DetailList } from './detail-list.model';
+import { MapObject } from './map-object.model';
 
-export class Printer {
+export class Printer extends MapObject {
   number: string;
-  numberSVG: string;
   isColor: boolean;
-  id: string;
-}
 
-export function mapPrinter(printer: Printer) {
-  return [
-    new DetailList(`Number`, printer.number),
-    new DetailList(`Color`, printer.isColor.toString()),
-    new DetailList(`Id`, printer.id),];
+  constructor(printer: Printer) {
+    super(printer);
+    this.number = printer.number;
+    this.isColor = printer.isColor;
+  }
+
+  map() {
+    return [
+      new DetailList(`Number`, this.number),
+      new DetailList(`Color`, this.isColor.toString()),
+      new DetailList(`Id`, this.id)];
+  }
 }

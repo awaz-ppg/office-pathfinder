@@ -23,44 +23,59 @@ export class MainService {
 
   private select = new Subject<string[]>();
 
-  desk: Desk[];
-  office: Office[];
-  printer: Printer[];
-  room: Room[];
-  kitchen: Kitchen[];
-  guest: Guest[];
+  desk = [];
+  office = [];
+  printer = [];
+  room = [];
+  kitchen = [];
+  guest = [];
+  all = [];
 
   select$ = this.select.asObservable();
 
   constructor(private http: HttpClient, deskService: DeskService,
-              officeService: OfficeService, guestService: GuestService,
-              kitchenService: KitchenService, printerService: PrinterService,
-              roomService: RoomService ) {
-
+    officeService: OfficeService, guestService: GuestService,
+    kitchenService: KitchenService, printerService: PrinterService,
+    roomService: RoomService) {
 
 
     deskService.getDesk().subscribe(data => {
-      this.desk = data;
+      data.forEach(x => this.desk.push(new Desk(x)));
     });
     officeService.getOffice().subscribe(data => {
-      this.office = data;
+      data.forEach(x => this.office.push(new Office(x)));
     });
     guestService.getGuest().subscribe(data => {
       this.guest = data;
     });
     kitchenService.getKitchen().subscribe(data => {
-      this.kitchen = data;
+      data.forEach(x => this.kitchen.push(new Kitchen(x)));
     });
     printerService.getPrinter().subscribe(data => {
-      this.printer = data;
+      data.forEach(x => this.printer.push(new Printer(x)));
     });
     roomService.getRoom().subscribe(data => {
-      this.room = data;
+      data.forEach(x => this.room.push(new Room(x)));
     });
 
-
+    setTimeout(x => {
+      this.desk.forEach(y => {
+        this.all.push(new Desk(y));
+      });
+      this.kitchen.forEach(y => {
+        this.all.push(new Kitchen(y));
+      });
+      this.printer.forEach(y => {
+        this.all.push(new Printer(y));
+      });
+      this.office.forEach(y => {
+        this.all.push(new Office(y));
+      });
+      this.room.forEach(y => {
+        this.all.push(new Room(y));
+      });
+    }, 10000);
   }
-
 
   changeSelect(Select: string[]) {
     this.select.next(Select);

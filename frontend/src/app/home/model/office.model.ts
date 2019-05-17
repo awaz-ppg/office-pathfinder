@@ -1,26 +1,35 @@
 import { DetailList } from './detail-list.model';
+import { MapObject } from './map-object.model';
 
-export class Office {
+export class Office extends MapObject {
   firstName: string;
   lastName: string;
   number: string;
-  numberSVG: string;
   position: string;
   isCoordinator: boolean;
   team: string;
   isVolunteer: boolean;
-  id: string;
 
-}
+  constructor(office: Office) {
+    super(office);
+    this.firstName = office.firstName;
+    this.lastName = office.lastName;
+    this.number = office.number;
+    this.position = office.position;
+    this.isCoordinator = office.isCoordinator;
+    this.team = office.team;
+    this.isVolunteer = office.isVolunteer;
+  }
 
-export function mapOffice(office: Office) {
-  return [
-    new DetailList(`First name`, office.firstName),
-    new DetailList(`Last Name`, office.lastName),
-    new DetailList(`Number`, office.number),
-    new DetailList(`Position`, office.position),
-    new DetailList(`Coordinator`, office.isCoordinator.toString()),
-    new DetailList(`Team`, office.team),
-    new DetailList(`Volunteer`, office.isVolunteer.toString()),
-    new DetailList(`Id`, office.id),];
+  map() {
+    return [
+      new DetailList(`First name`, this.firstName),
+      new DetailList(`Last Name`, this.lastName),
+      new DetailList(`Number`, this.number),
+      new DetailList(`Position`, this.position),
+      new DetailList(`Coordinator`, this.isCoordinator.toString()),
+      new DetailList(`Team`, this.team),
+      new DetailList(`Volunteer`, this.isVolunteer.toString()),
+      new DetailList(`Id`, this.id)];
+  }
 }
