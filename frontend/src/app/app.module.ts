@@ -26,7 +26,34 @@ import { MatListModule } from '@angular/material/list';
 import { HomeComponent } from './home/home.component';
 import { AdminComponent } from './admin/admin.component';
 import { ClickablesComponent } from './home/components/map/clickables/clickables.component';
+import { NgxUiLoaderModule, NgxUiLoaderConfig } from 'ngx-ui-loader';
 
+const ngxUiLoaderConfig: NgxUiLoaderConfig = {
+  bgsColor: '#00ACC1',
+  bgsOpacity: 0.5,
+  bgsPosition: 'bottom-right',
+  bgsSize: 60,
+  bgsType: 'ball-spin-clockwise',
+  blur: 5,
+  fgsColor: '#00ACC1',
+  fgsPosition: 'center-center',
+  fgsSize: 60,
+  fgsType: 'wandering-cubes',
+  gap: 24,
+  logoPosition: 'center-center',
+  logoSize: 120,
+  logoUrl: 'http://ppglive.azurewebsites.net/ppg/ppg-paints-ce/img/logos/2017/PPGRT5635A-trn.png',
+  masterLoaderId: 'master',
+  overlayBorderRadius: '0',
+  overlayColor: 'rgba(40, 40, 40, 0.8)',
+  pbColor: '#00ACC1',
+  pbDirection: 'ltr',
+  pbThickness: 3,
+  hasProgressBar: true,
+  textColor: '#FFFFFF',
+  textPosition: 'center-center',
+  threshold: 500
+};
 
 @NgModule({
   declarations: [
@@ -61,7 +88,8 @@ import { ClickablesComponent } from './home/components/map/clickables/clickables
     BrowserAnimationsModule,
     HttpClientModule,
     MatButtonModule,
-    MatListModule
+    MatListModule,
+    NgxUiLoaderModule.forRoot(ngxUiLoaderConfig),
 
   ],
   providers: [DataService],
