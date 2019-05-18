@@ -45,12 +45,26 @@ namespace WebAPI.Controllers
 
         // GET api/Rooms
         [HttpGet]
-        public List<Room> GetRooms()
+        public List<RoomToSend> GetRooms()
         {
             var rooms =
                  _repository.GetAllEntities(CollectionName);
 
-            return rooms;
+            List<RoomToSend> Rooms = new List<RoomToSend>();
+            foreach(var element in rooms) {
+                Rooms.Add(new RoomToSend() {
+                    NumberOfPeople = element.NumberOfPeople,
+                    Description = element.Description,
+                    roomName = element.roomName,
+                    roomNumber = element.roomNumber,
+                    NumberSVG = element.roomNumberSVG,
+                    IsTV = element.IsTV,
+                    IsBlackboard = element.IsBlackboard,
+                    IsPhone = element.IsPhone,
+                    id = element.id
+                });
+            }
+            return Rooms;
         }
     }
 }

@@ -47,12 +47,20 @@ namespace WebAPI.Controllers
 
         // GET api/Desks
         [HttpGet]
-        public List<Desk> GetDesks()
+        public List<DeskToSend> GetDesks()
         {
             var desks =
                  _repository.GetAllEntities(CollectionName);
 
-            return desks;
+            List<DeskToSend> Desks = new List<DeskToSend>();
+            foreach(var element in desks) {
+                Desks.Add(new DeskToSend() {
+                    NumberDesk = element.NumberDesk,
+                    NumberSVG = element.NumberDeskSVG,
+                    id = element.id
+                });
+            }
+            return Desks;
         }
     }
 }
