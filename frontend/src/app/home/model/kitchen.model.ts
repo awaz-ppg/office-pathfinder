@@ -9,10 +9,7 @@ export class Kitchen extends MapObject {
 
   constructor(kitchen: Kitchen) {
     super(kitchen);
-    this.number = kitchen.number;
-    this.name = kitchen.name;
-    this.isCoffee = kitchen.isCoffee;
-    this.isWater = kitchen.isWater;
+    Object.assign(this, kitchen);
   }
 
   map() {

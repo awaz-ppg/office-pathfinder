@@ -1,5 +1,4 @@
 import { Component, Input, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
-import { MainService } from './../../../../services/main.service';
 
 @Component({
   selector: '[app-clickable-rooms]',
@@ -7,17 +6,15 @@ import { MainService } from './../../../../services/main.service';
   styleUrls: ['../clickable.scss', './clickable-rooms.component.scss']
 })
 export class ClickableRoomsComponent implements OnChanges {
-  @Input() shiningRoomId = [''];
+  @Input() shiningRoomId: [];
   @Output() roomId = new EventEmitter<string>();
 
-  constructor(
-    private MainService: MainService,
-  ) { }
+  constructor() { }
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes.shiningRoomId !== undefined) {
       document.querySelectorAll(".shining").forEach(element => element.classList.remove("shining"));
-      if (this.shiningRoomId[0] != '' && this.shiningRoomId.length != 0) {
+      if (this.shiningRoomId != undefined && this.shiningRoomId.length != 0) {
         this.shiningRoomId.forEach(x => document.querySelector(`#${x}`).classList.add("shining"));
       }
     }

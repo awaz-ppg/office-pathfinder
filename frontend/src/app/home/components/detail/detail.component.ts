@@ -21,12 +21,12 @@ export class DetailComponent implements OnInit {
   open: boolean;
 
   constructor(
-    private MainService: MainService,
+    private mainService: MainService,
   ) {
-    this.subscription = this.MainService.select$.subscribe(select => {
+    this.subscription = this.mainService.select$.subscribe(select => {
       if (select.length === 1) {
         this.open = true;
-        this.MainService.all.forEach(element => {
+        this.mainService.all.forEach(element => {
           if (element.numberSVG === select[0]) {
             this.detailArray = element.map();
           }

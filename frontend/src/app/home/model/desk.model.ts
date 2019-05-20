@@ -7,8 +7,7 @@ export class Desk extends MapObject {
 
     constructor(desk: Desk) {
         super(desk);
-        this.numberDesk = desk.numberDesk;
-        this.numberDeskSVG = desk.numberDeskSVG;
+        Object.assign(this, desk);
     }
 
     map() {

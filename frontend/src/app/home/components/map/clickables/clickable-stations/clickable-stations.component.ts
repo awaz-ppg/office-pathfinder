@@ -1,5 +1,4 @@
 import { Component, OnInit, Input, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
-import { MainService } from './../../../../services/main.service';
 
 @Component({
   selector: '[app-clickable-stations]',
@@ -7,12 +6,10 @@ import { MainService } from './../../../../services/main.service';
   styleUrls: ['../clickable.scss', './clickable-stations.component.scss']
 })
 export class ClickableStationsComponent implements OnChanges {
-  @Input() shiningStationId = [''];
+  @Input() shiningStationId: [];
   @Output() stationId = new EventEmitter<string>();
 
-  constructor(
-    private MainService: MainService,
-  ) { }
+  constructor() { }
 
 
   ngOnChanges(changes: SimpleChanges) {
@@ -20,7 +17,7 @@ export class ClickableStationsComponent implements OnChanges {
     if (changes.shiningStationId !== undefined) {
       document.querySelectorAll(".shining").forEach(element => element.classList.remove("shining"));
 
-      if (this.shiningStationId[0] != '' && this.shiningStationId.length != 0) {
+      if (this.shiningStationId != undefined && this.shiningStationId.length != 0) {
         this.shiningStationId.forEach(x => document.getElementById(`${x}`).classList.add("shining"));
       }
     }

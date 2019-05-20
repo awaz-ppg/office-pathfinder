@@ -11,8 +11,8 @@ export class InteractivePlacesComponent implements OnInit {
 
   subscription: Subscription;
 
-  constructor(private MainService: MainService) {
-    this.subscription = this.MainService.select$.subscribe(select => {
+  constructor(private mainService: MainService) {
+    this.subscription = this.mainService.select$.subscribe(select => {
       if (select[0].includes(`wc`) || select[0].includes(`elevator`) || select[0].includes(`reception`)
         || select[0].includes(`water-point`) || select[0].includes(`coffee-point`)
         || select[0].includes(`fire-extinguisher`) || select[0].includes(`first-aid-kit`)

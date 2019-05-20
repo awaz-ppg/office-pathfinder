@@ -12,7 +12,7 @@ import { MenuItem } from './MenuItem';
 export class BurgerMenuComponent implements OnInit {
 
 
-  constructor(private MainService: MainService) { }
+  constructor(private mainService: MainService) { }
 
   menuOptions: Array<MenuItem> = [
     { elementSelector: 'wc', text: 'WC', icon: 'wc' },
@@ -36,6 +36,6 @@ export class BurgerMenuComponent implements OnInit {
     let elementList = document.querySelectorAll(`[id^=${CSS.escape(elementSelector)}]`);
     let idList = [''];
     elementList.forEach((x, index) => idList[index] = x.id);
-    this.MainService.changeSelect(idList);
+    this.mainService.changeSelect(idList);
   }
 }
