@@ -26,7 +26,7 @@ import { MatListModule } from '@angular/material/list';
 import { HomeComponent } from './home/home.component';
 import { AdminComponent } from './admin/admin.component';
 import { ClickablesComponent } from './home/components/map/clickables/clickables.component';
-import { NgxUiLoaderModule, NgxUiLoaderConfig } from 'ngx-ui-loader';
+import { NgxUiLoaderModule, NgxUiLoaderConfig, NgxUiLoaderHttpModule } from 'ngx-ui-loader';
 
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
   bgsColor: '#00ACC1',
@@ -90,6 +90,7 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     MatButtonModule,
     MatListModule,
     NgxUiLoaderModule.forRoot(ngxUiLoaderConfig),
+    NgxUiLoaderHttpModule.forRoot({ showForeground: true }),
 
   ],
   providers: [DataService],

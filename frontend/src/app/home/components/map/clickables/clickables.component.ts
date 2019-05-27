@@ -11,28 +11,28 @@ export class ClickablesComponent implements OnInit {
 
   subscription: Subscription;
 
-  newStationId = [''];
-  newOtherId = [''];
-  newRoomId = [''];
-  newOfficeId = [''];
+  newStationId: string[];
+  newOtherId: string[];
+  newRoomId: string[];
+  newOfficeId: string[];
 
-  constructor(private MainService: MainService) {
-    this.subscription = this.MainService.select$.subscribe(select => {
+  constructor(private mainService: MainService) {
+    this.subscription = this.mainService.select$.subscribe(select => {
 
       if (select[0].includes(`station`)) {
-        this.newStationId.length = 0;
+        this.newStationId = [];
         this.newStationId = select;
       }
       else if (select[0].includes(`office`)) {
-        this.newOfficeId.length = 0;
+        this.newOfficeId = [];
         this.newOfficeId = select;
       }
       else if (select[0].includes(`room`)) {
-        this.newRoomId.length = 0;
+        this.newRoomId = [];
         this.newRoomId = select;
       }
       else if (select[0].includes(`printer`) || select[0].includes(`kitchen`)) {
-        this.newOtherId.length = 0;
+        this.newOtherId = [];
         this.newOtherId = select;
       }
     });
@@ -42,6 +42,6 @@ export class ClickablesComponent implements OnInit {
   }
 
   idChanged(event: string) {
-    this.MainService.changeSelect([event]);
+    this.mainService.changeSelect([event]);
   }
 }

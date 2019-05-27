@@ -13,14 +13,7 @@ export class Room extends MapObject {
 
   constructor(room: Room) {
     super(room);
-    this.numberOfPeople = room.numberOfPeople;
-    this.description = room.description;
-    this.roomName = room.roomName;
-    this.roomNumber = room.roomNumber;
-    this.roomNumberSVG = room.roomNumberSVG;
-    this.isTV = room.isTV;
-    this.isBlackboard = room.isBlackboard;
-    this.isPhone = room.isPhone;
+    Object.assign(this, room);
   }
 
   map() {

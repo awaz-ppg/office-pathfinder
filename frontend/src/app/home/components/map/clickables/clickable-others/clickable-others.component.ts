@@ -7,17 +7,15 @@ import { MainService } from './../../../../services/main.service';
   styleUrls: ['../clickable.scss', './clickable-others.component.scss']
 })
 export class ClickableOthersComponent implements OnChanges {
-  @Input() shiningOtherId = [''];
+  @Input() shiningOtherId: [];
   @Output() otherId = new EventEmitter<string>();
 
-  constructor(
-    private MainService: MainService,
-  ) { }
+  constructor() { }
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes.shiningOtherId !== undefined) {
       document.querySelectorAll(".shining").forEach(element => element.classList.remove("shining"));
-      if (this.shiningOtherId[0] != '' && this.shiningOtherId.length != 0) {
+      if (this.shiningOtherId != undefined && this.shiningOtherId.length != 0) {
         this.shiningOtherId.forEach(x => document.getElementById(`${x}`).classList.add("shining"));
       }
     }

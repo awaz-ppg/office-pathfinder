@@ -7,8 +7,7 @@ export class Printer extends MapObject {
 
   constructor(printer: Printer) {
     super(printer);
-    this.number = printer.number;
-    this.isColor = printer.isColor;
+    Object.assign(this, printer);
   }
 
   map() {

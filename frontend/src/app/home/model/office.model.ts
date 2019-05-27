@@ -12,13 +12,7 @@ export class Office extends MapObject {
 
   constructor(office: Office) {
     super(office);
-    this.firstName = office.firstName;
-    this.lastName = office.lastName;
-    this.number = office.number;
-    this.position = office.position;
-    this.isCoordinator = office.isCoordinator;
-    this.team = office.team;
-    this.isVolunteer = office.isVolunteer;
+    Object.assign(this, office);
   }
 
   map() {
