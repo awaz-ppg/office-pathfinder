@@ -28,6 +28,7 @@ import { AdminComponent } from './admin/admin.component';
 import { ClickablesComponent } from './home/components/map/clickables/clickables.component';
 import { NgxUiLoaderModule, NgxUiLoaderConfig, NgxUiLoaderHttpModule } from 'ngx-ui-loader';
 
+
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
   bgsColor: '#00ACC1',
   bgsOpacity: 0.5,
@@ -42,7 +43,7 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
   gap: 24,
   logoPosition: 'center-center',
   logoSize: 120,
-  logoUrl: 'http://ppglive.azurewebsites.net/ppg/ppg-paints-ce/img/logos/2017/PPGRT5635A-trn.png',
+  logoUrl: 'https://upload.wikimedia.org/wikipedia/commons/d/db/PPG_Logo.svg',
   masterLoaderId: 'master',
   overlayBorderRadius: '0',
   overlayColor: 'rgba(40, 40, 40, 0.8)',
@@ -50,6 +51,7 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
   pbDirection: 'ltr',
   pbThickness: 3,
   hasProgressBar: true,
+  text: 'OFFICE PATHFINDER',
   textColor: '#FFFFFF',
   textPosition: 'center-center',
   threshold: 500
