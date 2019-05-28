@@ -1,8 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-
-
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MatGridListModule } from '@angular/material/grid-list';
@@ -10,9 +10,11 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { DetailComponent } from './home/components/detail/detail.component';
 import { HttpClientModule } from '@angular/common/http';
 import { DataService } from './data.service';
-
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 import { BurgerMenuComponent } from './home/components/menu/burger-menu/burger-menu.component';
+import { SearchComponent } from './home/components/menu/search/search.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule, MatCheckboxModule, MatMenuModule, MatIconModule } from '@angular/material';
 import { MapComponent } from './home/components/map/map.component';
@@ -70,7 +72,7 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     ClickableRoomsComponent,
     InteractivePlacesComponent,
     ClickableOthersComponent,
-
+    SearchComponent,
     BurgerMenuComponent,
 
     HomeComponent,
@@ -87,10 +89,15 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     MatCheckboxModule,
     MatIconModule,
     MatToolbarModule,
+    MatInputModule,
+    MatFormFieldModule,
     BrowserAnimationsModule,
     HttpClientModule,
     MatButtonModule,
     MatListModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatAutocompleteModule,
     NgxUiLoaderModule.forRoot(ngxUiLoaderConfig),
     NgxUiLoaderHttpModule.forRoot({ showForeground: true }),
 

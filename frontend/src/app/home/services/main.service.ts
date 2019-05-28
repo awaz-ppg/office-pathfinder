@@ -29,6 +29,7 @@ export class MainService {
   kitchen = [];
   guest = [];
   all = [];
+  options = [];
 
   select$ = this.select.asObservable();
 
@@ -51,8 +52,9 @@ export class MainService {
       this.printer = printers.map(x => new Printer(x));
       this.room = rooms.map(x => new Room(x));
       this.guest = guests;
-
-      this.all = [...this.desk, ...this.office, ...this.kitchen, ...this.printer, ...this.room];
+      this.options = this.kitchen.map(x => x.name);
+      console.log(this.options);
+      this.all = [...this.desk, ...this.office, ...this.room, ...this.kitchen, ...this.printer];
     });
 
   }
