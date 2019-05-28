@@ -19,7 +19,6 @@ export class SearchComponent implements OnInit {
 
     ngOnInit() {
         this.mainService.options = this.mainService.kitchen.map(x => x.name);
-        console.log(this.mainService.options);
         this.filteredOptions = this.myControl.valueChanges.pipe(
             startWith(''),
             map(value => this._filter(value))
@@ -30,5 +29,16 @@ export class SearchComponent implements OnInit {
         const filterValue = value.toLowerCase();
 
         return this.mainService.options.filter(option => option.toLowerCase().indexOf(filterValue) === 0);
+    }
+
+    onClickSearch(text) {
+        let placeIndex;
+        let helpArray;
+        this.mainService.options.forEach((x, index) => { if (x.toLowerCase() == text.toLowerCase()) placeIndex = index; });
+        console.log(placeIndex);
+        if (placeIndex != undefined) {
+            helpArray = [this.mainService.all[placeIndex].numberSVG];
+            this.mainService.changeSelect(helpArray);
+        }
     }
 }

@@ -1,7 +1,7 @@
 <form class="example-form" class="search">
   <mat-form-field class="example-full-width" class="search-width">
-    <input type="text" placeholder="Pick one" aria-label="Number" matInput [formControl]="myControl"
-      [matAutocomplete]="auto">
+    <input #searchPlace type="text" placeholder="Pick one" aria-label="Number" matInput [formControl]="myControl"
+      [matAutocomplete]="auto" (keyup.enter)="onClickSearch(searchPlace.value); searchPlace.value=''">
     <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
       <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
         {{option}}
