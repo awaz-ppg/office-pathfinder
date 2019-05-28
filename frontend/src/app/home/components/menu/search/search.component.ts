@@ -35,7 +35,6 @@ export class SearchComponent implements OnInit {
         let placeIndex;
         let helpArray;
         this.mainService.options.forEach((x, index) => { if (x.toLowerCase() == text.toLowerCase()) placeIndex = index; });
-        console.log(placeIndex);
         if (placeIndex != undefined) {
             helpArray = [this.mainService.all[placeIndex].numberSVG];
             this.mainService.changeSelect(helpArray);

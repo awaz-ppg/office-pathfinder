@@ -4,8 +4,26 @@
   top: 20%;
   height: 60%;
   width: 20%;
+  background-color: #eee;
+  text-align: center;
+}
+
+.search-button {
+  position: absolute;
+  left: 60%;
+  top: 20%;
+  height: 60%;
+  background-color: #ddd;
+  border-bottom-left-radius: 0;
+  border-top-left-radius: 0;
+  border-bottom-right-radius: 5%;
+  border-top-right-radius: 5%;
 }
 
 .search-width {
   width: 100%;
+}
+
+::ng-deep .mat-form-field-underline {
+  display: none;
 }
