@@ -1,5 +1,6 @@
 import { Component, OnChanges, Input, Output, EventEmitter, SimpleChanges } from '@angular/core';
 
+
 @Component({
   selector: '[app-clickable-offices]',
   templateUrl: './clickable-offices.component.html',
@@ -19,8 +20,9 @@ export class ClickableOfficesComponent implements OnChanges {
       }
     }
   }
-
+  
   onClickOffice(event: Event) {
     this.officeId.emit(event.srcElement.id);
+    
   }
 }

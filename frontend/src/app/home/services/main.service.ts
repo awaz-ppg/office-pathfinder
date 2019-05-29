@@ -29,7 +29,8 @@ export class MainService {
   kitchen = [];
   guest = [];
   all = [];
-
+  position: number[];
+  
   select$ = this.select.asObservable();
 
   constructor(private http: HttpClient, deskService: DeskService,

@@ -14,7 +14,7 @@ import { DataService } from './data.service';
 
 import { BurgerMenuComponent } from './home/components/menu/burger-menu/burger-menu.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatButtonModule, MatCheckboxModule, MatMenuModule, MatIconModule } from '@angular/material';
+import { MatButtonModule, MatCheckboxModule, MatMenuModule, MatIconModule, MatTooltipModule } from '@angular/material';
 import { MapComponent } from './home/components/map/map.component';
 import { MenuComponent } from './home/components/menu/menu.component';
 import { ClickableOfficesComponent } from './home/components/map/clickables/clickable-offices/clickable-offices.component';
@@ -27,6 +27,7 @@ import { HomeComponent } from './home/home.component';
 import { AdminComponent } from './admin/admin.component';
 import { ClickablesComponent } from './home/components/map/clickables/clickables.component';
 import { NgxUiLoaderModule, NgxUiLoaderConfig, NgxUiLoaderHttpModule } from 'ngx-ui-loader';
+
 
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
   bgsColor: '#00ACC1',
@@ -68,14 +69,14 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     ClickableRoomsComponent,
     InteractivePlacesComponent,
     ClickableOthersComponent,
-
     BurgerMenuComponent,
 
     HomeComponent,
 
     AdminComponent,
 
-    ClickablesComponent
+    ClickablesComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -84,6 +85,7 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     MatGridListModule,
     MatCheckboxModule,
     MatIconModule,
+    MatTooltipModule,
     MatToolbarModule,
     BrowserAnimationsModule,
     HttpClientModule,

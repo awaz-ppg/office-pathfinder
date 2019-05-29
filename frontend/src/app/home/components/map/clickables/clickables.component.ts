@@ -15,10 +15,10 @@ export class ClickablesComponent implements OnInit {
   newOtherId: string[];
   newRoomId: string[];
   newOfficeId: string[];
-
+  point: number[];
   constructor(private mainService: MainService) {
     this.subscription = this.mainService.select$.subscribe(select => {
-
+      
       if (select[0].includes(`station`)) {
         this.newStationId = [];
         this.newStationId = select;
@@ -40,6 +40,14 @@ export class ClickablesComponent implements OnInit {
 
   ngOnInit() {
   }
+
+  addPoint(event: number[]){
+    this.mainService.position = event;
+    }
+
+  
+
+  
 
   idChanged(event: string) {
     this.mainService.changeSelect([event]);

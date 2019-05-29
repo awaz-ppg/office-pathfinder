@@ -1,6 +1,7 @@
 import { Component, Input, Output, EventEmitter, OnChanges, SimpleChange, SimpleChanges } from '@angular/core';
 import { MainService } from './../../../../services/main.service';
-
+import { Subscription } from 'rxjs';
+import * as $ from "jquery";
 @Component({
   selector: '[app-clickable-others]',
   templateUrl: './clickable-others.component.html',
@@ -9,9 +10,21 @@ import { MainService } from './../../../../services/main.service';
 export class ClickableOthersComponent implements OnChanges {
   @Input() shiningOtherId: [];
   @Output() otherId = new EventEmitter<string>();
+ 
 
-  constructor() { }
+  detailArray = [];
+  subscription: Subscription;
+  open: boolean;
+  isClicked: boolean;
+  tooltip: string;
+  constructor(
+    private mainService: MainService,
 
+  ) {
+         
+  }
+  
+  
   ngOnChanges(changes: SimpleChanges) {
     if (changes.shiningOtherId !== undefined) {
       document.querySelectorAll(".shining").forEach(element => element.classList.remove("shining"));
@@ -21,8 +34,21 @@ export class ClickableOthersComponent implements OnChanges {
     }
   }
 
+  whatElement(event: Event){
+      this.mainService.all.forEach(element => {
+      if (element.numberSVG === event.srcElement.id ) {
+        this.detailArray = element.map();
+        
+      }
+    });
+    this.tooltip = this.detailArray[1].data
+  }
+
   onClickKitchen(event: Event) {
     this.otherId.emit(event.srcElement.id);
+    this.isClicked  = true;
+
+    
   }
 
 

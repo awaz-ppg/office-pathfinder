@@ -1,11 +1,11 @@
 <svg>
-  <g (click)="onClickKitchen($event)" id="clickable-kitchens">
-    <path id="kitchen1" class="clickable clickable--kitchen" d="M575,333h41v76h-41C575,409,575,331.3,575,333z" />
-    <polyline id="kitchen2" class="clickable clickable--kitchen" points="261,409 353,409 353,511 261,516 261,409 	" />
-    <polygon id="kitchen3" class="clickable clickable--kitchen" points="284,1039 354,1039 354,1194 295,1194 	" />
-    <polygon id="kitchen4" class="clickable clickable--kitchen" points="558,1112 558,1194 745,1194 745,1113 	" />
-    <rect id="kitchen5" x="1953" y="725" class="clickable clickable--kitchen" width="59" height="161" />
-    <rect id="kitchen6" x="1561" y="1005" class="clickable clickable--kitchen" width="132" height="190" />
+  <g  (click)="onClickKitchen($event)" id="clickable-kitchens">
+    <path (click) ="whatElement($event)"  matTooltip="{{tooltip}}" id="kitchen1" class="clickable clickable--kitchen" d="M575,333h41v76h-41C575,409,575,331.3,575,333z" />
+    <polyline (click) ="whatElement($event)"  matTooltip="{{tooltip}}" id="kitchen2" class="clickable clickable--kitchen" points="261,409 353,409 353,511 261,516 261,409 	" />
+    <polygon (click) ="whatElement($event)" matTooltip="{{tooltip}}" id="kitchen3" class="clickable clickable--kitchen" points="284,1039 354,1039 354,1194 295,1194 	" />
+    <polygon (mousemove) ="whatElement($event)"  matTooltip="{{tooltip}}" id="kitchen4" class="clickable clickable--kitchen" points="558,1112 558,1194 745,1194 745,1113 	" />
+    <rect (mousemove) ="whatElement($event)"  matTooltip="{{tooltip}}" id="kitchen5" x="1953" y="725" class="clickable clickable--kitchen" width="59" height="161" />
+    <rect (mousemove) ="whatElement($event)"  matTooltip="{{tooltip}}" id="kitchen6" x="1561" y="1005" class="clickable clickable--kitchen" width="132" height="190" />
   </g>
 
   <g (click)="onClickPrinter($event)" id="clickable-printers">
