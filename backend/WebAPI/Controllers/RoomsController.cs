@@ -50,21 +50,9 @@ namespace WebAPI.Controllers
             var rooms =
                  _repository.GetAllEntities(CollectionName);
 
-            List<RoomToSend> Rooms = new List<RoomToSend>();
-            foreach(var element in rooms) {
-                Rooms.Add(new RoomToSend() {
-                    NumberOfPeople = element.NumberOfPeople,
-                    Description = element.Description,
-                    roomName = element.roomName,
-                    roomNumber = element.roomNumber,
-                    NumberSVG = element.roomNumberSVG,
-                    IsTV = element.IsTV,
-                    IsBlackboard = element.IsBlackboard,
-                    IsPhone = element.IsPhone,
-                    id = element.id
-                });
-            }
-            return Rooms;
+            var roomsToSend = AutoMapper.Mapper.Map<List<Room>,List<RoomToSend>>(rooms);
+
+            return roomsToSend;
         }
     }
 }

@@ -52,15 +52,9 @@ namespace WebAPI.Controllers
             var desks =
                  _repository.GetAllEntities(CollectionName);
 
-            List<DeskToSend> Desks = new List<DeskToSend>();
-            foreach(var element in desks) {
-                Desks.Add(new DeskToSend() {
-                    NumberDesk = element.NumberDesk,
-                    NumberSVG = element.NumberDeskSVG,
-                    id = element.id
-                });
-            }
-            return Desks;
+            var desksToSend = AutoMapper.Mapper.Map<List<Desk>,List<DeskToSend>>(desks);
+
+            return desksToSend;
         }
     }
 }

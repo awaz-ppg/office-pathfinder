@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
+using WebAPI.Dtos;
 
 namespace WebAPI
 {
@@ -7,6 +8,7 @@ namespace WebAPI
     {
         public static void Main(string[] args)
         {
+            AutomapperWebProfile.Run();
             BuildWebHost(args).Run();
         }
 
