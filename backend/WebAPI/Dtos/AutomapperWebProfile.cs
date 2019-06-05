@@ -11,6 +11,10 @@ namespace WebAPI.Dtos
 
             CreateMap<RoomToSend,Room>();
 
+            CreateMap<Admin,AdminForAuth>();
+
+            CreateMap<AdminForAuth,Admin>();
+
             CreateMap<Desk,DeskToSend>()
             .ForMember(dest => dest.NumberSVG,
             opts => opts.MapFrom(src => src.NumberDeskSVG));

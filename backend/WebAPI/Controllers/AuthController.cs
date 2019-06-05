@@ -26,11 +26,7 @@ namespace WebAPI.Controllers
         {
             IActionResult response = Unauthorized();
 
-            var admin = new Admin
-            {
-                Login = model.Login,
-                Password = model.Password,
-            };
+            var admin = AutoMapper.Mapper.Map<AdminForAuth,Admin>(model);
 
             var tokenString = _authorizeService.Authenticate(admin);
             if (tokenString != null)
@@ -42,11 +38,7 @@ namespace WebAPI.Controllers
         [HttpPost("Register")]
         public async Task<IActionResult> Register([FromBody] AdminForAuth model)
         {
-            var admin = new Admin
-            {
-                Login = model.Login,
-                Password = model.Password,
-            };
+            var admin = AutoMapper.Mapper.Map<AdminForAuth,Admin>(model);
 
             var operationSucceeded =
                 await _authorizeService.CreateAdminAccount(admin);
