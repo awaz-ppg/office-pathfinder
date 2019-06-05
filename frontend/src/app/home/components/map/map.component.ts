@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import * as SvgPanZoom from 'svg-pan-zoom';
 
 @Component({
   selector: 'app-map',
@@ -13,5 +14,13 @@ export class MapComponent implements OnInit {
   ngOnInit() {
   }
 
+  ngAfterViewInit() {
+    let svgPanZoom: SvgPanZoom.Instance = SvgPanZoom('#ppg-map', {
+      minZoom: 0.1
+      , maxZoom: 10
+
+    });
+    svgPanZoom.zoom(0.5);
+  }
 
 }

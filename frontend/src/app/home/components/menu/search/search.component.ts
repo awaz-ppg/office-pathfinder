@@ -31,9 +31,9 @@ export class SearchComponent implements OnInit {
         return this.mainService.options.filter(option => option.toLowerCase().indexOf(filterValue) === 0);
     }
 
-    onClickSearch(text) {
-        let placeIndex;
-        let helpArray;
+    onClickSearch(text: string) {
+        let placeIndex: number;
+        let helpArray: string[];
         this.mainService.options.forEach((x, index) => { if (x.toLowerCase() == text.toLowerCase()) placeIndex = index; });
         if (placeIndex != undefined) {
             helpArray = [this.mainService.all[placeIndex].numberSVG];

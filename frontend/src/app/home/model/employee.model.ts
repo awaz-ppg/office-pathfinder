@@ -3,9 +3,9 @@ import { MapObject } from './map-object.model';
 export class Employee {
   firstName: string;
   lastName: string;
-  isCoordinator: true;
+  isCoordinator: boolean;
   team: string;
-  isVolunteer: true;
+  isVolunteer: boolean;
   placeId: string;
   id: string;
 
