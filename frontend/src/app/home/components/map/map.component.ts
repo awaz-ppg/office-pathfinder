@@ -18,9 +18,14 @@ export class MapComponent implements OnInit {
     let svgPanZoom: SvgPanZoom.Instance = SvgPanZoom('#ppg-map', {
       minZoom: 0.1
       , maxZoom: 10
+      , controlIconsEnabled: true
+      //, preventMouseEventsDefault: false
+      //, dblClickZoomEnabled: false
 
     });
     svgPanZoom.zoom(0.5);
+
+
   }
 
 }
