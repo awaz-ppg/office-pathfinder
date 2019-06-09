@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -27,6 +27,7 @@ import { HomeComponent } from './home/home.component';
 import { AdminComponent } from './admin/admin.component';
 import { ClickablesComponent } from './home/components/map/clickables/clickables.component';
 import { NgxUiLoaderModule, NgxUiLoaderConfig, NgxUiLoaderHttpModule } from 'ngx-ui-loader';
+import { LoginComponent } from './login/login.component';
 
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
   bgsColor: '#00ACC1',
@@ -75,7 +76,9 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
 
     AdminComponent,
 
-    ClickablesComponent
+    ClickablesComponent,
+
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -89,6 +92,7 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     HttpClientModule,
     MatButtonModule,
     MatListModule,
+    ReactiveFormsModule,
     NgxUiLoaderModule.forRoot(ngxUiLoaderConfig),
     NgxUiLoaderHttpModule.forRoot({ showForeground: true }),
 
