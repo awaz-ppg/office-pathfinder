@@ -8,7 +8,7 @@ import { AppComponent } from './app.component';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { DetailComponent } from './home/components/detail/detail.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { DataService } from './data.service';
 
 
@@ -28,6 +28,8 @@ import { AdminComponent } from './admin/admin.component';
 import { ClickablesComponent } from './home/components/map/clickables/clickables.component';
 import { NgxUiLoaderModule, NgxUiLoaderConfig, NgxUiLoaderHttpModule } from 'ngx-ui-loader';
 import { LoginComponent } from './login/login.component';
+import { JwtInterceptor } from './jwt-interceptor';
+
 
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
   bgsColor: '#00ACC1',
@@ -97,7 +99,10 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     NgxUiLoaderHttpModule.forRoot({ showForeground: true }),
 
   ],
-  providers: [DataService],
+  providers: [
+      DataService,
+      { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
