@@ -1,0 +1,49 @@
+.elevator {
+  opacity: 0;
+  fill: #00BBBB;
+
+  &:hover {
+    opacity: 0.6;
+  }
+}
+
+.wc {
+  opacity: 0;
+  fill: #1BDFFF;
+
+  &:hover {
+    opacity: 0.6;
+  }
+}
+
+.firsAidKit {
+  fill: red;
+  opacity: 0;
+}
+
+.shining {
+  opacity: 0.6;
+}
+
+.water {
+  fill: blue;
+  opacity: 0;
+}
+
+.coffee {
+  opacity: 0;
+}
+
+.fireExtinguisher {
+  fill: #d22;
+  opacity: 0;
+}
+
+.wardrobe {
+  fill: #1B4079;
+  opacity: 0;
+}
+
+.shining {
+  opacity: 0.8;
+}

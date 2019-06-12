@@ -1,0 +1,40 @@
+.clickable {
+  opacity: 0;
+  &:hover {
+    opacity: 0.6;
+  }
+
+
+
+  &--station {
+    fill: #1B7C8A;
+  }
+
+  &--room {
+    fill: #1BAD88;
+  }
+
+  &--quietRoom {
+    fill: #1C243A;
+  }
+
+  &--kitchen {
+    fill: #0071BC;
+  }
+
+  &--printer {
+    fill: royalblue;
+  }
+
+  &--reception {
+    fill: #5F8881;
+  }
+
+  &--office {
+    fill: #1BDF90;
+  }
+}
+
+.shining {
+  opacity: 0.7;
+}

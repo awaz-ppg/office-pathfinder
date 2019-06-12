@@ -50,21 +50,5 @@ namespace WebAPI.Controllers
 
             return offices;
         }
-
-        // GET api/Offices/5
-        [HttpGet("{id}")]
-        public async Task<Office> GetOffice(string id)
-        {
-             if (id == null)
-            {
-                return null;
-            }
-            var item = await _repository.GetEntity(CollectionName,id);
-            if(item == null)
-            {
-                return null;
-            }
-            return item;
-        }
     }
 }

@@ -47,28 +47,20 @@ namespace WebAPI.Controllers
 
         // GET api/Desks
         [HttpGet]
-        public List<Desk> GetDesks()
+        public List<DeskToSend> GetDesks()
         {
             var desks =
                  _repository.GetAllEntities(CollectionName);
 
-            return desks;
-        }
-
-        // GET api/Desks/5
-        [HttpGet("{id}")]
-        public async Task<Desk> GetDesk(string id)
-        {
-           if (id == null)
-            {
-                return null;
+            List<DeskToSend> Desks = new List<DeskToSend>();
+            foreach(var element in desks) {
+                Desks.Add(new DeskToSend() {
+                    NumberDesk = element.NumberDesk,
+                    NumberSVG = element.NumberDeskSVG,
+                    id = element.id
+                });
             }
-            var item = await _repository.GetEntity(CollectionName,id);
-            if(item == null)
-            {
-                return null;
-            }
-            return item;
+            return Desks;
         }
     }
 }

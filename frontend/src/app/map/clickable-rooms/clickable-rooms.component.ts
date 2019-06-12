@@ -1,9 +1,9 @@
-import { PrinterSercive } from './../../services/printer.service';
-import { KitchenService } from './../../services/kitchen.service';
-import { RoomService } from './../../services/room.service';
-import { DeskService } from './../../services/desk.service';
-import { Component, OnInit } from '@angular/core';
-import { OfficeService } from './../../services/office.service';
+import { OnInit, Component } from '@angular/core';
+import { PrinterService } from './../../home/services/printer.service';
+import { OfficeService } from './../../home/services/office.service';
+import { KitchenService } from './../../home/services/kitchen.service';
+import { RoomService } from './../../home/services/room.service';
+import { DeskService } from 'src/app/home/services/desk.service';
 
 @Component({
   selector: '[app-clickable-rooms]',

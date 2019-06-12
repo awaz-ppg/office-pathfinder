@@ -50,28 +50,6 @@ namespace WebAPI.Data
             return entities;
         }
 
-        public  async Task<TEntity> GetEntity(string collectionName,string documentId)
-        {
-            try
-            {
-                var item =  await _client.ReadDocumentAsync(UriFactory.CreateDocumentUri(_databaseName,collectionName,documentId));
-            return (TEntity)(dynamic) item;
-            }
-            catch(DocumentClientException e)
-            {
-                if (e.StatusCode == HttpStatusCode.NotFound)
-                 {
-                  return null;
-                 }
-                 else
-                 {
-                  throw;
-                 }
-            }
-        }
-
-        
-
         public async Task UpdateEntityAsync(string collectionName, string documentId, TEntity entity)
         {
             var documentUri = UriFactory.CreateDocumentUri(_databaseName, collectionName, documentId);

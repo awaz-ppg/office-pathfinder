@@ -54,17 +54,5 @@ namespace WebAPI.Controllers
 
             return guests;
         }
-
-        // GET api/Guests/5
-        [HttpGet("{id}")]
-        public async Task<Guest> GetGuest(string id)
-        {
-            var item = await _repository.GetEntity(CollectionName,id);
-            if(item == null)
-            {
-                return null;
-            }
-            return item;
-        }
     }
 }
