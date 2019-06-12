@@ -35,13 +35,26 @@ export class ClickableOthersComponent implements OnChanges {
   }
 
   whatElement(event: Event){
+
       this.mainService.all.forEach(element => {
       if (element.numberSVG === event.srcElement.id ) {
         this.detailArray = element.map();
-        
+        console.log(this.detailArray[1].data);
+        if(element.numberSVG[0] == 'k'){
+          this.tooltip = this.detailArray[1].data;
+        }
+        else{
+          if(this.detailArray[1].data == "true"){
+            this.tooltip = "Color";
+          }
+          else{
+            this.tooltip = "Black/White";
+          }
+          
+        }
       }
     });
-    this.tooltip = this.detailArray[1].data
+    
   }
 
   onClickKitchen(event: Event) {
