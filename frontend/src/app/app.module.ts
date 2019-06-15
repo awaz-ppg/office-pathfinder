@@ -29,7 +29,7 @@ import { HomeComponent } from './home/home.component';
 import { AdminComponent } from './admin/admin.component';
 import { ClickablesComponent } from './home/components/map/clickables/clickables.component';
 import { NgxUiLoaderModule, NgxUiLoaderConfig, NgxUiLoaderHttpModule } from 'ngx-ui-loader';
-
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
   bgsColor: '#00ACC1',
@@ -82,6 +82,7 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     ClickablesComponent
   ],
   imports: [
+    MatSnackBarModule,
     BrowserModule,
     AppRoutingModule,
     MatMenuModule,
