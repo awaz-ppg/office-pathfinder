@@ -10,8 +10,9 @@ export class ClickableOthersComponent implements OnChanges {
   @Input() shiningOtherId: [];
   @Output() otherId = new EventEmitter<string>();
 
-  constructor() { }
-
+  constructor(private mainService: MainService) { }
+  tooltip: string;
+  detailArray = [];
   ngOnChanges(changes: SimpleChanges) {
     if (changes.shiningOtherId !== undefined) {
       document.querySelectorAll(".shining").forEach(element => element.classList.remove("shining"));
@@ -19,6 +20,27 @@ export class ClickableOthersComponent implements OnChanges {
         this.shiningOtherId.forEach(x => document.getElementById(`${x}`).classList.add("shining"));
       }
     }
+  }
+
+  whatElement(event: Event){
+
+    this.mainService.all.forEach(element => {
+      if (element.numberSVG === event.srcElement.id ) {
+        this.detailArray = element.map();
+       if(element.numberSVG[0] == 'k'){
+          this.tooltip = this.detailArray[1].data;
+        }
+        else{
+          if(this.detailArray[1].data == "true"){
+           this.tooltip = "Color";
+          }
+          else{
+           this.tooltip = "Black/White";
+          }
+        
+        }
+      }
+    });
   }
 
   onClickKitchen(event: Event) {

@@ -1,4 +1,5 @@
 import { Component, OnChanges, Input, Output, EventEmitter, SimpleChanges } from '@angular/core';
+import { MainService } from './../../../../services/main.service';
 
 @Component({
   selector: '[app-clickable-offices]',
@@ -9,7 +10,9 @@ export class ClickableOfficesComponent implements OnChanges {
   @Input() shiningOfficeId: [];
   @Output() officeId = new EventEmitter<string>();
 
-  constructor() { }
+  constructor(private mainService: MainService) { }
+  tooltip: string;
+  detailArray = [];
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes.shiningOfficeId !== undefined) {
@@ -19,7 +22,17 @@ export class ClickableOfficesComponent implements OnChanges {
       }
     }
   }
+  whatElement(event: Event){
 
+    this.mainService.all.forEach(element => {
+      if (element.numberSVG === event.srcElement.id ) {
+        this.detailArray = element.map();
+        console.log(this.detailArray);
+        this.tooltip = this.detailArray[0].data + " " + this.detailArray[1].data
+
+        }
+    });
+  }
   onClickOffice(event: Event) {
     this.officeId.emit(event.srcElement.id);
   }
