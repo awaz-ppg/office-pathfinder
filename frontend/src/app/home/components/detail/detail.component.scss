@@ -1,14 +1,24 @@
-.mat-background {
-  background-color: #0272a6;
+.detail {
+  position: fixed;
+  left: 15%;
+  bottom: 2%;
+  opacity: 0.8;
+  width: 70%;
+  max-height: 20%;
+  overflow-y: scroll;
+  background-color: rgba(2, 114, 166, 0.8);
+  border-radius: 10px;
 }
+
+.mat-background {}
 
 .textColor {
   color: white;
 }
 
 .button-position {
+  margin-left: 8px;
   height: auto;
-  width: 100%;
   flex: 1 1 auto;
 }
 

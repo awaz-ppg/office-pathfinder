@@ -19,11 +19,11 @@ export class MapComponent implements OnInit {
       minZoom: 0.1
       , maxZoom: 10
       , controlIconsEnabled: true
-      //, preventMouseEventsDefault: false
-      //, dblClickZoomEnabled: false
+      , preventMouseEventsDefault: false
+      , dblClickZoomEnabled: false
 
     });
-    svgPanZoom.zoom(0.5);
+    svgPanZoom.zoom(0.8);
 
 
   }

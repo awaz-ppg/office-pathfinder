@@ -1,7 +1,9 @@
-<div *ngIf="open">
-  <button (click)="closeWindow()" mat-flat-button color="primary" class="button-position">Close</button>
-  <mat-list class="detail-window">
+<div *ngIf="open" class="detail">
 
+  <mat-list class="detail-window">
+    <button (click)="closeWindow()" mat-button class="button-position "><i class="material-icons vertical-align-right">
+        close
+      </i></button>
 
     <mat-list-item class="mat-background" *ngFor="let t of detailArray ">
       <p class="textColor">{{t.label.toUpperCase()}}: {{t.data.toUpperCase()}}</p>
