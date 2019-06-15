@@ -28,7 +28,7 @@ import { AdminComponent } from './admin/admin.component';
 import { ClickablesComponent } from './home/components/map/clickables/clickables.component';
 import { NgxUiLoaderModule, NgxUiLoaderConfig, NgxUiLoaderHttpModule } from 'ngx-ui-loader';
 import { LoginComponent } from './login/login.component';
-import { JwtInterceptor } from './jwt-interceptor';
+import { JwtInterceptor } from './jwt.interceptor';
 
 
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
