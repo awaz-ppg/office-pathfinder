@@ -1,21 +1,21 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { environment } from './../../environments/environment';
-import { Guest } from '../home/model/guest.model';
-import { Router } from '@angular/router';
+import { AuthService } from './../auth.service';
+
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.component.html',
   styleUrls: ['./admin.component.scss']
 })
 export class AdminComponent implements OnInit {
+  authService: AuthService;
 
-  constructor(private router: Router) { }
+  constructor(authService: AuthService) {
+    this.authService = authService;
+   }
 
   ngOnInit() { }
 
   logOut() {
-    localStorage.removeItem('jwt');
-    this.router.navigate(['/login']);
+    this.authService.logOut();
  }
 }

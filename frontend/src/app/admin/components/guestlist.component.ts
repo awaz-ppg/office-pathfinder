@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Guest } from 'src/app/home/model/guest.model';
-import { Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
 import { GuestService } from 'src/app/home/services/guest.service';
 
 
@@ -15,7 +13,7 @@ export class GuestListComponent implements OnInit {
   displayedColumns: string[] = ['Name', 'Surname', 'Company', 'Visit Start', 'Visit End'];
   guests: Guest[];
 
-  constructor(private http: HttpClient, guestService: GuestService) {
+  constructor(guestService: GuestService) {
     guestService.getGuest().subscribe(guests => {
       this.guests = guests;
     });
