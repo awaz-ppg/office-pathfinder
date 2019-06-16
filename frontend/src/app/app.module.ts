@@ -31,6 +31,7 @@ import { NgxUiLoaderModule, NgxUiLoaderConfig, NgxUiLoaderHttpModule } from 'ngx
 import { LoginComponent } from './login/login.component';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { AuthGuard } from './auth.guard';
+import {MatTableModule} from '@angular/material/table';
 
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
   bgsColor: '#00ACC1',
@@ -95,6 +96,8 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     MatFormFieldModule,
     MatInputModule,
     MatToolbarModule,
+    MatTableModule,
+
     BrowserAnimationsModule,
     HttpClientModule,
     MatButtonModule,
