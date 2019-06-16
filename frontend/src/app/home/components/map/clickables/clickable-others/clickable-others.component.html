@@ -1,21 +1,21 @@
 <svg>
-  <g (click)="onClickKitchen($event)" id="clickable-kitchens">
-    <path id="kitchen1" class="clickable clickable--kitchen" d="M575,333h41v76h-41C575,409,575,331.3,575,333z" />
-    <polyline id="kitchen2" class="clickable clickable--kitchen" points="261,409 353,409 353,511 261,516 261,409 	" />
-    <polygon id="kitchen3" class="clickable clickable--kitchen" points="284,1039 354,1039 354,1194 295,1194 	" />
-    <polygon id="kitchen4" class="clickable clickable--kitchen" points="558,1112 558,1194 745,1194 745,1113 	" />
-    <rect id="kitchen5" x="1953" y="725" class="clickable clickable--kitchen" width="59" height="161" />
-    <rect id="kitchen6" x="1561" y="1005" class="clickable clickable--kitchen" width="132" height="190" />
+  <g (mousemove) ="whatElement($event)" (click)="onClickKitchen($event)" id="clickable-kitchens">
+    <path  matTooltip="{{tooltip}}" id="kitchen1" class="clickable clickable--kitchen" d="M575,333h41v76h-41C575,409,575,331.3,575,333z" />
+    <polyline  matTooltip="{{tooltip}}" id="kitchen2" class="clickable clickable--kitchen" points="261,409 353,409 353,511 261,516 261,409 	" />
+    <polygon  matTooltip="{{tooltip}}" id="kitchen3" class="clickable clickable--kitchen" points="284,1039 354,1039 354,1194 295,1194 	" />
+    <polygon  matTooltip="{{tooltip}}" id="kitchen4" class="clickable clickable--kitchen" points="558,1112 558,1194 745,1194 745,1113 	" />
+    <rect matTooltip="{{tooltip}}" id="kitchen5" x="1953" y="725" class="clickable clickable--kitchen" width="59" height="161" />
+    <rect matTooltip="{{tooltip}}" id="kitchen6" x="1561" y="1005" class="clickable clickable--kitchen" width="132" height="190" />
   </g>
 
-  <g (click)="onClickPrinter($event)" id="clickable-printers">
-    <polyline id="printer-1" class="clickable clickable--printer" points="483,178 519,178 519,217 483,217 	" />
-    <rect id="printer-2" x="267" y="580" class="clickable clickable--printer" width="35" height="36" />
-    <rect id="printer-3" x="519.5" y="1149" class="clickable clickable--printer" width="35" height="36" />
-    <rect id="printer-4" x="1013.5" y="1137" class="clickable clickable--printer" width="35" height="36" />
-    <rect id="printer-5" x="1955" y="689" class="clickable clickable--printer" width="33" height="35" />
-    <rect id="printer-6" x="1624" y="612" class="clickable clickable--printer" width="35" height="38" />
-    <rect id="printer-7" x="1704" y="228" class="clickable clickable--printer" width="35" height="38" />
+  <g (mousemove) ="whatElement($event)" (click)="onClickPrinter($event)" id="clickable-printers">
+    <polyline  matTooltip="{{tooltip}}"  id="printer-1" class="clickable clickable--printer" points="483,178 519,178 519,217 483,217 	" />
+    <rect  matTooltip="{{tooltip}}"  id="printer-2" x="267" y="580" class="clickable clickable--printer" width="35" height="36" />
+    <rect  matTooltip="{{tooltip}}"  id="printer-3" x="519.5" y="1149" class="clickable clickable--printer" width="35" height="36" />
+    <rect  matTooltip="{{tooltip}}"  id="printer-4" x="1013.5" y="1137" class="clickable clickable--printer" width="35" height="36" />
+    <rect  matTooltip="{{tooltip}}"  id="printer-5" x="1955" y="689" class="clickable clickable--printer" width="33" height="35" />
+    <rect  matTooltip="{{tooltip}}"  id="printer-6" x="1624" y="612" class="clickable clickable--printer" width="35" height="38" />
+    <rect  matTooltip="{{tooltip}}"  id="printer-7" x="1704" y="228" class="clickable clickable--printer" width="35" height="38" />
   </g>
 
   <g id="reception">

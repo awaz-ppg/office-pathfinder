@@ -1,3 +1,4 @@
+import { element } from 'protractor';
 import { Component, OnChanges, Input, Output, EventEmitter, SimpleChanges } from '@angular/core';
 
 @Component({
@@ -9,7 +10,9 @@ export class ClickableOfficesComponent implements OnChanges {
   @Input() shiningOfficeId: [];
   @Output() officeId = new EventEmitter<string>();
 
-  constructor() { }
+  constructor(private mainService: MainService) { }
+  tooltip: string;
+
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes.shiningOfficeId !== undefined) {
@@ -19,7 +22,17 @@ export class ClickableOfficesComponent implements OnChanges {
       }
     }
   }
+  whatElement(event: Event){
+    this.mainService.office.forEach(element => {
+      if (element.numberSVG === event.srcElement.id ){
+        this.tooltip = this.tooltipText(element);
+      }
+    })
+  }
 
+  tooltipText(element: any){
+    return `${element.firstName} ${element.lastName}`;
+  }
   onClickOffice(event: Event) {
     this.officeId.emit(event.srcElement.id);
   }
