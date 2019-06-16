@@ -1,5 +1,6 @@
 import { Component, Input, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
 import { MainService } from './../../../../services/main.service';
+import { element } from '@angular/core/src/render3';
 
 @Component({
   selector: '[app-clickable-rooms]',
@@ -12,7 +13,6 @@ export class ClickableRoomsComponent implements OnChanges {
 
   constructor(private mainService: MainService) { }
   tooltip: string;
-  detailArray = [];
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes.shiningRoomId !== undefined) {
@@ -25,13 +25,15 @@ export class ClickableRoomsComponent implements OnChanges {
 
   whatElement(event: Event){
 
-    this.mainService.all.forEach(element => {
-      if (element.numberSVG === event.srcElement.id ) {
-        this.detailArray = element.map();
-        this.tooltip = this.detailArray[2].data + "\n Number of people: " + this.detailArray[0].data
-
-        }
+    this.mainService.room.forEach(element =>{
+      if (element.numberSVG === event.srcElement.id ){
+        this.tooltip = this.roomText(element);
+      }
     });
+  }
+
+  roomText(element: any){
+    return `${element.roomName} `;
   }
 
   onClickRoom(event: Event) {
