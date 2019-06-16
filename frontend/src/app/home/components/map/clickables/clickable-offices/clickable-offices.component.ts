@@ -1,3 +1,4 @@
+import { element } from 'protractor';
 import { Component, OnChanges, Input, Output, EventEmitter, SimpleChanges } from '@angular/core';
 import { MainService } from './../../../../services/main.service';
 
@@ -12,7 +13,7 @@ export class ClickableOfficesComponent implements OnChanges {
 
   constructor(private mainService: MainService) { }
   tooltip: string;
-  detailArray = [];
+
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes.shiningOfficeId !== undefined) {
@@ -23,15 +24,15 @@ export class ClickableOfficesComponent implements OnChanges {
     }
   }
   whatElement(event: Event){
+    this.mainService.office.forEach(element => {
+      if (element.numberSVG === event.srcElement.id ){
+        this.tooltip = this.tooltipText(element);
+      }
+    })
+  }
 
-    this.mainService.all.forEach(element => {
-      if (element.numberSVG === event.srcElement.id ) {
-        this.detailArray = element.map();
-        console.log(this.detailArray);
-        this.tooltip = this.detailArray[0].data + " " + this.detailArray[1].data
-
-        }
-    });
+  tooltipText(element: any){
+    return `${element.firstName} ${element.lastName}`;
   }
   onClickOffice(event: Event) {
     this.officeId.emit(event.srcElement.id);

@@ -1,3 +1,4 @@
+import { element } from 'protractor';
 import { Component, Input, Output, EventEmitter, OnChanges, SimpleChange, SimpleChanges } from '@angular/core';
 import { MainService } from './../../../../services/main.service';
 
@@ -12,7 +13,7 @@ export class ClickableOthersComponent implements OnChanges {
 
   constructor(private mainService: MainService) { }
   tooltip: string;
-  detailArray = [];
+
   ngOnChanges(changes: SimpleChanges) {
     if (changes.shiningOtherId !== undefined) {
       document.querySelectorAll(".shining").forEach(element => element.classList.remove("shining"));
@@ -24,23 +25,27 @@ export class ClickableOthersComponent implements OnChanges {
 
   whatElement(event: Event){
 
-    this.mainService.all.forEach(element => {
+
+    this.mainService.kitchen.forEach(element =>{
       if (element.numberSVG === event.srcElement.id ) {
-        this.detailArray = element.map();
-       if(element.numberSVG[0] == 'k'){
-          this.tooltip = this.detailArray[1].data;
-        }
-        else{
-          if(this.detailArray[1].data == "true"){
-           this.tooltip = "Color";
-          }
-          else{
-           this.tooltip = "Black/White";
-          }
-        
-        }
+        this.tooltip = this.kitchenText(element);
       }
     });
+
+    this.mainService.printer.forEach(element => {
+      if (element.numberSVG === event.srcElement.id ){
+        this.tooltip = this.printerText(element);
+      }
+    });
+
+  }
+
+  printerText(element: any){
+    return element.isColor ? 'Color': 'Black/White';
+  }
+
+  kitchenText(element: any){
+    return `${element.name} `;
   }
 
   onClickKitchen(event: Event) {
