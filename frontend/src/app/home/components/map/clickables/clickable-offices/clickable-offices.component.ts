@@ -26,7 +26,7 @@ export class ClickableOfficesComponent implements OnChanges {
   whatElement(event: Event){
     this.mainService.office.forEach(element => {
       if (element.numberSVG === event.srcElement.id ){
-        this.tooltip = this.tooltipText(element);
+        this.tooltip = element.tooltipText();
       }
     })
   }

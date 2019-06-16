@@ -27,14 +27,11 @@ export class ClickableRoomsComponent implements OnChanges {
 
     this.mainService.room.forEach(element =>{
       if (element.numberSVG === event.srcElement.id ){
-        this.tooltip = this.roomText(element);
+        this.tooltip = element.roomText();
       }
     });
   }
 
-  roomText(element: any){
-    return `${element.roomName} `;
-  }
 
   onClickRoom(event: Event) {
     this.roomId.emit(event.srcElement.id);
