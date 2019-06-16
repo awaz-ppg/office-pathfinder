@@ -1,5 +1,6 @@
 import { element } from 'protractor';
 import { Component, OnChanges, Input, Output, EventEmitter, SimpleChanges } from '@angular/core';
+import { MainService } from './../../../../services/main.service';
 
 @Component({
   selector: '[app-clickable-offices]',
