@@ -11,7 +11,7 @@ import { DetailComponent } from './home/components/detail/detail.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { DataService } from './data.service';
 
-
+import { GuestListComponent } from './admin/components/guestlist.component';
 import { BurgerMenuComponent } from './home/components/menu/burger-menu/burger-menu.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule, MatCheckboxModule, MatMenuModule, MatIconModule,
@@ -82,7 +82,9 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
 
     ClickablesComponent,
 
-    LoginComponent
+    LoginComponent,
+
+    GuestListComponent,
   ],
   imports: [
     BrowserModule,

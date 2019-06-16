@@ -10,21 +10,10 @@ import { Router } from '@angular/router';
 })
 export class AdminComponent implements OnInit {
 
-  displayedColumns: string[] = ['Name', 'Surname', 'Company', 'Visit Start', 'Visit End'];
-  guests: Guest[];
+  constructor(private router: Router) { }
 
+  ngOnInit() { }
 
-  constructor(private http: HttpClient, private router: Router) { }
-
-  ngOnInit() {
-    let token = localStorage.getItem('jwt');
-    this.http.get<Guest[]>(`${environment.apiUrl}Guests`)
-    .subscribe(response => {
-      this.guests = response;
-    }, err => {
-      console.log(err);
-    });
-  }
   logOut() {
     localStorage.removeItem('jwt');
     this.router.navigate(['/login']);

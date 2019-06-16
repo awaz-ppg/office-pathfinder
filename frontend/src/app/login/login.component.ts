@@ -21,7 +21,6 @@ export class LoginComponent implements OnInit {
     if (token || !this.jwtHelper.isTokenExpired(token)) {
       this.router.navigate(['/admin']);
     }
-
   }
 
   login(form: NgForm) {
