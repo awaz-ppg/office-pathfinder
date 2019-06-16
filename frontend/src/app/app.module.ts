@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ReactiveFormsModule, FormBuilder, FormGroup, Validators, FormsModule } from '@angular/forms';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -14,7 +14,8 @@ import { DataService } from './data.service';
 
 import { BurgerMenuComponent } from './home/components/menu/burger-menu/burger-menu.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatButtonModule, MatCheckboxModule, MatMenuModule, MatIconModule } from '@angular/material';
+import { MatButtonModule, MatCheckboxModule, MatMenuModule, MatIconModule,
+   MatFormFieldModule, MatCardModule, MatInputModule } from '@angular/material';
 import { MapComponent } from './home/components/map/map.component';
 import { MenuComponent } from './home/components/menu/menu.component';
 import { ClickableOfficesComponent } from './home/components/map/clickables/clickable-offices/clickable-offices.component';
@@ -28,8 +29,8 @@ import { AdminComponent } from './admin/admin.component';
 import { ClickablesComponent } from './home/components/map/clickables/clickables.component';
 import { NgxUiLoaderModule, NgxUiLoaderConfig, NgxUiLoaderHttpModule } from 'ngx-ui-loader';
 import { LoginComponent } from './login/login.component';
-import { JwtInterceptor } from './jwt.interceptor';
-
+import { JwtHelperService } from '@auth0/angular-jwt';
+import { AuthGuard } from './auth.guard';
 
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
   bgsColor: '#00ACC1',
@@ -84,11 +85,15 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     AppRoutingModule,
     MatMenuModule,
     MatGridListModule,
     MatCheckboxModule,
     MatIconModule,
+    MatCardModule,
+    MatFormFieldModule,
+    MatInputModule,
     MatToolbarModule,
     BrowserAnimationsModule,
     HttpClientModule,
@@ -101,7 +106,8 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
   ],
   providers: [
       DataService,
-      { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }
+      JwtHelperService,
+      AuthGuard
   ],
   bootstrap: [AppComponent]
 })
