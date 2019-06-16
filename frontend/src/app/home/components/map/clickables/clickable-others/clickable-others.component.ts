@@ -28,25 +28,18 @@ export class ClickableOthersComponent implements OnChanges {
 
     this.mainService.kitchen.forEach(element =>{
       if (element.numberSVG === event.srcElement.id ) {
-        this.tooltip = this.kitchenText(element);
+        this.tooltip = element.kitchenText();
       }
     });
 
     this.mainService.printer.forEach(element => {
       if (element.numberSVG === event.srcElement.id ){
-        this.tooltip = this.printerText(element);
+        this.tooltip = element.printerText();
       }
     });
 
   }
 
-  printerText(element: any){
-    return element.isColor ? 'Color': 'Black/White';
-  }
-
-  kitchenText(element: any){
-    return `${element.name} `;
-  }
 
   onClickKitchen(event: Event) {
     this.otherId.emit(event.srcElement.id);
