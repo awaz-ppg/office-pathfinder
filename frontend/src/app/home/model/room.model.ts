@@ -6,7 +6,6 @@ export class Room extends MapObject {
   description: string;
   roomName: string;
   roomNumber: string;
-  roomNumberSVG: string;
   isTV: boolean;
   isBlackboard: boolean;
   isPhone: boolean;

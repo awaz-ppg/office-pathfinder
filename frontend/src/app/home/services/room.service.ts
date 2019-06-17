@@ -11,7 +11,6 @@ export class RoomService {
   constructor(private http: HttpClient) { }
 
   getRoom() {
-    return this.http.get<Room[]>(`${environment.apiUrl}Rooms`).pipe(x =>
-      x.map(y => y.map(z => { z.numberSVG = z.roomNumberSVG; return z; })));
+    return this.http.get<Room[]>(`${environment.apiUrl}Rooms`);
   }
 }
