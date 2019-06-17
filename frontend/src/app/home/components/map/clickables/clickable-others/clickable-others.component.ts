@@ -1,3 +1,4 @@
+import { element } from 'protractor';
 import { Component, Input, Output, EventEmitter, OnChanges, SimpleChange, SimpleChanges } from '@angular/core';
 import { MainService } from './../../../../services/main.service';
 
@@ -10,7 +11,8 @@ export class ClickableOthersComponent implements OnChanges {
   @Input() shiningOtherId: [];
   @Output() otherId = new EventEmitter<string>();
 
-  constructor() { }
+  constructor(private mainService: MainService) { }
+  tooltip: string;
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes.shiningOtherId !== undefined) {
@@ -20,6 +22,24 @@ export class ClickableOthersComponent implements OnChanges {
       }
     }
   }
+
+  whatElement(event: Event){
+
+
+    this.mainService.kitchen.forEach(element =>{
+      if (element.numberSVG === event.srcElement.id ) {
+        this.tooltip = element.tooltipText();
+      }
+    });
+
+    this.mainService.printer.forEach(element => {
+      if (element.numberSVG === event.srcElement.id ){
+        this.tooltip = element.tooltipText();
+      }
+    });
+
+  }
+
 
   onClickKitchen(event: Event) {
     this.otherId.emit(event.srcElement.id);

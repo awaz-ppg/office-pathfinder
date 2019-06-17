@@ -1,56 +1,57 @@
 <svg>
-  <g (click)="onClickRoom($event)" id="clickable-rooms">
-    <rect id="room-1" x="261" y="177" class="clickable clickable--room" width="56" height="50" />
-    <rect id="room-2" x="318" y="177" class="clickable clickable--room" width="35" height="50" />
-    <rect id="room-3" x="416" y="177" class="clickable clickable--room" width="48" height="105" />
-    <rect id="room-4" x="520" y="177" class="clickable clickable--room" width="43" height="41" />
-    <rect id="room-5" x="563" y="177" class="clickable clickable--room" width="52" height="41" />
-    <rect id="room-6" x="659" y="161" class="clickable clickable--room" width="39" height="65" />
-    <rect id="room-7" x="261" y="227" class="clickable clickable--room" width="92" height="55" />
-    <rect id="room-8" x="673" y="847" class="clickable clickable--room" width="134" height="87" />
-    <rect id="room-9" x="261" y="282" class="clickable clickable--room" width="92" height="63" />
-    <rect id="room-10" x="574" y="278" class="clickable clickable--room" width="41" height="54" />
-    <rect id="room-11" x="261" y="345" class="clickable clickable--room" width="92" height="64" />
-    <rect id="room-12" x="304" y="580" class="clickable clickable--room" width="51" height="76" />
-    <rect id="room-13" x="812" y="1104" class="clickable clickable--room" width="62" height="90" />
-    <rect id="room-14" x="874" y="1104" class="clickable clickable--room" width="61" height="45" />
-    <rect id="room-15" x="935" y="1104" class="clickable clickable--room" width="55" height="45" />
-    <rect id="room-16" x="874" y="1149" class="clickable clickable--room" width="61" height="45" />
-    <rect id="room-17" x="935" y="1150" class="clickable clickable--room" width="56" height="44" />
-    <rect id="room-18" x="1052" y="1104" class="clickable clickable--room" width="71" height="91" />
-    <rect id="room-19" x="1123" y="1104" class="clickable clickable--room" width="71" height="91" />
-    <rect id="room-20" x="1253" y="1104" class="clickable clickable--room" width="66" height="91" />
-    <rect id="room-21" x="1319" y="1104" class="clickable clickable--room" width="64" height="91" />
-    <rect id="room-22" x="1383.5" y="1105" class="clickable clickable--room" width="123.5" height="90" />
-    <rect id="room-23" x="745" y="1228" class="clickable clickable--room" width="122" height="121" />
-    <rect id="room-24" x="1646" y="672" class="clickable clickable--room" width="47" height="63" />
-    <rect id="room-25" x="1499" y="735" class="clickable clickable--room" width="106" height="65" />
-    <rect id="room-26" x="1646" y="735" class="clickable clickable--room" width="47" height="65" />
-    <rect id="room-27" x="1953" y="886" class="clickable clickable--room" width="59" height="46" />
-    <rect id="room-28" x="1953" y="1004" class="clickable clickable--room" width="59" height="34" />
-    <rect id="room-29" x="1953" y="1038" class="clickable clickable--room" width="59" height="45" />
-    <rect id="room-30" x="1953" y="1083" class="clickable clickable--room" width="59" height="36" />
-    <rect id="room-31" x="1892" y="1113" class="clickable clickable--room" width="61" height="82" />
-    <rect id="room-32" x="1953.5" y="1119" class="clickable clickable--room" width="58.5" height="36" />
-    <rect id="room-33" x="1953" y="1156" class="clickable clickable--room" width="29" height="39" />
-    <rect id="room-34" x="1982" y="1155" class="clickable clickable--room" width="30" height="40" />
-    <polygon id="room-35" class="clickable clickable--room" points="265,618 304,618 304,656 267,656 	" />
-    <polygon id="room-36" class="clickable clickable--room" points="267,656 270,693 354,693 354,656.5 	" />
-    <polygon id="room-37" class="clickable clickable--room" points="273,730 354,730 354,693 270,693 	" />
-    <polygon id="room-38" class="clickable clickable--room" points="277,792 354,792 354,730 273,730 273,759 	" />
-    <polygon id="room-39" class="clickable clickable--room" points="277,793 279,820 282,853 354,853 354,792 	" />
-    <polygon id="room-40" class="clickable clickable--room" points="283,854 283,883 286,916 354,916 354,854 	" />
-    <polygon id="room-41" class="clickable clickable--room" points="289,955 354,950 354,916 286,916 	" />
-    <polygon id="room-42" class="clickable clickable--room" points="574,219 574,278 615,278 615,218 	" />
-    <polygon id="room-43" class="clickable clickable--room" points="673,934 807,934 807,1023 672,1023 	" />
-    <polygon id="room-44" class="clickable clickable--room" points="98,1041 225,1030 235,1172 108,1182 	" />
-    <polygon id="room-45" class="clickable clickable--room"
+  <g  (mousemove) ="whatElement($event)" (click)="onClickRoom($event)" id="clickable-rooms">
+    <rect   id="room-1" x="261" y="177" class="clickable clickable--room" width="56" height="50" />
+    <rect  matTooltip="{{tooltip}}"  id="room-2" x="318" y="177" class="clickable clickable--room" width="35" height="50" />
+    <rect  matTooltip="{{tooltip}}"  id="room-3" x="416" y="177" class="clickable clickable--room" width="48" height="105" />
+    <rect  matTooltip="{{tooltip}}"  id="room-4" x="520" y="177" class="clickable clickable--room" width="43" height="41" />
+    <rect  matTooltip="{{tooltip}}"  id="room-5" x="563" y="177" class="clickable clickable--room" width="52" height="41" />
+    <rect  matTooltip="{{tooltip}}"  id="room-6" x="659" y="161" class="clickable clickable--room" width="39" height="65" />
+    <rect  matTooltip="{{tooltip}}"  id="room-7" x="261" y="227" class="clickable clickable--room" width="92" height="55" />
+    <rect  matTooltip="{{tooltip}}" id="room-8" x="673" y="847" class="clickable clickable--room" width="134" height="87" />
+    <rect  matTooltip="{{tooltip}}" id="room-9" x="261" y="282" class="clickable clickable--room" width="92" height="63" />
+    <rect  matTooltip="{{tooltip}}" id="room-10" x="574" y="278" class="clickable clickable--room" width="41" height="54" />
+    <rect  matTooltip="{{tooltip}}" id="room-11" x="261" y="345" class="clickable clickable--room" width="92" height="64" />
+    <rect  matTooltip="{{tooltip}}" id="room-12" x="304" y="580" class="clickable clickable--room" width="51" height="76" />
+    <rect  matTooltip="{{tooltip}}" id="room-13" x="812" y="1104" class="clickable clickable--room" width="62" height="90" />
+    <rect  matTooltip="{{tooltip}}" id="room-14" x="874" y="1104" class="clickable clickable--room" width="61" height="45" />
+    <rect  matTooltip="{{tooltip}}" id="room-15" x="935" y="1104" class="clickable clickable--room" width="55" height="45" />
+    <rect  matTooltip="{{tooltip}}" id="room-16" x="874" y="1149" class="clickable clickable--room" width="61" height="45" />
+    <rect  matTooltip="{{tooltip}}" id="room-17" x="935" y="1150" class="clickable clickable--room" width="56" height="44" />
+    <rect  matTooltip="{{tooltip}}" id="room-18" x="1052" y="1104" class="clickable clickable--room" width="71" height="91" />
+    <rect  matTooltip="{{tooltip}}" id="room-19" x="1123" y="1104" class="clickable clickable--room" width="71" height="91" />
+    <rect  matTooltip="{{tooltip}}" id="room-20" x="1253" y="1104" class="clickable clickable--room" width="66" height="91" />
+    <rect  matTooltip="{{tooltip}}" id="room-21" x="1319" y="1104" class="clickable clickable--room" width="64" height="91" />
+    <rect  matTooltip="{{tooltip}}" id="room-22" x="1383.5" y="1105" class="clickable clickable--room" width="123.5" height="90" />
+    <rect  matTooltip="{{tooltip}}" id="room-23" x="745" y="1228" class="clickable clickable--room" width="122" height="121" />
+    <rect  matTooltip="{{tooltip}}" id="room-24" x="1646" y="672" class="clickable clickable--room" width="47" height="63" />
+    <rect  matTooltip="{{tooltip}}" id="room-25" x="1499" y="735" class="clickable clickable--room" width="106" height="65" />
+    <rect  matTooltip="{{tooltip}}" id="room-26" x="1646" y="735" class="clickable clickable--room" width="47" height="65" />
+    <rect  matTooltip="{{tooltip}}" id="room-27" x="1953" y="886" class="clickable clickable--room" width="59" height="46" />
+    <rect  matTooltip="{{tooltip}}" id="room-28" x="1953" y="1004" class="clickable clickable--room" width="59" height="34" />
+    <rect  matTooltip="{{tooltip}}" id="room-29" x="1953" y="1038" class="clickable clickable--room" width="59" height="45" />
+    <rect  matTooltip="{{tooltip}}" id="room-30" x="1953" y="1083" class="clickable clickable--room" width="59" height="36" />
+    <rect  matTooltip="{{tooltip}}" id="room-31" x="1892" y="1113" class="clickable clickable--room" width="61" height="82" />
+    <rect  matTooltip="{{tooltip}}" id="room-32" x="1953.5" y="1119" class="clickable clickable--room" width="58.5" height="36" />
+    <rect  matTooltip="{{tooltip}}" id="room-33" x="1953" y="1156" class="clickable clickable--room" width="29" height="39" />
+    <rect  matTooltip="{{tooltip}}" id="room-34" x="1982" y="1155" class="clickable clickable--room" width="30" height="40" />
+    <polygon  matTooltip="{{tooltip}}" id="room-35" class="clickable clickable--room" points="265,618 304,618 304,656 267,656 	" />
+    <polygon  matTooltip="{{tooltip}}" id="room-36" class="clickable clickable--room" points="267,656 270,693 354,693 354,656.5 	" />
+    <polygon  matTooltip="{{tooltip}}" id="room-37" class="clickable clickable--room" points="273,730 354,730 354,693 270,693 	" />
+    <polygon  matTooltip="{{tooltip}}" id="room-38" class="clickable clickable--room" points="277,792 354,792 354,730 273,730 273,759 	" />
+    <polygon  matTooltip="{{tooltip}}" id="room-39" class="clickable clickable--room" points="277,793 279,820 282,853 354,853 354,792 	" />
+    <polygon  matTooltip="{{tooltip}}" id="room-40" class="clickable clickable--room" points="283,854 283,883 286,916 354,916 354,854 	" />
+    <polygon  matTooltip="{{tooltip}}" id="room-41" class="clickable clickable--room" points="289,955 354,950 354,916 286,916 	" />
+    <polygon  matTooltip="{{tooltip}}" id="room-42" class="clickable clickable--room" points="574,219 574,278 615,278 615,218 	" />
+    <polygon  matTooltip="{{tooltip}}" id="room-43" class="clickable clickable--room" points="673,934 807,934 807,1023 672,1023 	" />
+    <polygon  matTooltip="{{tooltip}}" id="room-44" class="clickable clickable--room" points="98,1041 225,1030 235,1172 108,1182 	" />
+    <polygon  matTooltip="{{tooltip}}" id="room-45" class="clickable clickable--room"
       points="353,1113 353,1194 385,1194 385,1178 426,1178 426,1113 	" />
-    <polygon id="room-46" class="clickable clickable--room"
+    <polygon  matTooltip="{{tooltip}}" id="room-46" class="clickable clickable--room"
       points="499,1113 426,1113 426,1178 469,1178 469,1194 499,1194 	" />
-    <polygon id="room-47" class="clickable clickable--room" points="1505,219 1691,219 1691,606 1505,606" />
-    <polygon id="room-48" class="clickable clickable--room" points="1697,219 1951,219 1951,403 1697,403 	" />
-    <polygon id="room-49" class="clickable clickable--room" points="2185,538 2024,538 2024,655 2185,655" />
+    <polygon  matTooltip="{{tooltip}}" id="room-47" class="clickable clickable--room" points="1505,219 1691,219 1691,606 1505,606" />
+    <polygon  matTooltip="{{tooltip}}" id="room-48" class="clickable clickable--room" points="1697,219 1951,219 1951,403 1697,403 	" />
+    <polygon  matTooltip="{{tooltip}}" id="room-49" class="clickable clickable--room" points="2185,538 2024,538 2024,655 2185,655" />
+
   </g>
   <g id="quiet-room-" class="quietroom-Class">
     <polygon id="station-36" class="clickable clickable--quietRoom" points="354,179 414,179 414,281 354,281" />

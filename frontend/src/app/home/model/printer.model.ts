@@ -16,4 +16,8 @@ export class Printer extends MapObject {
       new DetailList(`Color`, this.isColor.toString()),
       new DetailList(`Id`, this.id)];
   }
+
+  tooltipText(){
+    return this.isColor ? 'Color' : 'Black/White';
+  }
 }

@@ -20,5 +20,9 @@ export class Kitchen extends MapObject {
       new DetailList(`Water`, this.isWater.toString()),
       new DetailList(`Id`, this.id)];
   }
+
+  tooltipText(){
+    return this.name;
+  }
 }
 
