@@ -1,0 +1,45 @@
+.search {
+  position: absolute;
+  left: 30%;
+  top: 20%;
+  height: 60%;
+  width: 40%;
+  background-color: #eee;
+  text-align: left;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
+.search-button {
+  position: absolute;
+  left: 70%;
+  top: 20%;
+  height: 60%;
+  background-color: #ddd;
+  border-bottom-left-radius: 0;
+  border-top-left-radius: 0;
+  border-bottom-right-radius: 5%;
+  border-top-right-radius: 5%;
+}
+
+.search-width {
+  width: 100%;
+}
+
+::ng-deep .mat-form-field-underline {
+  display: none;
+}
+
+
+.option-button {
+  width: 10%;
+}
+
+.mat-form-field.example-full-width {
+  width: 100%
+}
+
+.search-input {
+  width: 100%;
+  margin-left: 5px;
+}

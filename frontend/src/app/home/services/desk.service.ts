@@ -12,8 +12,7 @@ export class DeskService {
   constructor(private http: HttpClient) { }
 
   getDesk() {
-    return this.http.get<Desk[]>(`${environment.apiUrl}desks`).pipe(x =>
-      x.map(y => y.map(z => { z.numberSVG = z.numberDeskSVG; return z; })));
+    return this.http.get<Desk[]>(`${environment.apiUrl}desks`);
   }
 
 

@@ -1,0 +1,21 @@
+
+
+<mat-card>
+  <mat-card-title>
+    <h2 class="form-signin-heading">Sign In</h2>
+  </mat-card-title>
+  <mat-card-content>
+    <div *ngIf="invalidLogin" class="alert">Invalid username or password.</div>
+    <form class="form-signin" #loginForm="ngForm" (ngSubmit)="login(loginForm)">
+      <mat-form-field appearance="outline">
+          <input matInput type="text" id="login" name="login" ngModel class="form-control" placeholder="Username" required autofocus>
+      </mat-form-field>
+      <br/>
+      <mat-form-field appearance="outline">
+        <input matInput type="password" id="password" name="password" ngModel class="form-control" placeholder="Password" required>
+      </mat-form-field>
+      <br/>
+      <button mat-raised-button color="primary" type="submit">Sign in</button>
+    </form>
+  </mat-card-content>
+</mat-card>
