@@ -1,22 +1,25 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { ReactiveFormsModule, FormBuilder, FormGroup, Validators, FormsModule } from '@angular/forms';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { DetailComponent } from './home/components/detail/detail.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { DataService } from './data.service';
+
+
+import { GuestListComponent } from './admin/components/guestlist/guestlist.component';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 
 import { BurgerMenuComponent } from './home/components/menu/burger-menu/burger-menu.component';
 import { SearchComponent } from './home/components/menu/search/search.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatButtonModule, MatCheckboxModule, MatMenuModule, MatIconModule } from '@angular/material';
+import { MatButtonModule, MatCheckboxModule, MatMenuModule, MatIconModule,
+   MatFormFieldModule, MatCardModule, MatInputModule } from '@angular/material';
 import { MapComponent } from './home/components/map/map.component';
 import { MenuComponent } from './home/components/menu/menu.component';
 import { ClickableOfficesComponent } from './home/components/map/clickables/clickable-offices/clickable-offices.component';
@@ -29,7 +32,12 @@ import { HomeComponent } from './home/home.component';
 import { AdminComponent } from './admin/admin.component';
 import { ClickablesComponent } from './home/components/map/clickables/clickables.component';
 import { NgxUiLoaderModule, NgxUiLoaderConfig, NgxUiLoaderHttpModule } from 'ngx-ui-loader';
+import { LoginComponent } from './login/login.component';
+import { JwtHelperService } from '@auth0/angular-jwt';
+import { AuthGuard } from './auth.guard';
+import { MatTableModule } from '@angular/material/table';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+
 
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
   bgsColor: '#00ACC1',
@@ -79,17 +87,28 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
 
     AdminComponent,
 
-    ClickablesComponent
+    ClickablesComponent,
+
+    LoginComponent,
+
+    GuestListComponent,
   ],
   imports: [
     MatSnackBarModule,
     BrowserModule,
+    FormsModule,
     AppRoutingModule,
     MatMenuModule,
     MatGridListModule,
     MatCheckboxModule,
     MatIconModule,
+    MatCardModule,
+    MatFormFieldModule,
+    MatInputModule,
     MatToolbarModule,
+
+    MatTableModule,
+
     MatInputModule,
     MatFormFieldModule,
     BrowserAnimationsModule,
@@ -103,7 +122,11 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     NgxUiLoaderHttpModule.forRoot({ showForeground: true }),
 
   ],
-  providers: [DataService],
+  providers: [
+      DataService,
+      JwtHelperService,
+      AuthGuard
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
