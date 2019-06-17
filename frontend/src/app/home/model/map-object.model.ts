@@ -8,6 +8,4 @@ export class MapObject {
     }
 
     map() { }
-
-    creatSearchString() { }
 }
