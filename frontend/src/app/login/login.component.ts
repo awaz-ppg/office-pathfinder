@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { environment } from 'src/environments/environment';
-import { JwtHelperService } from '@auth0/angular-jwt';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-login',
@@ -12,13 +12,12 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 })
 export class LoginComponent implements OnInit {
   invalidLogin: boolean;
-  private jwtHelper = new JwtHelperService();
 
-  constructor(private router: Router, private http: HttpClient) { }
+
+  constructor(private router: Router, private http: HttpClient, private authService: AuthService) { }
 
   ngOnInit() {
-    let token = localStorage.getItem('jwt');
-    if (token || !this.jwtHelper.isTokenExpired(token)) {
+    if (this.authService.isTokenValid()) {
       this.router.navigate(['/admin']);
     }
   }
