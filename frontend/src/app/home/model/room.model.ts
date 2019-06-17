@@ -25,6 +25,4 @@ export class Room extends MapObject {
     new DetailList(`Phone`, this.isPhone.toString()),
     new DetailList(`Id`, this.id),];
   }
-
-  creatSearchString() { return this.roomName.toUpperCase(); }
 }

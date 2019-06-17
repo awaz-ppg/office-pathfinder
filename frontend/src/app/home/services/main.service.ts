@@ -60,7 +60,7 @@ export class MainService {
       this.room = rooms.map(x => new Room(x));
       this.employee = employees.map(x => new Employee(x));
       this.guest = guests;
-      this.options = [...this.kitchen.map(x => x.name.toUpperCase()), ...this.room,
+      this.options = [...this.kitchen.map(x => x.name.toUpperCase()), ...this.room.map(x => x.roomName.toUpperCase()),
       ...this.office.map(x => `${x.firstName.toUpperCase()} ${x.lastName.toUpperCase()}`),
       ...this.employee.map(x => `${x.firstName.toUpperCase()} ${x.lastName.toUpperCase()}`)];
       this.all = [...this.kitchen, ...this.room, ...this.office, ...this.desk, ...this.printer];
