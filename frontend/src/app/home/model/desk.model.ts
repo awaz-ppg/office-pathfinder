@@ -3,7 +3,6 @@ import { MapObject } from './map-object.model';
 
 export class Desk extends MapObject {
     numberDesk: string;
-    numberDeskSVG: string;
 
     constructor(desk: Desk) {
         super(desk);
