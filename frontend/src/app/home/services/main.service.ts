@@ -14,6 +14,8 @@ import { KitchenService } from './kitchen.service';
 import { OfficeService } from './office.service';
 import { RoomService } from './room.service';
 import { EmployeeService } from './employee.service';
+import { Guest } from '../model/guest.model';
+import { MapObject } from '../model/map-object.model';
 
 
 @Injectable({
@@ -24,15 +26,15 @@ export class MainService {
 
   private select = new Subject<string[]>();
 
-  desk = [];
-  office = [];
-  printer = [];
-  room = [];
-  kitchen = [];
-  guest = [];
-  employee = [];
-  all = [];
-  options = [];
+  desk: Desk[] = [];
+  office: Office[] = [];
+  printer: Printer[] = [];
+  room: Room[] = [];
+  kitchen: Kitchen[] = [];
+  guest: Guest[] = [];
+  employee: Employee[] = [];
+  all: (Kitchen | Room | Office | Desk | Printer)[] = [];
+  options: string[] = [];
 
 
   select$ = this.select.asObservable();
@@ -58,7 +60,7 @@ export class MainService {
       this.room = rooms.map(x => new Room(x));
       this.employee = employees.map(x => new Employee(x));
       this.guest = guests;
-      this.options = [...this.kitchen.map(x => x.name.toUpperCase()), ...this.room.map(x => x.roomName.toUpperCase()),
+      this.options = [...this.kitchen.map(x => x.name.toUpperCase()), ...this.room,
       ...this.office.map(x => `${x.firstName.toUpperCase()} ${x.lastName.toUpperCase()}`),
       ...this.employee.map(x => `${x.firstName.toUpperCase()} ${x.lastName.toUpperCase()}`)];
       this.all = [...this.kitchen, ...this.room, ...this.office, ...this.desk, ...this.printer];

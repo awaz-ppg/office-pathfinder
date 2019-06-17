@@ -20,7 +20,6 @@ export class SearchComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.mainService.options = this.mainService.kitchen.map(x => x.name);
         this.filteredOptions = this.searchControl.valueChanges.pipe(
             startWith(''),
             map(value => this._filter(value))
