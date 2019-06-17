@@ -27,7 +27,7 @@ export class Room extends MapObject {
     new DetailList(`Id`, this.id),];
   }
 
-  roomText(){
+  tooltipText(){
     return this.roomName;
   }
 

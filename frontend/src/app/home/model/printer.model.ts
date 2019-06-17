@@ -17,7 +17,7 @@ export class Printer extends MapObject {
       new DetailList(`Id`, this.id)];
   }
 
-  printerText(){
+  tooltipText(){
     return this.isColor ? 'Color' : 'Black/White';
   }
 }

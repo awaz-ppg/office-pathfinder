@@ -21,7 +21,7 @@ export class Kitchen extends MapObject {
       new DetailList(`Id`, this.id)];
   }
 
-  kitchenText(){
+  tooltipText(){
     return this.name;
   }
 }

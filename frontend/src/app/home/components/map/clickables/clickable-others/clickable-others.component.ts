@@ -28,13 +28,13 @@ export class ClickableOthersComponent implements OnChanges {
 
     this.mainService.kitchen.forEach(element =>{
       if (element.numberSVG === event.srcElement.id ) {
-        this.tooltip = element.kitchenText();
+        this.tooltip = element.tooltipText();
       }
     });
 
     this.mainService.printer.forEach(element => {
       if (element.numberSVG === event.srcElement.id ){
-        this.tooltip = element.printerText();
+        this.tooltip = element.tooltipText();
       }
     });
 
