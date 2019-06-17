@@ -11,7 +11,7 @@ import { DetailComponent } from './home/components/detail/detail.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { DataService } from './data.service';
 
-import { GuestListComponent } from './admin/components/guestlist.component';
+import { GuestListComponent } from './admin/components/guestlist/guestlist.component';
 import { BurgerMenuComponent } from './home/components/menu/burger-menu/burger-menu.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule, MatCheckboxModule, MatMenuModule, MatIconModule,
@@ -31,7 +31,7 @@ import { NgxUiLoaderModule, NgxUiLoaderConfig, NgxUiLoaderHttpModule } from 'ngx
 import { LoginComponent } from './login/login.component';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { AuthGuard } from './auth.guard';
-import {MatTableModule} from '@angular/material/table';
+import { MatTableModule } from '@angular/material/table';
 
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
   bgsColor: '#00ACC1',
