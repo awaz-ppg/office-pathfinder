@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { environment } from 'src/environments/environment';
 import { AuthService } from '../auth.service';
+import { JwtToken } from '../jwt-token.model';
 
 @Component({
   selector: 'app-login',
@@ -23,14 +24,11 @@ export class LoginComponent implements OnInit {
   }
 
   login(form: NgForm) {
-    const credentials = JSON.stringify(form.value);
-    this.http.post(`${environment.apiUrl}Authorize`, credentials, {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json'
-      })
-    }).subscribe(response => {
-      const token = (response as any).token;
-      localStorage.setItem('jwt', token);
+    const credentials = form.value;
+    this.authService.authorizeLogin(credentials)
+    .subscribe(response => {
+      const token = (response as JwtToken).token;
+      this.authService.addToken(token);
       this.invalidLogin = false;
       this.router.navigate(['/admin']);
     }, err => {
