@@ -1,6 +1,6 @@
 .search {
   position: absolute;
-  left: 30%;
+  left: 25%;
   top: 20%;
   height: 60%;
   width: 40%;
@@ -15,7 +15,7 @@
 
 .search-button {
   position: absolute;
-  left: 70%;
+  left: 65%;
   top: 20%;
   height: 60%;
   background-color: #ddd;
@@ -23,10 +23,6 @@
   border-top-left-radius: 0;
   border-bottom-right-radius: 5%;
   border-top-right-radius: 5%;
-}
-
-.search-list {
-  min-width: 800px;
 }
 
 .select-button {

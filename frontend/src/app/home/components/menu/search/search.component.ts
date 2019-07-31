@@ -15,12 +15,13 @@ import { SearchObject } from '../../../model/search-object';
 export class SearchComponent implements OnInit {
     // searchControl = new FormControl();
      filteredOptions: SearchObject[];
+     status: boolean = true;
 
     constructor(
         private mainService: MainService,
         private _snackBar: MatSnackBar) {
-            setTimeout(() => {this.filteredOptions = this.mainService.options; console.log(this.filteredOptions);
-                console.log(this.mainService.all);}, 30000)
+            setTimeout(() => {this.filteredOptions = this.mainService.options.filter(x => x.type == "kitchen"); console.log(this.filteredOptions);
+                console.log(this.mainService.all);}, 20000)
     }
 
     ngOnInit() {
@@ -42,7 +43,9 @@ export class SearchComponent implements OnInit {
         this.mainService.options.forEach((x,index) => {if(text.toUpperCase() == x.text.toUpperCase()) optionIndex = index;});
         let placeIndex: number = -1;
         let helpArray: string[];
+        if(optionIndex != -1){
         this.mainService.all.forEach((x,index) => {if(this.mainService.options[optionIndex].id == x.id) placeIndex = index;});
+        }
         if (placeIndex != -1) {
             helpArray = [this.mainService.all[placeIndex].numberSVG];
             this.mainService.changeSelect(helpArray);
@@ -54,8 +57,11 @@ export class SearchComponent implements OnInit {
         }
     }
 
-    onClickSelect() {
-        this.filteredOptions = this.mainService.options.filter(x => x.type == "kitchen");
+    changeStatus() {
+        this.status = !this.status;
+        console.log(this.status);
     }
+
+    
 }
 
