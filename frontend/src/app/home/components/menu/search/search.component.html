@@ -1,16 +1,14 @@
-<form class="example-form" class="search">
-  <mat-form-field class="example-full-width">
-    <input #searchPlace class="search-input" type="text" aria-label="Number" matInput [formControl]="searchControl"
-      [matAutocomplete]="auto" (keyup.enter)="onClickSearch(searchPlace.value);">
-    <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+<input #searchPlace class="search"
+list="dynmicUserIds" (keyup.enter)="onClickSearch(searchPlace.value);">
 
-      <mat-option *ngFor="let option of filteredOptions | async" [value]="option"
-        (click)="onClickSearch(searchPlace.value);">
-        {{option}}
-      </mat-option>
-    </mat-autocomplete>
-  </mat-form-field>
-</form>
+<datalist id="dynmicUserIds" class="search-list">
+    <option *ngFor="let item of filteredOptions" [value]="item.text">{{item.text}}</option>
+</datalist>  
+
 <button mat-button class="search-button" (click)="onClickSearch(searchPlace.value);">
+  <mat-icon>search</mat-icon>
+</button>
+
+<button mat-button class="select-button" (click)="onClickSelect();">
   <mat-icon>search</mat-icon>
 </button>

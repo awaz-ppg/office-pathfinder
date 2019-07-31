@@ -18,7 +18,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { BurgerMenuComponent } from './home/components/menu/burger-menu/burger-menu.component';
 import { SearchComponent } from './home/components/menu/search/search.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatButtonModule, MatCheckboxModule, MatMenuModule, MatIconModule, MatTooltipModule   } from '@angular/material';
+import { MatButtonModule, MatCheckboxModule, MatMenuModule, MatIconModule, MatTooltipModule, MatCardModule } from '@angular/material';
 import { MapComponent } from './home/components/map/map.component';
 import { MenuComponent } from './home/components/menu/menu.component';
 import { ClickableOfficesComponent } from './home/components/map/clickables/clickable-offices/clickable-offices.component';
