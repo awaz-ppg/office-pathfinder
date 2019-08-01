@@ -1,7 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
-import { Observable } from 'rxjs';
-import { map, startWith } from 'rxjs/operators';
 import { MainService } from '../../../services/main.service'
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { SearchObject } from '../../../model/search-object';
@@ -13,30 +10,17 @@ import { SearchObject } from '../../../model/search-object';
     styleUrls: ['./search.component.scss']
 })
 export class SearchComponent implements OnInit {
-    // searchControl = new FormControl();
      filteredOptions: SearchObject[];
      status: boolean = true;
+     kitchenStatus: boolean = false;
 
     constructor(
         private mainService: MainService,
         private _snackBar: MatSnackBar) {
-            setTimeout(() => {this.filteredOptions = this.mainService.options.filter(x => x.type == "kitchen"); console.log(this.filteredOptions);
-                console.log(this.mainService.all);}, 20000)
+            this.mainService.optionsStatus$.subscribe(() => this.filteredOptions = this.mainService.options.filter(x => x.text != "BRAK NAZWY"));
     }
 
-    ngOnInit() {
-        // this.filteredOptions = this.searchControl.valueChanges.pipe(
-        //     startWith(''),
-        //     map(value => this._filter(value))
-        // );
-        // console.log(this.filteredOptions);
-    }
-
-    // private _filter(value: string): string[] {
-    //     const filterValue = value.toLowerCase();
-
-    //     return this.mainService.options.filter(option => option.toLowerCase().indexOf(filterValue) === 0);
-    // }
+    ngOnInit() {}
 
     onClickSearch(text: string) {
         let optionIndex: number = -1;
@@ -59,9 +43,15 @@ export class SearchComponent implements OnInit {
 
     changeStatus() {
         this.status = !this.status;
-        console.log(this.status);
     }
 
+    autocomplete(text: string){
+        this.filteredOptions = this.mainService.options.filter(x => x.text.includes(text.toUpperCase()))
+    }
+
+    changeKitchenStatus(){
+        this.kitchenStatus = !this.kitchenStatus;
+    }
     
 }
 

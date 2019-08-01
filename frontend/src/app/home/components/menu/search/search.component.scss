@@ -11,6 +11,10 @@
   border: none;
   font-size: 18px;
   padding: 0;
+
+  &:focus{
+    outline: none;
+  }
 }
 
 .search-button {
@@ -60,5 +64,12 @@
 }
 
 input::-webkit-calendar-picker-indicator {
+  display: none;
+}
+
+.search-list{
+}
+
+.hiden{
   display: none;
 }

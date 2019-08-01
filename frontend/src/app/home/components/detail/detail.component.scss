@@ -7,7 +7,9 @@
   max-height: 20%;
   overflow-y: scroll;
   background-color: rgba(2, 114, 166, 0.8);
-  border-radius: 10px;
+  border-radius: 10px;:host /deep/ .mat-list-item-content {
+    padding: 0!important;
+  }
 }
 
 .textColor {
@@ -24,4 +26,11 @@
   height: auto;
   width: 100%;
   flex: 1 1 auto;
+}
+
+:host /deep/ .mat-list-item-content {
+  padding-top: 0!important;
+  padding-bottom: 0!important;
+  margin-bottom: 0!important;
+  margin-top: 0!important;
 }

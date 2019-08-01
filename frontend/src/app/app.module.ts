@@ -37,7 +37,6 @@ import { AuthGuard } from './auth.guard';
 import { MatTableModule } from '@angular/material/table';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 
-
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
   bgsColor: '#00ACC1',
   bgsOpacity: 0.5,
