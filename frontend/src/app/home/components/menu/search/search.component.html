@@ -1,35 +1,24 @@
 <input #searchPlace class="search"
-list="dynmicUserIds" (keyup.enter)="onClickSearch(searchPlace.value);" (keyup)="autocomplete(searchPlace.value)" (click)="changeStatus()">
-<ul [ngClass]="{'hiden': status}" id="dynmicUserIds" class="search-list" style="width: 40vw; padding: 0; box-sizing: border-box; scroll-behavior: auto; max-height: 40%; overflow-y: scroll; background-color: #fff; position: fixed; top:7%; left: 25%;">
-  <li style="cursor: pointer; padding: 10px; list-style-type: none; font-family: sans-serif;margin: 0; background-color: royalblue;" (click)="changeKitchenStatus()">KITCHEN</li>
+list="dynmicUserIds" (keyup.enter)="onClickSearch(searchPlace.value);" (keyup)="autocomplete(searchPlace.value)" (focus)="makeSearchListEnabled()" (blur)="makeSearchListDisabled()">
+<ul [ngClass]="{'hiden': status}" id="dynmicUserIds" class="search-list" >
+  <li class="search-list-button" (click)="changeKitchenStatus()">KITCHEN</li>
   <ng-container *ngIf="kitchenStatus">
-  <li #list *ngFor="let item of filteredOptions" [value]="item.text" style="cursor: pointer; padding: 10px; list-style-type: none; font-family: sans-serif" (click)="onClickSearch($event.target.innerText)">{{item.text}}</li>  
+  <li #list class="search-list-option" *ngFor="let item of filteredKitchens" [value]="item.text" (click)="onClickSearch($event.target.innerText)">{{item.text}}</li>  
 </ng-container>
-<li style="cursor: pointer; padding: 10px; list-style-type: none; font-family: sans-serif; background-color: royalblue;" (click)="changeOfficeStatus()">OFFICE</li>
-  <ng-container *ngIf="kitchenStatus">
-  <li #list *ngFor="let item of filteredOptions" [value]="item.text" style="cursor: pointer; padding: 10px; list-style-type: none; font-family: sans-serif" (click)="onClickSearch($event.target.innerText)">{{item.text}}</li>  
+<li class="search-list-button" (click)="changeOfficeStatus()">OFFICE</li>
+  <ng-container *ngIf="officeStatus">
+    <li #list class="search-list-option" *ngFor="let item of filteredOffices" [value]="item.text" (click)="onClickSearch($event.target.innerText)">{{item.text}}</li>  
+  </ng-container>
+<li class="search-list-button" (click)="changeRoomStatus()">ROOM</li>
+  <ng-container *ngIf="roomStatus">
+  <li #list class="search-list-option" *ngFor="let item of filteredRooms" [value]="item.text" (click)="onClickSearch($event.target.innerText)">{{item.text}}</li>  
 </ng-container>
-<li style="cursor: pointer; padding: 10px; list-style-type: none; font-family: sans-serif; background-color: royalblue;" (click)="changeRoomStatus()">ROOM</li>
-  <ng-container *ngIf="kitchenStatus">
-  <li #list *ngFor="let item of filteredOptions" [value]="item.text" style="cursor: pointer; padding: 10px; list-style-type: none; font-family: sans-serif" (click)="onClickSearch($event.target.innerText)">{{item.text}}</li>  
-</ng-container>
-<li style="cursor: pointer; padding: 10px; list-style-type: none; font-family: sans-serif; background-color: royalblue;" (click)="changeDeskStatus()">DESK</li>
-  <ng-container *ngIf="kitchenStatus">
-  <li #list *ngFor="let item of filteredOptions" [value]="item.text" style="cursor: pointer; padding: 10px; list-style-type: none; font-family: sans-serif" (click)="onClickSearch($event.target.innerText)">{{item.text}}</li>  
+<li class="search-list-button" (click)="changeDeskStatus()">DESK</li>
+  <ng-container *ngIf="deskStatus">
+  <li #list class="search-list-option" *ngFor="let item of filteredDesks" [value]="item.text" (click)="onClickSearch($event.target.innerText)">{{item.text}}</li>  
 </ng-container>
 </ul> 
-
-
-<!-- <datalist id="dynmicUserIds" class="search-list">
-    <ng-container *ngIf="status">
-    <option *ngFor="let item of filteredOptions" [value]="item.text">{{item.text}}</option>  
-  </ng-container>
-</datalist>   -->
 
 <button mat-button class="search-button" (click)="onClickSearch(searchPlace.value);">
   <mat-icon>search</mat-icon>
 </button>
-
-<!-- <button mat-button class="select-button" (click)="onClickSelect();">
-  <mat-icon>search</mat-icon>
-</button> -->

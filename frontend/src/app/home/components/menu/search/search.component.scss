@@ -17,6 +17,37 @@
   }
 }
 
+.search-list{
+  border-radius: 5px;
+  width: 40vw;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: auto;
+  max-height: 40vh;
+  overflow-y: scroll;
+  background-color: #fff;
+  position: absolute;
+  top:80%;
+  left: 25%;
+  margin: 0;
+}
+
+.search-list-button{
+  cursor: pointer;
+  padding: 10px;
+  list-style-type: none; 
+  font-family: sans-serif;
+  margin: 0;
+  background-color: #eee;
+}
+
+.search-list-option{
+  cursor: pointer;
+  padding: 10px; 
+  list-style-type: none; 
+  font-family: sans-serif
+}
+
 .search-button {
   position: absolute;
   left: 65%;
@@ -27,22 +58,6 @@
   border-top-left-radius: 0;
   border-bottom-right-radius: 5%;
   border-top-right-radius: 5%;
-}
-
-.select-button {
-  position: absolute;
-  left: 15%;
-  top: 20%;
-  height: 60%;
-  background-color: #ddd;
-  border-bottom-left-radius: 0;
-  border-top-left-radius: 0;
-  border-bottom-right-radius: 5%;
-  border-top-right-radius: 5%;
-}
-
-.search-width {
-  width: 100%;
 }
 
 ::ng-deep .mat-form-field-underline {
@@ -65,9 +80,6 @@
 
 input::-webkit-calendar-picker-indicator {
   display: none;
-}
-
-.search-list{
 }
 
 .hiden{

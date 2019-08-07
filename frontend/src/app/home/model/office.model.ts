@@ -24,7 +24,8 @@ export class Office extends MapObject {
       new DetailList(`Coordinator`, this.isCoordinator.toString()),
       new DetailList(`Team`, this.team),
       new DetailList(`Volunteer`, this.isVolunteer.toString()),
-      new DetailList(`Id`, this.id)];
+      //new DetailList(`Id`, this.id)
+    ];
   }
 
   tooltipText(){
