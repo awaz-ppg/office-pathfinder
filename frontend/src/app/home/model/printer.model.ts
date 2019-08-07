@@ -14,7 +14,7 @@ export class Printer extends MapObject {
     return [
       new DetailList(`Number`, this.number),
       new DetailList(`Color`, this.isColor.toString()),
-      new DetailList(`Id`, this.id)];
+    ];
   }
 
   tooltipText(){

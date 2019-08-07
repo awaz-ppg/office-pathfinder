@@ -12,4 +12,5 @@ export class Employee {
   constructor(employee: Employee) {
     Object.assign(this, employee);
   }
+
 }

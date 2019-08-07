@@ -11,4 +11,6 @@ export enum Elements {
     fireExtinguisher = 'fire-extinguisher',
     firstAidKit = 'first-aid-kit',
     wardrobe = 'wardrobe',
+    desk = 'desk',
+    employee = 'employee'
 }

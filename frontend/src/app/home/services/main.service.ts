@@ -15,6 +15,7 @@ import { OfficeService } from './office.service';
 import { RoomService } from './room.service';
 import { EmployeeService } from './employee.service';
 import { Guest } from '../model/guest.model';
+import { SearchObject } from '../model/search-object';
 import { MapObject } from '../model/map-object.model';
 
 
@@ -34,7 +35,7 @@ export class MainService {
   guest: Guest[] = [];
   employee: Employee[] = [];
   all: (Kitchen | Room | Office | Desk | Printer)[] = [];
-  options: string[] = [];
+  options = new Subject<SearchObject[][]>();
 
 
   select$ = this.select.asObservable();
@@ -58,14 +59,14 @@ export class MainService {
       this.kitchen = kitchens.map(x => new Kitchen(x));
       this.printer = printers.map(x => new Printer(x));
       this.room = rooms.map(x => new Room(x));
-      this.employee = employees.map(x => new Employee(x));
+      this.employee = employees.map(x => new Employee(x)); 
       this.guest = guests;
-      this.options = [...this.kitchen.map(x => x.name.toUpperCase()), ...this.room.map(x => x.roomName.toUpperCase()),
-      ...this.office.map(x => `${x.firstName.toUpperCase()} ${x.lastName.toUpperCase()}`),
-      ...this.employee.map(x => `${x.firstName.toUpperCase()} ${x.lastName.toUpperCase()}`)];
-      this.all = [...this.kitchen, ...this.room, ...this.office, ...this.desk, ...this.printer];
+      this.options.next([[...this.kitchen.map(x => new SearchObject(x.name.toUpperCase(), x.id, "kitchen"))], 
+      [...this.room.map(x => new SearchObject(x.roomName.toUpperCase(), x.id, "room"))],
+      [...this.office.map(x => new SearchObject(`${x.firstName.toUpperCase()} ${x.lastName.toUpperCase()}`, x.id, "office"))],
+      [...this.employee.map(x => new SearchObject(`${x.firstName.toUpperCase()} ${x.lastName.toUpperCase()}`, `${this.desk[this.desk.findIndex(y => (x.placeId == y.numberDesk))].id}`, "employee"))]]);
+      this.all = [...this.kitchen, ...this.room, ...this.office, ...this.desk.map(x => x.addWorker(this.employee)), ...this.printer];
     });
-
   }
 
   changeSelect(Select: string[]) {
