@@ -18,7 +18,6 @@ export class Kitchen extends MapObject {
       new DetailList(`Name`, this.name),
       new DetailList(`Coffee`, this.isCoffee.toString()),
       new DetailList(`Water`, this.isWater.toString()),
-      //new DetailList(`Id`, this.id)
     ];
   }
 

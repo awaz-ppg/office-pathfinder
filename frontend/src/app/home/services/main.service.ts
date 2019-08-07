@@ -26,7 +26,6 @@ import { MapObject } from '../model/map-object.model';
 export class MainService {
 
   private select = new Subject<string[]>();
-  private optionsAreReady = new Subject<boolean>();
 
   desk: Desk[] = [];
   office: Office[] = [];
@@ -36,11 +35,10 @@ export class MainService {
   guest: Guest[] = [];
   employee: Employee[] = [];
   all: (Kitchen | Room | Office | Desk | Printer)[] = [];
-  options: SearchObject[] = [];
+  options = new Subject<SearchObject[][]>();
 
 
   select$ = this.select.asObservable();
-  optionsStatus$ = this.optionsAreReady.asObservable();
 
   constructor(private http: HttpClient, deskService: DeskService,
     officeService: OfficeService, guestService: GuestService,
@@ -63,24 +61,16 @@ export class MainService {
       this.room = rooms.map(x => new Room(x));
       this.employee = employees.map(x => new Employee(x)); 
       this.guest = guests;
-      this.options = [...this.kitchen.map(x => new SearchObject(x.name.toUpperCase(), x.id, "kitchen")), 
-      ...this.room.map(x => new SearchObject(x.roomName.toUpperCase(), x.id, "room")), 
-      ...this.office.map(x => new SearchObject(`${x.firstName.toUpperCase()} ${x.lastName.toUpperCase()}`, x.id, "office")),
-      ...this.employee.map(x => new SearchObject(`${x.firstName.toUpperCase()} ${x.lastName.toUpperCase()}`, `${this.desk[this.desk.findIndex(y => (x.placeId == y.numberDesk))].id}`, "employee"))];
+      this.options.next([[...this.kitchen.map(x => new SearchObject(x.name.toUpperCase(), x.id, "kitchen"))], 
+      [...this.room.map(x => new SearchObject(x.roomName.toUpperCase(), x.id, "room"))],
+      [...this.office.map(x => new SearchObject(`${x.firstName.toUpperCase()} ${x.lastName.toUpperCase()}`, x.id, "office"))],
+      [...this.employee.map(x => new SearchObject(`${x.firstName.toUpperCase()} ${x.lastName.toUpperCase()}`, `${this.desk[this.desk.findIndex(y => (x.placeId == y.numberDesk))].id}`, "employee"))]]);
       this.all = [...this.kitchen, ...this.room, ...this.office, ...this.desk.map(x => x.addWorker(this.employee)), ...this.printer];
-    this.changeOptionsStatus(true);
     });
-
   }
 
   changeSelect(Select: string[]) {
     this.select.next(Select);
   }
-
-  changeOptionsStatus(status: boolean) {
-    this.optionsAreReady.next(status);
-  }
-
-  
 
 }

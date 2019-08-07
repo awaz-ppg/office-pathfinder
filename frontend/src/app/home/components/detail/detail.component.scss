@@ -28,7 +28,7 @@
   flex: 1 1 auto;
 }
 
-:host /deep/ .mat-list-item-content {
+::ng-deep .mat-list-item-content {
   padding-top: 0!important;
   padding-bottom: 0!important;
   margin-bottom: 0!important;
