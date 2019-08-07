@@ -69,7 +69,8 @@ export class SearchComponent implements OnInit {
     }
 
     fillSearch(text: string){
-        document.querySelector(".search").value = text;
+        (this.inputEl.nativeElement as HTMLInputElement).value = text;
+        this.autocomplete(text);
     }
     
 }
